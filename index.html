@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Measure G Data Explorer
+        </title>
+
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+        <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" type="text/css" />
+        <link rel="stylesheet" href="http://academy.cartodb.com/css/cdbui.css" type="text/css" />
+
+        <!-- include cartodb.js library -->
+        <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js" type="text/javascript"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+        <style type="text/css">
+            html, body, #map {
+                height: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            #cartocss {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            #sql {
+                position: absolute;
+                top: 20px;
+                right: 292px;
+            }
+            .layer_selector {
+                background: rgba(255,255,255,0.9);
+                border-radius: 5px;
+                padding: 0;
+                border: 1px solid #999;
+                width: 250px;
+            }
+
+            .layer_selector > p {
+                padding: 15px 30px;
+                border-bottom: 1px solid #999;
+            }
+
+            .layer_selector ul {
+                padding: 0; margin: 0;
+                list-style-type: none;
+            }
+            .layer_selector li {
+                padding: 15px 30px;
+                font-family: Helvetica, Arial;
+                font-size: 13px;
+                color: #444;
+                cursor: pointer;
+            }
+            .layer_selector li:not(:last-child) {
+                border-bottom: 1px solid #999;
+            }
+            .layer_selector li:hover {
+                background-color: #F0F0F0;
+                cursor: pointer;
+            }
+            .layer_selector li.sql_selected,
+            .layer_selector li.cartocss_selected {
+                background-color: #A6CEE3;
+            }
+            </style>
+
+            <style type="cartocss/html" id="simple">
+                /** simple visualization */
+
+                #all_day_cdb_gu_l3 {
+                    marker-fill-opacity: 0.9;
+                    marker-line-color: #FFF;
+                    marker-line-width: 1.5;
+                    marker-line-opacity: 1;
+                    marker-placement: point;
+                    marker-type: ellipse;
+                    marker-width: 10;
+                    marker-fill: #FF6600;
+                    marker-allow-overlap: true;
+                }
+        </style>
+
+        <style type="cartocss/html" id="bubble-magnitude">
+            /** bubble visualization */
+
+            #measure_g_2012_13_merge{
+              marker-fill-opacity: 0.9;
+              marker-line-color: #FFF;
+              marker-line-width: 1;
+              marker-line-opacity: 1;
+              marker-placement: point;
+              marker-multi-policy: largest;
+              marker-type: ellipse;
+              marker-fill: #229A00;
+              marker-allow-overlap: true;
+              marker-clip: false;
+            }
+            #measure_g_2012_13_merge [ ytd_actual <= 86345] {
+               marker-width: 25.0;
+            }
+            #measure_g_2012_13_merge [ ytd_actual <= 26840] {
+               marker-width: 23.3;
+            }
+            #measure_g_2012_13_merge [ ytd_actual <= 21816] {
+               marker-width: 21.7;
+            }
+            #measure_g_2012_13_merge [ ytd_actual <= 21484] {
+               marker-width: 20.0;
+            }
+            #measure_g_2012_13_merge [ ytd_actual <= 20091] {
+               marker-width: 18.3;
+            }
+            #measure_g_2012_13_merge [ ytd_actual <= 16115] {
+               marker-width: 16.7;
+            }
+            #measure_g_2012_13_merge [ ytd_actual <= 15672] {
+               marker-width: 15.0;
+            }
+            #measure_g_2012_13_merge [ ytd_actual <= 15120] {
+               marker-width: 13.3;
+            }
+            #measure_g_2012_13_merge [ ytd_actual <= 14616] {
+               marker-width: 11.7;
+            }
+            #measure_g_2012_13_merge [ ytd_actual <= 10080] {
+               marker-width: 10.0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <div id="cartocss" class="layer_selector">
+            <p>CartoCSS Selectors</p>
+            <ul>
+                <li data="categ-report-sta" data-type="cartocss">Categorize earthquakes by reporting station
+                </li>
+                <li data="choropleth-magnitude" data-type="cartocss">Color earthquakes by magnitude
+                </li>
+                <li data="bubble-magnitude" data-type="cartocss">Size earthquakes by magnitude
+                </li>
+                <li data="bubble-choropleth" data-type="cartocss">Size earthquakes by magnitude, color by depth
+                </li>
+                <li data="simple" data-type="cartocss">Reset CartoCSS
+                </li>
+            </ul>
+        </div>
+
+<!--         <div id="sql" class="layer_selector">
+            <p>SQL Selectors</p>
+            <ul>
+                <li data=" WHERE mag >= 5.0" data-type="sql">Show magnitude >= 5.0
+                </li>
+                <li data=" WHERE type != 'earthquake'" data-type="sql">Show non-earthquakes
+                </li>
+                <li data=" WHERE place ILIKE '%papua new guinea%'" data-type="sql">Show earthquakes near Papua New Guinea
+                </li>
+                <li data="" data-type="sql">Reset SQL</li>
+            </ul>
+        </div> -->
+
+        <!-- Place your code in the script tags below -->
+        <script type="text/javascript">
+        window.onload = function() {
+
+            // var tableName = "all_day_cdb_gu_l3";
+            var tableName = "measure_g_2012_13_merge";
+
+            var layerSource = {
+                    user_name: 'jbaldo',
+                    type: 'cartodb',
+                    sublayers: [{
+                        sql: "SELECT the_geom, the_geom_webmercator, SUM(ytd_actual) ytd_actual, Min(cartodb_id) cartodb_id,schnam FROM " + tableName + " WHERE prog_desc IN ('1118 - ART') AND prog_desc IS NOT NULL GROUP BY the_geom, the_geom_webmercator, schnam",
+                        cartocss: $("#bubble-magnitude").html()
+                    }]
+            }
+
+            // Instantiate new map object, place it in 'map' element
+            var map_object = new L.Map('map', {
+                center: [37.807885, -122.197323], // Oakland
+                zoom: 12
+            });
+
+            // // Create layer selector
+            // function createSelector(layer) {
+            //     var condition = "";
+            //     var $options = $(".layer_selector").find("li");
+            //     $options.click(function(e) {
+            //         var $li = $(e.target);
+            //         var selected = $li.attr('data');
+            //         var type = $li.data('type');
+
+            //         if (type === "cartocss") {
+            //             $options.removeClass('cartocss_selected');
+            //             if (selected !== "simple") {
+            //                 $li.addClass('cartocss_selected');
+            //             }
+            //             condition = $('#'+selected).text();
+            //             layer.setCartoCSS(condition);
+            //         } else {
+            //             $options.removeClass('sql_selected');
+            //             if (selected !== "") {
+            //                 $li.addClass('sql_selected');
+            //             }
+            //             if (selected.indexOf('guinea') !== -1) {
+            //                 map_object.setView(L.latLng([-9.5, 147.116667]),6);
+            //             } else {
+            //                 map_object.setView(L.latLng([37.7741154,-122.4437914]),2);
+            //             }
+            //             layer.setSQL("SELECT * FROM " + tableName + selected);
+            //         }
+            //     });
+            // }
+
+            // Pull tiles from CartoDB's basemaps
+            L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map_object);
+
+            // for storing sublayer outside of createlayer
+            var sublayers;
+
+            // Add data layer to your map
+            cartodb.createLayer(map_object,layerSource)
+                .addTo(map_object)
+                .done(function(layer) {
+                    sublayer = layer.getSubLayer(0);
+                    createSelector(sublayer);
+                })
+                .error(function(err) {
+                    console.log("error: " + err);
+                });
+            }
+        </script>
+    </body>
+</html>
