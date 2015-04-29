@@ -245,23 +245,21 @@
             }).addTo(map_object);
 
             // for storing sublayer outside of createlayer
-            var sublayers;
+            var sublayer;
 
             // Add data layer to your map
             cartodb.createLayer(map_object,layerSource)
                 .addTo(map_object)
                 .done(function(layer) {
                     sublayer = layer.getSubLayer(0);
-                    createSelector(sublayer);
                 })
                 .error(function(err) {
                     console.log("error: " + err);
                 });
 
             $('#program-menu li').click(function(){
-
                 $(this).toggleClass("selected");
-
+                sublayer.setSQL(generateSQLQuery());
             });
 
             }
