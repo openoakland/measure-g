@@ -129,34 +129,34 @@
               marker-allow-overlap: true;
               marker-clip: false;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 545238] {
+            #measure_g_2012_13_merge [ ytd_actual <= 1167024] {
                marker-width: 25.0;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 188663] {
+            #measure_g_2012_13_merge [ ytd_actual <= 359829] {
                marker-width: 23.3;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 143864] {
+            #measure_g_2012_13_merge [ ytd_actual <= 283984] {
                marker-width: 21.7;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 119562] {
+            #measure_g_2012_13_merge [ ytd_actual <= 242304] {
                marker-width: 20.0;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 106905] {
+            #measure_g_2012_13_merge [ ytd_actual <= 213504] {
                marker-width: 18.3;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 99195] {
+            #measure_g_2012_13_merge [ ytd_actual <= 197312] {
                marker-width: 16.7;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 93104] {
+            #measure_g_2012_13_merge [ ytd_actual <= 183343] {
                marker-width: 15.0;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 84538] {
+            #measure_g_2012_13_merge [ ytd_actual <= 164460] {
                marker-width: 13.3;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 75196] {
+            #measure_g_2012_13_merge [ ytd_actual <= 150219] {
                marker-width: 11.7;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 58715] {
+            #measure_g_2012_13_merge [ ytd_actual <= 92392] {
                marker-width: 10.0;
             }
         </style>
@@ -267,37 +267,6 @@
                 zoom: 12
             });
 
-            // // Create layer selector
-            // function createSelector(layer) {
-            //     var condition = "";
-            //     var $options = $(".layer_selector").find("li");
-            //     $options.click(function(e) {
-            //         var $li = $(e.target);
-            //         var selected = $li.attr('data');
-            //         var type = $li.data('type');
-
-            //         if (type === "cartocss") {
-            //             $options.removeClass('cartocss_selected');
-            //             if (selected !== "simple") {
-            //                 $li.addClass('cartocss_selected');
-            //             }
-            //             condition = $('#'+selected).text();
-            //             layer.setCartoCSS(condition);
-            //         } else {
-            //             $options.removeClass('sql_selected');
-            //             if (selected !== "") {
-            //                 $li.addClass('sql_selected');
-            //             }
-            //             if (selected.indexOf('guinea') !== -1) {
-            //                 map_object.setView(L.latLng([-9.5, 147.116667]),6);
-            //             } else {
-            //                 map_object.setView(L.latLng([37.7741154,-122.4437914]),2);
-            //             }
-            //             layer.setSQL("SELECT * FROM " + tableName + selected);
-            //         }
-            //     });
-            // }
-
             // Pull tiles from CartoDB's basemaps
             L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -307,11 +276,11 @@
             var sublayer;
 
             // Add data layer to your map
-            cartodb.createLayer(map_object,layerSource)
+            cartodb.createLayer(map_object,"https://jbaldo.cartodb.com/api/v2/viz/5c5d6b00-e645-11e4-b985-0e9d821ea90d/viz.json")
                 .addTo(map_object)
                 .done(function(layer) {
-                    sublayer = layer.getSubLayer(0);
-                    cartodb.vis.Vis.addInfowindow(map_object, sublayer, ['school']);
+                    sublayer = layer.getSubLayer(1);
+                    // cartodb.vis.Vis.addInfowindow(map_object, sublayer, ['school']);
                     // sublayer.setInteraction(true);
                     // sublayer.infowindow.set({
                     //     template: $('#infowindow_template').html()
