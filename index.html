@@ -45,6 +45,15 @@
                 padding: 0;
                 margin: 0;
             }
+
+            span.menu-icon {
+                float: right;
+            }
+
+            #menu-heading {
+                cursor: pointer;
+            }
+
             #cartocss {
                 position: absolute;
                 top: 20px;
@@ -157,31 +166,46 @@
         <div class="container-fluid">
             <div class="row">
                 <div id="cartocss" class="layer_selector col-xs-6 col-sm-3">
-                    <p>Explore</p>
-                    <ul id="program-menu">
-                        <li data="1118 - ART" class="selected" data-type="cartocss">
+                    <p id="menu-heading" class="expanded">
+                        Explore Measure G
+                        <span class="menu-icon glyphicon glyphicon-triangle-bottom" style="display: none" aria-hidden="true"></span>
+                        <span class="menu-icon glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+                    </p>
+                    <ul id="program-menu" class="collapsible">
+                        <li data="1118 - ART" class="selected">
                             Art
                         </li>
-                        <li data="1191 - BASIC SCHOOL SUPPORT" class="selected" data-type="cartocss">
+                        <li data="1191 - BASIC SCHOOL SUPPORT" class="selected">
                             Basic School Support
                         </li>
-                        <li data="1112 - CLASS SIZE REDUCTION" data-type="cartocss">
+                        <li data="1112 - CLASS SIZE REDUCTION">
                             Class Size Reducation
                         </li>
-                        <li data="9060 - HR Recruitment" data-type="cartocss">
+                        <li data="9060 - HR Recruitment">
                             HR - Recruitment
                         </li>
-                        <li data="1552 - SCHOOL LIBRARIES" data-type="cartocss">
+                        <li data="1552 - SCHOOL LIBRARIES">
                             Libraries
                         </li>
-                        <li data="1598 - MIDDLE SCHOOL ELECTIVES" data-type="cartocss">
+                        <li data="1598 - MIDDLE SCHOOL ELECTIVES">
                             Middle School Electives
                         </li>
-                        <li data="1564 - ORATORICAL FEST/PERFORMANCES" data-type="cartocss">
+                        <li data="1564 - ORATORICAL FEST/PERFORMANCES">
                             Oratorical Festival
                         </li>
-                        <li data="simple" data-type="cartocss">
+                        <li data="simple">
                             Reset
+                        </li>
+                    </ul>
+                    <ul id="school-level-menu" class="collapsible">
+                        <li data="Elem" class="selected">
+                            Elementary
+                        </li>
+                        <li data="Middle" class="selected">
+                            Middle
+                        </li>
+                        <li data="High" class="selected">
+                            High
                         </li>
                     </ul>
                 </div>
@@ -196,18 +220,33 @@
             var tableName = "measure_g_2012_13_merge";
 
             getSelectedPrograms = function () {
-                var list = [];
+                var programList = [];
                 $('#program-menu .selected').each(function(){
-                    list.push("'" + $(this).attr("data") + "'");
+                    programList.push("'" + $(this).attr("data") + "'");
                 });
-                return list.join();
+                return programList.join();
+                //alert(list);
+            };
+
+           getSelectedSchoolLevels = function () {
+                var schoolLevelList = [];
+                $('#school-level-menu .selected').each(function(){
+                    schoolLevelList.push("'" + $(this).attr("data") + "'");
+                });
+                return schoolLevelList.join();
                 //alert(list);
             };
 
             generateSQLQuery = function () {
-                var query = "SELECT the_geom, the_geom_webmercator, SUM(ytd_actual) ytd_actual, Min(cartodb_id) cartodb_id, school FROM " + tableName + " WHERE prog_desc IN ("
+                var query = "SELECT the_geom, the_geom_webmercator, SUM(ytd_actual) ytd_actual, Min(cartodb_id) cartodb_id, school, site_type FROM " + tableName +
+                    " WHERE prog_desc IN ("
                     + getSelectedPrograms()
-                    + ") AND prog_desc IS NOT NULL GROUP BY the_geom, the_geom_webmercator, school";
+                    + ") "
+                    + "AND site_type IN ("
+                    + getSelectedSchoolLevels()
+                    + ") "
+                    + "AND prog_desc IS NOT NULL "
+                    + "GROUP BY the_geom, the_geom_webmercator, school, site_type";
 
                 return query;
             };
@@ -287,9 +326,19 @@
                 });
 
 
-            $('#program-menu li').click(function(){
+            $('#program-menu li, #school-level-menu li').click(function(){
                 $(this).toggleClass("selected");
                 sublayer.setSQL(generateSQLQuery());
+            });
+
+            $('#menu-heading').click(function(){
+                if ($(this).hasClass("expanded")) {
+                    $("ul.collapsible").slideUp();
+                } else {
+                    $("ul.collapsible").slideDown();
+                }
+                $(this).toggleClass("expanded");
+                $('span.menu-icon').toggle();
             });
 
 
