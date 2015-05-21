@@ -46,12 +46,31 @@
                 margin: 0;
             }
 
+            /*Menu Header*/
+
             span.menu-icon {
                 float: right;
             }
 
             #menu-heading {
                 cursor: pointer;
+            }
+
+            /*Menu Filter Icons*/
+
+            span.filter-icon {
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                border-width: 2px;
+                border-style: solid;
+                border-color: black;
+                margin-right: 5px;
+            }
+
+            li.selected span.filter-icon {
+                background-color: #339933;
             }
 
             #cartocss {
@@ -76,7 +95,7 @@
                 list-style-type: none;
             }
             .layer_selector li {
-                padding: 10px 30px;
+                padding: 5px 30px;
                 font-family: Helvetica, Arial;
                 font-size: 13px;
                 color: #444;
@@ -84,12 +103,12 @@
             }
             .layer_selector li:not(:last-child) {
                 border-bottom: 1px solid #999;
-            }
+/*            }
             .layer_selector li.selected {
                 background-color: #BDB1F9;
-            }
+            }*/
             .layer_selector li:hover {
-                background-color: #F0F0F0;
+                background-color: #A6CEE3;
                 cursor: pointer;
             }
             .layer_selector li.sql_selected,
@@ -173,24 +192,31 @@
                     </p>
                     <ul id="program-menu" class="collapsible">
                         <li data="1118 - ART" class="selected">
+                            <span class="filter-icon"></span>
                             Art
                         </li>
                         <li data="1191 - BASIC SCHOOL SUPPORT" class="selected">
+                            <span class="filter-icon"></span>
                             Basic School Support
                         </li>
                         <li data="1112 - CLASS SIZE REDUCTION">
+                            <span class="filter-icon"></span>
                             Class Size Reducation
                         </li>
                         <li data="9060 - HR Recruitment">
+                            <span class="filter-icon"></span>
                             HR - Recruitment
                         </li>
                         <li data="1552 - SCHOOL LIBRARIES">
+                            <span class="filter-icon"></span>
                             Libraries
                         </li>
                         <li data="1598 - MIDDLE SCHOOL ELECTIVES">
+                            <span class="filter-icon"></span>
                             Middle School Electives
                         </li>
                         <li data="1564 - ORATORICAL FEST/PERFORMANCES">
+                            <span class="filter-icon"></span>
                             Oratorical Festival
                         </li>
                         <li data="simple">
