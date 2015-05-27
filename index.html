@@ -13,7 +13,6 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" type="text/css" />
-        <link rel="stylesheet" href="http://academy.cartodb.com/css/cdbui.css" type="text/css" />
 
         <!-- include cartodb.js library -->
         <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js" type="text/javascript"></script>
@@ -36,7 +35,7 @@
         <style type="text/css">
             .cartodb-popup-content-wrapper,
             .cartodb-popup-content {
-                     box-sizing: content-box;
+                box-sizing: content-box;
                 -webkit-box-sizing: content-box;
                 -moz-box-sizing: content-box;
             }
@@ -44,9 +43,18 @@
                 height: 100%;
                 padding: 0;
                 margin: 0;
+
+                background-color:#fff;
+                text-rendering:optimizeLegibility;
+                -webkit-text-rendering:optimizeLegibility;
+                -webkit-font-smoothing:antialiased;
+                color:#333;
+                font-weight:300;
+                line-height:25px;
+                font-family:"Proxima Nova W01","Helvetica Neue",Helvetica,Arial,sans-serif
             }
 
-            /*Menu Header*/
+            /*Menu Headers*/
 
             span.menu-icon {
                 float: right;
@@ -54,6 +62,12 @@
 
             #menu-heading {
                 cursor: pointer;
+                font-size:20px;
+                padding-left: 15px;
+            }
+            .section-header {
+                font-size: 17px;
+                padding-left: 30px;
             }
 
             /*Menu Filter Icons*/
@@ -69,8 +83,12 @@
                 margin-right: 5px;
             }
 
-            li.selected span.filter-icon {
+            #program-menu li.selected span.filter-icon {
                 background-color: #339933;
+            }
+
+            #school-level-menu li.selected span.filter-icon {
+                background-color: #0608E0;
             }
 
             #cartocss {
@@ -86,7 +104,7 @@
             }
 
             .layer_selector > p {
-                padding: 15px 30px;
+                padding: 8px 30px;
                 border-bottom: 1px solid #999;
             }
 
@@ -97,7 +115,7 @@
             .layer_selector li {
                 padding: 5px 30px;
                 font-family: Helvetica, Arial;
-                font-size: 13px;
+                font-size: 15px;
                 color: #444;
                 cursor: pointer;
             }
@@ -191,6 +209,7 @@
                         <span class="menu-icon glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
                     </p>
                     <ul id="program-menu" class="collapsible">
+                        <span class="section-header">Measure G Programs</span>
                         <li data="1118 - ART" class="selected">
                             <span class="filter-icon"></span>
                             Art
@@ -219,19 +238,23 @@
                             <span class="filter-icon"></span>
                             Oratorical Festival
                         </li>
-                        <li data="simple">
-                            Reset
-                        </li>
                     </ul>
                     <ul id="school-level-menu" class="collapsible">
+                        <span class="section-header">School Levels</span>
                         <li data="Elem" class="selected">
+                            <span class="filter-icon"></span>
                             Elementary
                         </li>
                         <li data="Middle" class="selected">
+                            <span class="filter-icon"></span>
                             Middle
                         </li>
                         <li data="High" class="selected">
+                            <span class="filter-icon"></span>
                             High
+                        </li>
+                        <li data="simple">
+                            Reset
                         </li>
                     </ul>
                 </div>
