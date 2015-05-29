@@ -308,7 +308,7 @@
                         cartocss: $("#bubble-magnitude").html(),
                         interactivity: "cartodb_id, the_geom, the_geom_webmercator"
                     }]
-            }
+            };
 
             // Instantiate new map object, place it in 'map' element
             var map_object = new L.Map('map', {
@@ -325,23 +325,34 @@
             var sublayer;
 
             // Add data layer to your map
-            cartodb.createLayer(map_object,"https://rawgit.com/openoakland/measure-g/master/viz.json")
-                .addTo(map_object)
-                .done(function(layer) {
-                    sublayer = layer.getSubLayer(1);
-                    // cartodb.vis.Vis.addInfowindow(map_object, sublayer, ['school']);
-                    // sublayer.setInteraction(true);
-                    // sublayer.infowindow.set({
-                    //     template: $('#infowindow_template').html()
-                    // });
+            var vizUrl = "https://rawgit.com/openoakland/measure-g/master/viz.json";
 
-                    // sublayer.on('featureOver', function(e, latlng, pos, data) {
-                    //     alert("Hey! You clicked " + data);
-                    // });
-                })
-                .error(function(err) {
-                    console.log("error: " + err);
-                });
+            $.ajax('./viz.json', {
+                dataType: 'jsonp'
+            }).then(function(data){
+                console.log('does not fire');
+                console.log(data);
+            }, function(err){
+                // don't know why this is in the second callback..
+                var jsonFile = JSON.parse(err.responseText);
+                cartodb.createLayer(map_object, jsonFile)
+                    .addTo(map_object)
+                    .done(function(layer) {
+                        sublayer = layer.getSubLayer(1);
+                        // cartodb.vis.Vis.addInfowindow(map_object, sublayer, ['school']);
+                        // sublayer.setInteraction(true);
+                        // sublayer.infowindow.set({
+                        //     template: $('#infowindow_template').html()
+                        // });
+
+                        // sublayer.on('featureOver', function(e, latlng, pos, data) {
+                        //     alert("Hey! You clicked " + data);
+                        // });
+                    })
+                    .error(function(err) {
+                        console.log("error: " + err);
+                    });
+            });
 
 
             $('#program-menu li, #school-level-menu li').click(function(){
