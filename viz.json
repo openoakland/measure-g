@@ -1,4 +1,4 @@
-{
+vizjson({
   "id": "5c5d6b00-e645-11e4-b985-0e9d821ea90d",
   "version": "0.1.0",
   "title": "Measure G 2012-2013",
@@ -271,4 +271,4 @@
   "transition_options": {
     "time": 0
   }
-}
+});
