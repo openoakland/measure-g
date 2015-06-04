@@ -20,7 +20,7 @@ vizjson({
   ],
   "center": "[37.80381638220768, -122.14153289794922]",
   "zoom": 12,
-  "updated_at": "2015-05-28T01:17:42+00:00",
+  "updated_at": "2015-06-03T23:35:33+00:00",
   "layers": [
     {
       "options": {
@@ -137,6 +137,11 @@ vizjson({
                     "name": "school",
                     "title": false,
                     "position": 0
+                  },
+                  {
+                    "name": "ytd_actual",
+                    "title": false,
+                    "position": 1.7976931348623e+308
                   }
                 ],
                 "template_name": "infowindow_light",
@@ -172,6 +177,7 @@ vizjson({
                 "show_title": false,
                 "title": "",
                 "template": "",
+                "visible": true,
                 "items": [
                   {
                     "name": "Left label",
