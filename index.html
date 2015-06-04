@@ -322,10 +322,12 @@
             var sublayer;
 
             // Add data layer to your map
-            cartodb.createLayer(map_object,"https://jbaldo.cartodb.com/api/v2/viz/5c5d6b00-e645-11e4-b985-0e9d821ea90d/viz.json")
+            cartodb.createLayer(map_object,"http://measureg.nfshost.com/viz.json")
                 .addTo(map_object)
                 .done(function(layer) {
                     sublayer = layer.getSubLayer(1);
+
+                    // Undocumented addField method here: https://github.com/CartoDB/cartodb/issues/54
 
                     sublayer.infowindow.set({
                         template: $('#infowindow_template').html()
