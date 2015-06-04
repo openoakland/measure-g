@@ -24,7 +24,8 @@
              <div class="cartodb-popup-content-wrapper">
                <div class="cartodb-popup-content">
                 <span>{{content.data.school}}</span>
-                <span>{{content.data.ytd_actual}}</span>
+                <span>{{content.data.ytd_money}}</span>
+                <span>{{content.data.site_type}}</span>
                </div>
              </div>
              <div class="cartodb-popup-tip-container"></div>
@@ -284,7 +285,7 @@
             };
 
             generateSQLQuery = function () {
-                var query = "SELECT the_geom, the_geom_webmercator, SUM(ytd_actual) ytd_actual, Min(cartodb_id) cartodb_id, school, site_type FROM " + tableName +
+                var query = "SELECT the_geom, the_geom_webmercator, SUM(ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money) as ytd_money, Min(cartodb_id) cartodb_id, school, site_type FROM " + tableName +
                     " WHERE prog_desc IN ("
                     + getSelectedPrograms()
                     + ") "
@@ -302,7 +303,6 @@
                     type: 'cartodb',
                     sublayers: [{
                         sql: generateSQLQuery(),
-                        cartocss: $("#bubble-magnitude").html(),
                         interactivity: "cartodb_id, the_geom, the_geom_webmercator"
                     }]
             }

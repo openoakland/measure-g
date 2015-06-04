@@ -20,7 +20,7 @@ vizjson({
   ],
   "center": "[37.80381638220768, -122.14153289794922]",
   "zoom": 12,
-  "updated_at": "2015-06-03T23:35:33+00:00",
+  "updated_at": "2015-06-04T03:47:51+00:00",
   "layers": [
     {
       "options": {
@@ -142,6 +142,16 @@ vizjson({
                     "name": "ytd_actual",
                     "title": false,
                     "position": 1.7976931348623e+308
+                  },
+                  {
+                    "name": "site_type",
+                    "title": false,
+                    "position": 1.7976931348623e+308
+                  },
+                  {
+                    "name": "ytd_money",
+                    "title": false,
+                    "position": 1.7976931348623e+308
                   }
                 ],
                 "template_name": "infowindow_light",
@@ -160,7 +170,7 @@ vizjson({
                     "position": 0
                   },
                   {
-                    "name": "ytd_actual",
+                    "name": "ytd_money",
                     "title": false,
                     "position": 1
                   }
@@ -206,11 +216,11 @@ vizjson({
               "order": 101,
               "visible": true,
               "options": {
-                "sql": "SELECT the_geom, the_geom_webmercator, SUM(ytd_actual) ytd_actual, Min(cartodb_id) cartodb_id, school, site_type\nFROM measure_g_2012_13_merge WHERE prog_desc IS NOT NULL\n\nGROUP BY the_geom, the_geom_webmercator, school, site_type",
+                "sql": "SELECT the_geom, the_geom_webmercator,SUM(ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money) as ytd_money, Min(cartodb_id) cartodb_id, school, site_type\nFROM measure_g_2012_13_merge WHERE prog_desc IS NOT NULL\n\nGROUP BY the_geom, the_geom_webmercator, school, site_type",
                 "layer_name": "measure_g_2012_13_merge",
                 "cartocss": "\/** bubble visualization *\/\n\n#measure_g_2012_13_merge{\n  marker-fill-opacity: 0.9;\n  marker-line-color: #FFF;\n  marker-line-width: 1.5;\n  marker-line-opacity: 1;\n  marker-placement: point;\n  marker-multi-policy: largest;\n  marker-type: ellipse;\n  marker-fill: #229A00;\n  marker-allow-overlap: true;\n  marker-clip: false;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 1167024] {\n   marker-width: 25.0;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 359829] {\n   marker-width: 23.3;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 283984] {\n   marker-width: 21.7;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 242304] {\n   marker-width: 20.0;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 213504] {\n   marker-width: 18.3;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 197312] {\n   marker-width: 16.7;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 183343] {\n   marker-width: 15.0;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 164460] {\n   marker-width: 13.3;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 150219] {\n   marker-width: 11.7;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 92392] {\n   marker-width: 10.0;\n}",
                 "cartocss_version": "2.1.1",
-                "interactivity": "cartodb_id,school,ytd_actual",
+                "interactivity": "cartodb_id,school,ytd_actual,ytd_money",
                 "table_name": "\"\".",
                 "dynamic_cdn": false
               }
