@@ -1,0 +1,1221 @@
+{
+    "name": "G3 Stats",
+    "children": [
+        {
+            "name": "0000 - BALANCE SHEET ACCOUNT",
+            "sum": 0,
+            "children": [
+                {
+                    "name": "7994 - Legally Restricted Balance",
+                    "sum": 0
+                }
+            ]
+        },
+        {
+            "name": "1110 - GENERAL EDUCATION, K-12",
+            "sum": 0,
+            "children": [
+                {
+                    "name": "1105 - TEACHERS SALARIES",
+                    "sum": 0
+                },
+                {
+                    "name": "3101 - STRS CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3321 - MEDICARE CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3401 - HEALTH & WELFARE CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3501 - ST UNEMPLOY INS CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3601 - WORKERS COMP CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3901 - OTHER BENEFITS CERTIFICATED",
+                    "sum": 0
+                }
+            ]
+        },
+        {
+            "name": "1112 - CLASS SIZE REDUCTION",
+            "sum": 3236753,
+            "children": [
+                {
+                    "name": "1105 - TEACHERS SALARIES",
+                    "sum": 2279527
+                },
+                {
+                    "name": "1120 - TEACHERS SALARIES STIPENDS",
+                    "sum": 2756
+                },
+                {
+                    "name": "2105 - INSTRAIDES SALARIES",
+                    "sum": 2810
+                },
+                {
+                    "name": "3101 - STRS CERTIFICATED",
+                    "sum": 179085
+                },
+                {
+                    "name": "3201 - PERS CERTIFICATED",
+                    "sum": 7026
+                },
+                {
+                    "name": "3202 - PERS CLASSIFIED",
+                    "sum": 309
+                },
+                {
+                    "name": "3301 - SOCSEC,MEDI,ALTSS CERTIFICATED",
+                    "sum": 35576
+                },
+                {
+                    "name": "3302 - SOCSEC,MEDI,ALTSS CLASSIFIED",
+                    "sum": 174
+                },
+                {
+                    "name": "3321 - MEDICARE CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3322 - MEDICARE CLASSIFIED",
+                    "sum": 41
+                },
+                {
+                    "name": "3401 - HEALTH & WELFARE CERTIFICATED",
+                    "sum": 569554
+                },
+                {
+                    "name": "3402 - HEALTH & WELFARE CLASSIFIED",
+                    "sum": 992
+                },
+                {
+                    "name": "3501 - ST UNEMPLOY INS CERTIFICATED",
+                    "sum": 25120
+                },
+                {
+                    "name": "3502 - ST UNEMPLOY INS CLASSIFIED",
+                    "sum": 31
+                },
+                {
+                    "name": "3601 - WORKERS COMP CERTIFICATED",
+                    "sum": 120352
+                },
+                {
+                    "name": "3602 - WORKERS COMP CLASSIFIED",
+                    "sum": 148
+                },
+                {
+                    "name": "3801 - PERS REDUCTION CERTIFICATED",
+                    "sum": 1095
+                },
+                {
+                    "name": "3802 - PERS REDUCTION CLASSIFIED",
+                    "sum": 57
+                },
+                {
+                    "name": "3901 - OTHER BENEFITS CERTIFICATED",
+                    "sum": 2616
+                },
+                {
+                    "name": "3902 - OTHER BENEFITS CLASSIFIED",
+                    "sum": 204
+                },
+                {
+                    "name": "4310 - SUPPLIES",
+                    "sum": 5746
+                },
+                {
+                    "name": "4397 - FALL REVISIONS",
+                    "sum": 0
+                },
+                {
+                    "name": "4399 - SURPLUS",
+                    "sum": 0
+                },
+                {
+                    "name": "4420 - Computer $500-4,999",
+                    "sum": 3534
+                },
+                {
+                    "name": "5828 - ASSEMBLIES/CLASSRM PRESENTION",
+                    "sum": 0
+                }
+            ]
+        },
+        {
+            "name": "1118 - ART",
+            "sum": 440653,
+            "children": [
+                {
+                    "name": "1105 - TEACHERS SALARIES",
+                    "sum": 9204
+                },
+                {
+                    "name": "1120 - TEACHERS SALARIES STIPENDS",
+                    "sum": 89905
+                },
+                {
+                    "name": "3101 - STRS CERTIFICATED",
+                    "sum": 7509
+                },
+                {
+                    "name": "3201 - PERS CERTIFICATED",
+                    "sum": 282
+                },
+                {
+                    "name": "3301 - SOCSEC,MEDI,ALTSS CERTIFICATED",
+                    "sum": 1920
+                },
+                {
+                    "name": "3321 - MEDICARE CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3401 - HEALTH & WELFARE CERTIFICATED",
+                    "sum": 1859
+                },
+                {
+                    "name": "3501 - ST UNEMPLOY INS CERTIFICATED",
+                    "sum": 1089
+                },
+                {
+                    "name": "3601 - WORKERS COMP CERTIFICATED",
+                    "sum": 5461
+                },
+                {
+                    "name": "3801 - PERS REDUCTION CERTIFICATED",
+                    "sum": 40
+                },
+                {
+                    "name": "4310 - SUPPLIES",
+                    "sum": 21817
+                },
+                {
+                    "name": "4399 - SURPLUS",
+                    "sum": 0
+                },
+                {
+                    "name": "4410 - Equipment $500-4,999",
+                    "sum": 632
+                },
+                {
+                    "name": "4420 - Computer $500-4,999",
+                    "sum": 8227
+                },
+                {
+                    "name": "5200 - TRAVEL AND CONFERENCES",
+                    "sum": 1960
+                },
+                {
+                    "name": "5220 - CONFERENCE  EXPENSE",
+                    "sum": 1374
+                },
+                {
+                    "name": "5825 - CONSULTANTS",
+                    "sum": 284966
+                },
+                {
+                    "name": "5826 - EXTERNAL WORK ORDER SERVICES",
+                    "sum": 755
+                },
+                {
+                    "name": "5828 - ASSEMBLIES/CLASSRM PRESENTION",
+                    "sum": 3653
+                }
+            ]
+        },
+        {
+            "name": "1135 - MUSIC",
+            "sum": 74299,
+            "children": [
+                {
+                    "name": "1305 - SUPV, ADMIN, INSTR COACHES SAL",
+                    "sum": 49374
+                },
+                {
+                    "name": "1905 - OTHERCERT SALARIES",
+                    "sum": 0
+                },
+                {
+                    "name": "3101 - STRS CERTIFICATED",
+                    "sum": 4073
+                },
+                {
+                    "name": "3301 - SOCSEC,MEDI,ALTSS CERTIFICATED",
+                    "sum": 711
+                },
+                {
+                    "name": "3321 - MEDICARE CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3401 - HEALTH & WELFARE CERTIFICATED",
+                    "sum": 16953
+                },
+                {
+                    "name": "3501 - ST UNEMPLOY INS CERTIFICATED",
+                    "sum": 543
+                },
+                {
+                    "name": "3601 - WORKERS COMP CERTIFICATED",
+                    "sum": 2602
+                },
+                {
+                    "name": "3901 - OTHER BENEFITS CERTIFICATED",
+                    "sum": 43
+                }
+            ]
+        },
+        {
+            "name": "1159 - COVERED ELEM INTERVENTION PDS",
+            "sum": 2119854,
+            "children": [
+                {
+                    "name": "1105 - TEACHERS SALARIES",
+                    "sum": 1460021
+                },
+                {
+                    "name": "1112 - TEACHERS SALARIES 12 PAY",
+                    "sum": 0
+                },
+                {
+                    "name": "1120 - TEACHERS SALARIES STIPENDS",
+                    "sum": 578
+                },
+                {
+                    "name": "1150 - TEACHERS SUBSTITUTES",
+                    "sum": 19573
+                },
+                {
+                    "name": "2105 - INSTRAIDES SALARIES",
+                    "sum": 645
+                },
+                {
+                    "name": "3101 - STRS CERTIFICATED",
+                    "sum": 117384
+                },
+                {
+                    "name": "3201 - PERS CERTIFICATED",
+                    "sum": 3448
+                },
+                {
+                    "name": "3301 - SOCSEC,MEDI,ALTSS CERTIFICATED",
+                    "sum": 23439
+                },
+                {
+                    "name": "3302 - SOCSEC,MEDI,ALTSS CLASSIFIED",
+                    "sum": 24
+                },
+                {
+                    "name": "3321 - MEDICARE CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3322 - MEDICARE CLASSIFIED",
+                    "sum": 9
+                },
+                {
+                    "name": "3401 - HEALTH & WELFARE CERTIFICATED",
+                    "sum": 391690
+                },
+                {
+                    "name": "3501 - ST UNEMPLOY INS CERTIFICATED",
+                    "sum": 16267
+                },
+                {
+                    "name": "3502 - ST UNEMPLOY INS CLASSIFIED",
+                    "sum": 7
+                },
+                {
+                    "name": "3601 - WORKERS COMP CERTIFICATED",
+                    "sum": 78003
+                },
+                {
+                    "name": "3602 - WORKERS COMP CLASSIFIED",
+                    "sum": 34
+                },
+                {
+                    "name": "3801 - PERS REDUCTION CERTIFICATED",
+                    "sum": 536
+                },
+                {
+                    "name": "3901 - OTHER BENEFITS CERTIFICATED",
+                    "sum": 1715
+                },
+                {
+                    "name": "4200 - BOOKS-OTHER THAN TEXTBOOKS",
+                    "sum": 6171
+                },
+                {
+                    "name": "4310 - SUPPLIES",
+                    "sum": 310
+                },
+                {
+                    "name": "4399 - SURPLUS",
+                    "sum": 0
+                },
+                {
+                    "name": "4400 - NON-CAPITALIZED EQUIPMENT",
+                    "sum": 0
+                }
+            ]
+        },
+        {
+            "name": "1191 - BASIC SCHOOL SUPPORT",
+            "sum": 9314178,
+            "children": [
+                {
+                    "name": "1105 - TEACHERS SALARIES",
+                    "sum": 6342097
+                },
+                {
+                    "name": "1119 - TEACHER ON SPEC ASSIN SCHOOL",
+                    "sum": 343226
+                },
+                {
+                    "name": "1120 - TEACHERS SALARIES STIPENDS",
+                    "sum": 1624
+                },
+                {
+                    "name": "1150 - TEACHERS SUBSTITUTES",
+                    "sum": 0
+                },
+                {
+                    "name": "1905 - OTHERCERT SALARIES",
+                    "sum": 11290
+                },
+                {
+                    "name": "2120 - INSTRAIDES SALARIES STIPENDS",
+                    "sum": 2810
+                },
+                {
+                    "name": "2420 - CLERICAL SALARIES STIPENDS",
+                    "sum": 467
+                },
+                {
+                    "name": "2450 - CLERICAL SUBSTITUTES",
+                    "sum": 417
+                },
+                {
+                    "name": "3101 - STRS CERTIFICATED",
+                    "sum": 534585
+                },
+                {
+                    "name": "3102 - STRS CLASSIFIED",
+                    "sum": 128
+                },
+                {
+                    "name": "3201 - PERS CERTIFICATED",
+                    "sum": 11343
+                },
+                {
+                    "name": "3301 - SOCSEC,MEDI,ALTSS CERTIFICATED",
+                    "sum": 100009
+                },
+                {
+                    "name": "3302 - SOCSEC,MEDI,ALTSS CLASSIFIED",
+                    "sum": 45
+                },
+                {
+                    "name": "3321 - MEDICARE CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3322 - MEDICARE CLASSIFIED",
+                    "sum": 54
+                },
+                {
+                    "name": "3401 - HEALTH & WELFARE CERTIFICATED",
+                    "sum": 1453082
+                },
+                {
+                    "name": "3501 - ST UNEMPLOY INS CERTIFICATED",
+                    "sum": 73752
+                },
+                {
+                    "name": "3502 - ST UNEMPLOY INS CLASSIFIED",
+                    "sum": 37
+                },
+                {
+                    "name": "3601 - WORKERS COMP CERTIFICATED",
+                    "sum": 353377
+                },
+                {
+                    "name": "3602 - WORKERS COMP CLASSIFIED",
+                    "sum": 174
+                },
+                {
+                    "name": "3801 - PERS REDUCTION CERTIFICATED",
+                    "sum": 1754
+                },
+                {
+                    "name": "3802 - PERS REDUCTION CLASSIFIED",
+                    "sum": 6
+                },
+                {
+                    "name": "3901 - OTHER BENEFITS CERTIFICATED",
+                    "sum": 7787
+                },
+                {
+                    "name": "4310 - SUPPLIES",
+                    "sum": 59519
+                },
+                {
+                    "name": "4311 - MEETING REFRESHMENTS",
+                    "sum": 69
+                },
+                {
+                    "name": "4397 - FALL REVISIONS",
+                    "sum": 0
+                },
+                {
+                    "name": "4399 - SURPLUS",
+                    "sum": 0
+                },
+                {
+                    "name": "4410 - Equipment $500-4,999",
+                    "sum": 935
+                },
+                {
+                    "name": "4420 - Computer $500-4,999",
+                    "sum": 7621
+                },
+                {
+                    "name": "5624 - RENTALS - FACILITY",
+                    "sum": 2100
+                },
+                {
+                    "name": "5724 - INTERPGM - POSTAGE",
+                    "sum": 5
+                },
+                {
+                    "name": "5825 - CONSULTANTS",
+                    "sum": 5000
+                },
+                {
+                    "name": "5826 - EXTERNAL WORK ORDER SERVICES",
+                    "sum": 865
+                }
+            ]
+        },
+        {
+            "name": "1552 - SCHOOL LIBRARIES",
+            "sum": 1466397,
+            "children": [
+                {
+                    "name": "1105 - TEACHERS SALARIES",
+                    "sum": 74359
+                },
+                {
+                    "name": "1119 - TEACHER ON SPEC ASSIN SCHOOL",
+                    "sum": 50714
+                },
+                {
+                    "name": "1120 - TEACHERS SALARIES STIPENDS",
+                    "sum": 7064
+                },
+                {
+                    "name": "1122 - TEACHERS SALARIES EXTRA COMP",
+                    "sum": 20712
+                },
+                {
+                    "name": "1150 - TEACHERS SUBSTITUTES",
+                    "sum": 21382
+                },
+                {
+                    "name": "1305 - SUPV, ADMIN, INSTR COACHES SAL",
+                    "sum": 75363
+                },
+                {
+                    "name": "1322 - SUPV&ADM SALARIES EXTRA COMP",
+                    "sum": 5032
+                },
+                {
+                    "name": "1905 - OTHERCERT SALARIES",
+                    "sum": 9710
+                },
+                {
+                    "name": "2205 - CLASSSUPPT SALARIES",
+                    "sum": 226920
+                },
+                {
+                    "name": "2220 - CLASSSUPPT SALARIES STIPENDS",
+                    "sum": 1115
+                },
+                {
+                    "name": "2405 - CLERICAL SALARIES",
+                    "sum": 37934
+                },
+                {
+                    "name": "2928 - OTHERCLASS SALARIES HOURLY",
+                    "sum": 3668
+                },
+                {
+                    "name": "3101 - STRS CERTIFICATED",
+                    "sum": 21810
+                },
+                {
+                    "name": "3102 - STRS CLASSIFIED",
+                    "sum": 0
+                },
+                {
+                    "name": "3201 - PERS CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3202 - PERS CLASSIFIED",
+                    "sum": 25681
+                },
+                {
+                    "name": "3301 - SOCSEC,MEDI,ALTSS CERTIFICATED",
+                    "sum": 3786
+                },
+                {
+                    "name": "3302 - SOCSEC,MEDI,ALTSS CLASSIFIED",
+                    "sum": 16575
+                },
+                {
+                    "name": "3321 - MEDICARE CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3322 - MEDICARE CLASSIFIED",
+                    "sum": 3907
+                },
+                {
+                    "name": "3342 - PARS CLASSIFIED",
+                    "sum": 0
+                },
+                {
+                    "name": "3401 - HEALTH & WELFARE CERTIFICATED",
+                    "sum": 51507
+                },
+                {
+                    "name": "3402 - HEALTH & WELFARE CLASSIFIED",
+                    "sum": 107901
+                },
+                {
+                    "name": "3501 - ST UNEMPLOY INS CERTIFICATED",
+                    "sum": 2904
+                },
+                {
+                    "name": "3502 - ST UNEMPLOY INS CLASSIFIED",
+                    "sum": 2963
+                },
+                {
+                    "name": "3601 - WORKERS COMP CERTIFICATED",
+                    "sum": 13936
+                },
+                {
+                    "name": "3602 - WORKERS COMP CLASSIFIED",
+                    "sum": 13968
+                },
+                {
+                    "name": "3801 - PERS REDUCTION CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3802 - PERS REDUCTION CLASSIFIED",
+                    "sum": 3943
+                },
+                {
+                    "name": "3901 - OTHER BENEFITS CERTIFICATED",
+                    "sum": 244
+                },
+                {
+                    "name": "3902 - OTHER BENEFITS CLASSIFIED",
+                    "sum": 12702
+                },
+                {
+                    "name": "4100 - TEXTBOOKS",
+                    "sum": 0
+                },
+                {
+                    "name": "4200 - BOOKS-OTHER THAN TEXTBOOKS",
+                    "sum": 225010
+                },
+                {
+                    "name": "4310 - SUPPLIES",
+                    "sum": 142044
+                },
+                {
+                    "name": "4315 - COMPUTER SUPPLIES",
+                    "sum": 0
+                },
+                {
+                    "name": "4330 - GASOLINE",
+                    "sum": 0
+                },
+                {
+                    "name": "4352 - PERIODICALS",
+                    "sum": 0
+                },
+                {
+                    "name": "4397 - FALL REVISIONS",
+                    "sum": 0
+                },
+                {
+                    "name": "4399 - SURPLUS",
+                    "sum": 0
+                },
+                {
+                    "name": "4400 - NON-CAPITALIZED EQUIPMENT",
+                    "sum": 0
+                },
+                {
+                    "name": "4410 - Equipment $500-4,999",
+                    "sum": 1792
+                },
+                {
+                    "name": "4420 - Computer $500-4,999",
+                    "sum": 65195
+                },
+                {
+                    "name": "4432 - Furniture $500-4,999",
+                    "sum": 32626
+                },
+                {
+                    "name": "4474 - Audio Visual Equip $500-4,999",
+                    "sum": 7700
+                },
+                {
+                    "name": "5210 - MILEAGE/PERSONAL EXP REIMB",
+                    "sum": 1200
+                },
+                {
+                    "name": "5220 - CONFERENCE  EXPENSE",
+                    "sum": 700
+                },
+                {
+                    "name": "5720 - INTERPGM - MAINT WORK ORDERS",
+                    "sum": 2500
+                },
+                {
+                    "name": "5825 - CONSULTANTS",
+                    "sum": 158757
+                },
+                {
+                    "name": "5828 - ASSEMBLIES/CLASSRM PRESENTION",
+                    "sum": 0
+                },
+                {
+                    "name": "5846 - LICENSING AGREEMENTS",
+                    "sum": 13073
+                },
+                {
+                    "name": "5870 - PRINTING",
+                    "sum": 0
+                }
+            ]
+        },
+        {
+            "name": "1564 - ORATORICAL FEST/PERFORMANCES",
+            "sum": 63969,
+            "children": [
+                {
+                    "name": "1120 - TEACHERS SALARIES STIPENDS",
+                    "sum": 5700
+                },
+                {
+                    "name": "1150 - TEACHERS SUBSTITUTES",
+                    "sum": 0
+                },
+                {
+                    "name": "2225 - CLASSSUPPT SALARIES OVERTIME",
+                    "sum": 900
+                },
+                {
+                    "name": "2420 - CLERICAL SALARIES STIPENDS",
+                    "sum": 152
+                },
+                {
+                    "name": "3101 - STRS CERTIFICATED",
+                    "sum": 470
+                },
+                {
+                    "name": "3301 - SOCSEC,MEDI,ALTSS CERTIFICATED",
+                    "sum": 83
+                },
+                {
+                    "name": "3302 - SOCSEC,MEDI,ALTSS CLASSIFIED",
+                    "sum": 65
+                },
+                {
+                    "name": "3322 - MEDICARE CLASSIFIED",
+                    "sum": 15
+                },
+                {
+                    "name": "3501 - ST UNEMPLOY INS CERTIFICATED",
+                    "sum": 63
+                },
+                {
+                    "name": "3502 - ST UNEMPLOY INS CLASSIFIED",
+                    "sum": 12
+                },
+                {
+                    "name": "3601 - WORKERS COMP CERTIFICATED",
+                    "sum": 330
+                },
+                {
+                    "name": "3602 - WORKERS COMP CLASSIFIED",
+                    "sum": 55
+                },
+                {
+                    "name": "3802 - PERS REDUCTION CLASSIFIED",
+                    "sum": 13
+                },
+                {
+                    "name": "4310 - SUPPLIES",
+                    "sum": 12543
+                },
+                {
+                    "name": "4311 - MEETING REFRESHMENTS",
+                    "sum": 8414
+                },
+                {
+                    "name": "4399 - SURPLUS",
+                    "sum": 0
+                },
+                {
+                    "name": "5220 - CONFERENCE  EXPENSE",
+                    "sum": 360
+                },
+                {
+                    "name": "5624 - RENTALS - FACILITY",
+                    "sum": 5425
+                },
+                {
+                    "name": "5825 - CONSULTANTS",
+                    "sum": 25000
+                },
+                {
+                    "name": "5826 - EXTERNAL WORK ORDER SERVICES",
+                    "sum": 4369
+                }
+            ]
+        },
+        {
+            "name": "1596 - Oakland Fine Arts Summer Schl",
+            "sum": 45905,
+            "children": [
+                {
+                    "name": "1120 - TEACHERS SALARIES STIPENDS",
+                    "sum": 22719
+                },
+                {
+                    "name": "1150 - TEACHERS SUBSTITUTES",
+                    "sum": 978
+                },
+                {
+                    "name": "1320 - SUPV&ADM SALARIES STIPENDS",
+                    "sum": 0
+                },
+                {
+                    "name": "2420 - CLERICAL SALARIES STIPENDS",
+                    "sum": 1241
+                },
+                {
+                    "name": "3101 - STRS CERTIFICATED",
+                    "sum": 1894
+                },
+                {
+                    "name": "3201 - PERS CERTIFICATED",
+                    "sum": 38
+                },
+                {
+                    "name": "3202 - PERS CLASSIFIED",
+                    "sum": 136
+                },
+                {
+                    "name": "3301 - SOCSEC,MEDI,ALTSS CERTIFICATED",
+                    "sum": 373
+                },
+                {
+                    "name": "3302 - SOCSEC,MEDI,ALTSS CLASSIFIED",
+                    "sum": 77
+                },
+                {
+                    "name": "3322 - MEDICARE CLASSIFIED",
+                    "sum": 18
+                },
+                {
+                    "name": "3501 - ST UNEMPLOY INS CERTIFICATED",
+                    "sum": 261
+                },
+                {
+                    "name": "3502 - ST UNEMPLOY INS CLASSIFIED",
+                    "sum": 14
+                },
+                {
+                    "name": "3601 - WORKERS COMP CERTIFICATED",
+                    "sum": 1249
+                },
+                {
+                    "name": "3602 - WORKERS COMP CLASSIFIED",
+                    "sum": 65
+                },
+                {
+                    "name": "3801 - PERS REDUCTION CERTIFICATED",
+                    "sum": 7
+                },
+                {
+                    "name": "3802 - PERS REDUCTION CLASSIFIED",
+                    "sum": 26
+                },
+                {
+                    "name": "3901 - OTHER BENEFITS CERTIFICATED",
+                    "sum": 7
+                },
+                {
+                    "name": "3902 - OTHER BENEFITS CLASSIFIED",
+                    "sum": 2
+                },
+                {
+                    "name": "5825 - CONSULTANTS",
+                    "sum": 16800
+                }
+            ]
+        },
+        {
+            "name": "1598 - MIDDLE SCHOOL ELECTIVES",
+            "sum": 932478,
+            "children": [
+                {
+                    "name": "1105 - TEACHERS SALARIES",
+                    "sum": 529142
+                },
+                {
+                    "name": "1119 - TEACHER ON SPEC ASSIN SCHOOL",
+                    "sum": 60554
+                },
+                {
+                    "name": "1120 - TEACHERS SALARIES STIPENDS",
+                    "sum": 5432
+                },
+                {
+                    "name": "1905 - OTHERCERT SALARIES",
+                    "sum": 0
+                },
+                {
+                    "name": "3101 - STRS CERTIFICATED",
+                    "sum": 51072
+                },
+                {
+                    "name": "3201 - PERS CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3301 - SOCSEC,MEDI,ALTSS CERTIFICATED",
+                    "sum": 7904
+                },
+                {
+                    "name": "3321 - MEDICARE CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3401 - HEALTH & WELFARE CERTIFICATED",
+                    "sum": 151907
+                },
+                {
+                    "name": "3501 - ST UNEMPLOY INS CERTIFICATED",
+                    "sum": 6816
+                },
+                {
+                    "name": "3601 - WORKERS COMP CERTIFICATED",
+                    "sum": 32670
+                },
+                {
+                    "name": "3801 - PERS REDUCTION CERTIFICATED",
+                    "sum": 0
+                },
+                {
+                    "name": "3901 - OTHER BENEFITS CERTIFICATED",
+                    "sum": 740
+                },
+                {
+                    "name": "4200 - BOOKS-OTHER THAN TEXTBOOKS",
+                    "sum": 6856
+                },
+                {
+                    "name": "4310 - SUPPLIES",
+                    "sum": 40785
+                },
+                {
+                    "name": "4311 - MEETING REFRESHMENTS",
+                    "sum": 2873
+                },
+                {
+                    "name": "4397 - FALL REVISIONS",
+                    "sum": 0
+                },
+                {
+                    "name": "4399 - SURPLUS",
+                    "sum": 0
+                },
+                {
+                    "name": "4420 - Computer $500-4,999",
+                    "sum": 11005
+                },
+                {
+                    "name": "4474 - Audio Visual Equip $500-4,999",
+                    "sum": 0
+                },
+                {
+                    "name": "5210 - MILEAGE/PERSONAL EXP REIMB",
+                    "sum": 189
+                },
+                {
+                    "name": "5220 - CONFERENCE  EXPENSE",
+                    "sum": 398
+                },
+                {
+                    "name": "5610 - EQUIP MAINTENANCE AGREEMT",
+                    "sum": 3336
+                },
+                {
+                    "name": "5716 - INTERPGM - DUPLICATION SERVICE",
+                    "sum": 334
+                },
+                {
+                    "name": "5720 - INTERPGM - MAINT WORK ORDERS",
+                    "sum": 1800
+                },
+                {
+                    "name": "5724 - INTERPGM - POSTAGE",
+                    "sum": 0
+                },
+                {
+                    "name": "5825 - CONSULTANTS",
+                    "sum": 0
+                },
+                {
+                    "name": "5826 - EXTERNAL WORK ORDER SERVICES",
+                    "sum": 16371
+                },
+                {
+                    "name": "5829 - ADMISSION  FEES",
+                    "sum": 2294
+                }
+            ]
+        },
+        {
+            "name": "1626 - NCLB HQT COMPLIANCE",
+            "sum": 120321,
+            "children": [
+                {
+                    "name": "1120 - TEACHERS SALARIES STIPENDS",
+                    "sum": 0
+                },
+                {
+                    "name": "1320 - SUPV&ADM SALARIES STIPENDS",
+                    "sum": 12001
+                },
+                {
+                    "name": "2405 - CLERICAL SALARIES",
+                    "sum": 59828
+                },
+                {
+                    "name": "3101 - STRS CERTIFICATED",
+                    "sum": 990
+                },
+                {
+                    "name": "3202 - PERS CLASSIFIED",
+                    "sum": 6273
+                },
+                {
+                    "name": "3301 - SOCSEC,MEDI,ALTSS CERTIFICATED",
+                    "sum": 173
+                },
+                {
+                    "name": "3302 - SOCSEC,MEDI,ALTSS CLASSIFIED",
+                    "sum": 3709
+                },
+                {
+                    "name": "3322 - MEDICARE CLASSIFIED",
+                    "sum": 868
+                },
+                {
+                    "name": "3402 - HEALTH & WELFARE CLASSIFIED",
+                    "sum": 19905
+                },
+                {
+                    "name": "3501 - ST UNEMPLOY INS CERTIFICATED",
+                    "sum": 132
+                },
+                {
+                    "name": "3502 - ST UNEMPLOY INS CLASSIFIED",
+                    "sum": 658
+                },
+                {
+                    "name": "3601 - WORKERS COMP CERTIFICATED",
+                    "sum": 630
+                },
+                {
+                    "name": "3602 - WORKERS COMP CLASSIFIED",
+                    "sum": 2948
+                },
+                {
+                    "name": "3802 - PERS REDUCTION CLASSIFIED",
+                    "sum": 990
+                },
+                {
+                    "name": "3902 - OTHER BENEFITS CLASSIFIED",
+                    "sum": 3954
+                },
+                {
+                    "name": "4310 - SUPPLIES",
+                    "sum": 2186
+                },
+                {
+                    "name": "4330 - GASOLINE",
+                    "sum": 0
+                },
+                {
+                    "name": "4399 - SURPLUS",
+                    "sum": 0
+                },
+                {
+                    "name": "4420 - Computer $500-4,999",
+                    "sum": 4507
+                },
+                {
+                    "name": "5300 - DUES & MEMBERSHIPS",
+                    "sum": 69
+                },
+                {
+                    "name": "5610 - EQUIP MAINTENANCE AGREEMT",
+                    "sum": 500
+                }
+            ]
+        },
+        {
+            "name": "9000 - OTH PROGRAMS / LOCAL GOALS",
+            "sum": 347674,
+            "children": [
+                {
+                    "name": "1105 - TEACHERS SALARIES",
+                    "sum": 0
+                },
+                {
+                    "name": "5800 - OTH SERVICES & OPERATING EXPS",
+                    "sum": 347674
+                },
+                {
+                    "name": "5825 - CONSULTANTS",
+                    "sum": 0
+                }
+            ]
+        },
+        {
+            "name": "9060 - HR Recruitment",
+            "sum": 752875,
+            "children": [
+                {
+                    "name": "2225 - CLASSSUPPT SALARIES OVERTIME",
+                    "sum": 394
+                },
+                {
+                    "name": "2305 - SUPV&ADM SALARIES",
+                    "sum": 355137
+                },
+                {
+                    "name": "2405 - CLERICAL SALARIES",
+                    "sum": 84037
+                },
+                {
+                    "name": "3102 - STRS CLASSIFIED",
+                    "sum": 3049
+                },
+                {
+                    "name": "3202 - PERS CLASSIFIED",
+                    "sum": 45116
+                },
+                {
+                    "name": "3302 - SOCSEC,MEDI,ALTSS CLASSIFIED",
+                    "sum": 24446
+                },
+                {
+                    "name": "3322 - MEDICARE CLASSIFIED",
+                    "sum": 6349
+                },
+                {
+                    "name": "3342 - PARS CLASSIFIED",
+                    "sum": 0
+                },
+                {
+                    "name": "3402 - HEALTH & WELFARE CLASSIFIED",
+                    "sum": 92147
+                },
+                {
+                    "name": "3502 - ST UNEMPLOY INS CLASSIFIED",
+                    "sum": 4835
+                },
+                {
+                    "name": "3602 - WORKERS COMP CLASSIFIED",
+                    "sum": 23164
+                },
+                {
+                    "name": "3802 - PERS REDUCTION CLASSIFIED",
+                    "sum": 7253
+                },
+                {
+                    "name": "3902 - OTHER BENEFITS CLASSIFIED",
+                    "sum": 393
+                },
+                {
+                    "name": "4310 - SUPPLIES",
+                    "sum": 9409
+                },
+                {
+                    "name": "4311 - MEETING REFRESHMENTS",
+                    "sum": 7078
+                },
+                {
+                    "name": "4399 - SURPLUS",
+                    "sum": 0
+                },
+                {
+                    "name": "5210 - MILEAGE/PERSONAL EXP REIMB",
+                    "sum": 732
+                },
+                {
+                    "name": "5220 - CONFERENCE  EXPENSE",
+                    "sum": 5583
+                },
+                {
+                    "name": "5620 - RENTALS (NON-CAPITAL LEASES)",
+                    "sum": 200
+                },
+                {
+                    "name": "5716 - INTERPGM - DUPLICATION SERVICE",
+                    "sum": 0
+                },
+                {
+                    "name": "5812 - ADVERTISING - NON-LEGAL",
+                    "sum": 62338
+                },
+                {
+                    "name": "5825 - CONSULTANTS",
+                    "sum": 15000
+                },
+                {
+                    "name": "5826 - EXTERNAL WORK ORDER SERVICES",
+                    "sum": 6077
+                },
+                {
+                    "name": "5910 - POSTAGE",
+                    "sum": 138
+                }
+            ]
+        }
+    ]
+}
