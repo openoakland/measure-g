@@ -19,13 +19,15 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" type="text/javascript"></script>
 
         <script type="infowindow/html" id="infowindow_template">
-          <div class="cartodb-popup v2">
+          <div class="infowindow cartodb-popup v2">
             <a href="#close" class="cartodb-popup-close-button close">x</a>
              <div class="cartodb-popup-content-wrapper">
                <div class="cartodb-popup-content">
-                <span>{{content.data.school}}</span>
-                <span>{{content.data.ytd_money}}</span>
-                <span>{{content.data.site_type}}</span>
+                <div class="school-name">{{content.data.school}}</div>
+                <div class="total-spending">
+                    <span class="total-label">total spending</span>
+                    <span class="spending">{{content.data.ytd_money}}</span>
+                </div>
                </div>
              </div>
              <div class="cartodb-popup-tip-container"></div>
@@ -141,6 +143,22 @@
             .layer_selector li.sql_selected,
             .layer_selector li.cartocss_selected {
                 background-color: #A6CEE3;
+            }
+
+            /* Infowindows */
+            .infowindow .school-name {
+                font-weight: bold;
+            }
+            .total-spending .total-label {
+                color: black;
+                display: block;
+                float: left;
+                font-style: italic;
+            }
+            .total-spending .spending {
+                font-weight: bold;
+                display: block;
+                float: right;
             }
             </style>
 
