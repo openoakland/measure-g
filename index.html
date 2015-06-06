@@ -32,6 +32,15 @@
           </div>
         </script>
 
+        <!--<script type="infowindow/html" id="hover_template">
+          <div class="cartodb-tooltip-content-wrapper">
+              <div class="cartodb-tooltip-content">
+                <span>{{school}}</span>
+                <span>{{ytd_money}}</span>
+              </div>
+          </div>
+        </script> -->
+
         <style type="text/css">
             .cartodb-popup-content-wrapper,
             .cartodb-popup-content {
@@ -332,6 +341,15 @@
                     sublayer.infowindow.set({
                         template: $('#infowindow_template').html()
                     });
+
+                    // maybe show on hover one day instead of on click
+                    //  var i = new cdb.geo.ui.Tooltip({
+                    //     layer: sublayer,
+                    //     template: $('#hover_template').html(),
+                    //     width: 200,
+                    //     position: 'bottom|right'
+                    // });
+                    // $('body').append(i.render().el);
 
                     // sublayer.on('featureOver', function(e, latlng, pos, data) {
                     //     alert("Hey! You clicked " + data);
