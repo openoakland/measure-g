@@ -344,7 +344,7 @@
 
             };
 
-            generateSQLQuery = function () {
+            generateSpendingSQLQuery = function () {
 
                 var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money) as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, mg.site_type "
                     + "FROM " + getTableForSelectedYear() + " mg, measure_g_schools_lat_long s "
@@ -352,7 +352,7 @@
                     + getSelectedPrograms()
                     + ") "
                     + "AND prog_desc IS NOT NULL "
-                    + "AND site_type IN ("
+                    + "AND mg.site_type IN ("
                     + getSelectedSchoolLevels()
                     + ") "
                     + "AND mg.site = s.ousd_site "
@@ -361,11 +361,21 @@
                 return query;
             };
 
+            var generateSchoolsSQLQuery = function () {
+
+                var query = "SELECT * FROM measure_g_schools_lat_long "
+                + "WHERE site_type IN ("
+                + getSelectedSchoolLevels()
+                + ") ";
+
+                return query;
+            };
+
             var layerSource = {
                     user_name: 'jbaldo',
                     type: 'cartodb',
                     sublayers: [{
-                        sql: generateSQLQuery(),
+                        sql: generateSpendingSQLQuery(),
                         interactivity: "cartodb_id, the_geom, the_geom_webmercator"
                     }]
             }
@@ -381,33 +391,38 @@
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map_object);
 
-            // for storing sublayer outside of createlayer
-            var sublayer;
+            // for storing spendingLayer outside of createlayer
+            var spendingLayer, schoolsLayer;
+
+            var updateSpendingMap = function () {
+                spendingLayer.setSQL(generateSpendingSQLQuery());
+            };
 
             // Add data layer to your map
             cartodb.createLayer(map_object,"http://measureg.nfshost.com/viz.json")
                 .addTo(map_object)
                 .done(function(layer) {
-                    sublayer = layer.getSubLayer(1);
+                    schoolsLayer = layer.getSubLayer(0);
+                    spendingLayer = layer.getSubLayer(1);
 
                     // Undocumented addField method here: https://github.com/CartoDB/cartodb/issues/54
 
-                    sublayer.infowindow.set({
+                    spendingLayer.infowindow.set({
                         template: $('#infowindow_template').html()
                     });
 
-                    sublayer.setSQL(generateSQLQuery());
+                    updateSpendingMap();
 
                     // maybe show on hover one day instead of on click
                     //  var i = new cdb.geo.ui.Tooltip({
-                    //     layer: sublayer,
+                    //     layer: spendingLayer,
                     //     template: $('#hover_template').html(),
                     //     width: 200,
                     //     position: 'bottom|right'
                     // });
                     // $('body').append(i.render().el);
 
-                    // sublayer.on('featureOver', function(e, latlng, pos, data) {
+                    // spendingLayer.on('featureOver', function(e, latlng, pos, data) {
                     //     alert("Hey! You clicked " + data);
                     // });
                 })
@@ -415,14 +430,13 @@
                     console.log("error: " + err);
                 });
 
-            var updateMap = function () {
-                sublayer.setSQL(generateSQLQuery());
-            };
-
-
             $('#program-menu li, #school-level-menu li').click(function(){
                 $(this).toggleClass("selected");
-                updateMap();
+
+                updateSpendingMap();
+
+                //Schools layer only needs to be updated when you show or hide school levels
+                schoolsLayer.setSQL(generateSchoolsSQLQuery());
             });
 
             $('#menu-heading').click(function(){
@@ -436,7 +450,7 @@
             });
 
             $('#year-slider').on("slidechange", function (){
-                updateMap();
+                updateSpendingMap();
             });
 
 
