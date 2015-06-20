@@ -13,10 +13,12 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" type="text/css" />
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
         <!-- include cartodb.js library -->
         <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.uncompressed.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js" type="text/javascript"></script>
 
         <script type="infowindow/html" id="infowindow_template">
           <div class="infowindow cartodb-popup v2">
@@ -227,6 +229,7 @@
     </head>
     <body>
         <div id="map"></div>
+
         <div class="container-fluid">
             <div class="row">
                 <div id="menu" class="layer_selector col-xs-6 col-sm-3">
@@ -236,7 +239,7 @@
                         <span class="menu-icon glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
                     </div>
                     <ul id="program-menu" class="collapsible">
-                        <span class="section-header">Measure G Programs</span>
+                        <span class="section-header">Programs</span>
                         <li data="1118 - ART" class="selected">
                             <span class="filter-icon"></span>
                             Art
@@ -283,8 +286,14 @@
                         <li data="simple">
                             Reset
                         </li>
+                        <div id="year-slider"></div>
                     </ul>
                 </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
             </div>
         </div>
 
@@ -294,6 +303,13 @@
 
             // var tableName = "all_day_cdb_gu_l3";
             var tableName = "measure_g_2012_13";
+
+            $('#year-slider').slider({
+                value:2012,
+                min: 2012,
+                max: 2014,
+                step: 1
+            });
 
             getSelectedPrograms = function () {
                 var programList = [];
@@ -311,10 +327,27 @@
                 return schoolLevelList.join();
             };
 
+            var getTableForSelectedYear = function () {
+
+                var yearToTable = {
+                    2012 : "measure_g_2012_13",
+                    2013 : "measure_g_2013_14"
+                };
+
+                var year = $( "#year-slider" ).slider( "value" );
+
+                if (year in yearToTable) {
+                    return yearToTable[year];
+                };
+
+                return yearToTable[2012];
+
+            };
+
             generateSQLQuery = function () {
 
                 var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money) as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, mg.site_type "
-                    + "FROM " + tableName + " mg, measure_g_schools_lat_long s "
+                    + "FROM " + getTableForSelectedYear() + " mg, measure_g_schools_lat_long s "
                     + "WHERE prog_desc IN ("
                     + getSelectedPrograms()
                     + ") "
@@ -382,10 +415,14 @@
                     console.log("error: " + err);
                 });
 
+            var updateMap = function () {
+                sublayer.setSQL(generateSQLQuery());
+            };
+
 
             $('#program-menu li, #school-level-menu li').click(function(){
                 $(this).toggleClass("selected");
-                sublayer.setSQL(generateSQLQuery());
+                updateMap();
             });
 
             $('#menu-heading').click(function(){
@@ -396,6 +433,10 @@
                 }
                 $(this).toggleClass("expanded");
                 $('span.menu-icon').toggle();
+            });
+
+            $('#year-slider').on("slidechange", function (){
+                updateMap();
             });
 
 
