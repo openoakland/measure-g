@@ -23,7 +23,7 @@
             <a href="#close" class="cartodb-popup-close-button close">x</a>
              <div class="cartodb-popup-content-wrapper">
                <div class="cartodb-popup-content">
-                <div class="school-name">{{content.data.school}}</div>
+                <div class="school-name">{{content.data.schnam}}</div>
                 <div class="total-spending">
                     <span class="total-label">total spending</span>
                     <span class="spending">{{content.data.ytd_money}}</span>
@@ -181,7 +181,7 @@
         <style type="cartocss/html" id="bubble-magnitude">
             /** bubble visualization */
 
-            #measure_g_2012_13_merge{
+            #measure_g_2012_13{
               marker-fill-opacity: 0.9;
               marker-line-color: #FFF;
               marker-line-width: 1;
@@ -193,34 +193,34 @@
               marker-allow-overlap: true;
               marker-clip: false;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 1167024] {
+            #measure_g_2012_13 [ ytd_actual <= 1167024] {
                marker-width: 25.0;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 359829] {
+            #measure_g_2012_13 [ ytd_actual <= 359829] {
                marker-width: 23.3;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 283984] {
+            #measure_g_2012_13 [ ytd_actual <= 283984] {
                marker-width: 21.7;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 242304] {
+            #measure_g_2012_13 [ ytd_actual <= 242304] {
                marker-width: 20.0;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 213504] {
+            #measure_g_2012_13 [ ytd_actual <= 213504] {
                marker-width: 18.3;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 197312] {
+            #measure_g_2012_13 [ ytd_actual <= 197312] {
                marker-width: 16.7;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 183343] {
+            #measure_g_2012_13 [ ytd_actual <= 183343] {
                marker-width: 15.0;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 164460] {
+            #measure_g_2012_13 [ ytd_actual <= 164460] {
                marker-width: 13.3;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 150219] {
+            #measure_g_2012_13 [ ytd_actual <= 150219] {
                marker-width: 11.7;
             }
-            #measure_g_2012_13_merge [ ytd_actual <= 92392] {
+            #measure_g_2012_13 [ ytd_actual <= 92392] {
                marker-width: 10.0;
             }
         </style>
@@ -293,7 +293,7 @@
         window.onload = function() {
 
             // var tableName = "all_day_cdb_gu_l3";
-            var tableName = "measure_g_2012_13_merge";
+            var tableName = "measure_g_2012_13";
 
             getSelectedPrograms = function () {
                 var programList = [];
@@ -312,15 +312,18 @@
             };
 
             generateSQLQuery = function () {
-                var query = "SELECT the_geom, the_geom_webmercator, SUM(ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money) as ytd_money, Min(cartodb_id) cartodb_id, school, site_type FROM " + tableName +
-                    " WHERE prog_desc IN ("
+
+                var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money) as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, mg.site_type "
+                    + "FROM " + tableName + " mg, measure_g_schools_lat_long s "
+                    + "WHERE prog_desc IN ("
                     + getSelectedPrograms()
                     + ") "
+                    + "AND prog_desc IS NOT NULL "
                     + "AND site_type IN ("
                     + getSelectedSchoolLevels()
                     + ") "
-                    + "AND prog_desc IS NOT NULL "
-                    + "GROUP BY the_geom, the_geom_webmercator, school, site_type";
+                    + "AND mg.site = s.ousd_site "
+                    + "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, mg.site_type";
 
                 return query;
             };
