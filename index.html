@@ -85,6 +85,45 @@
                 color: rgba(51, 51, 51, 0.7);
             }
 
+            /* Year Selection */
+
+            #year-select {
+                height: 50px;
+                position: absolute;
+                bottom: 30px;
+                left: 50px;
+                text-align: justify;
+                -ms-text-justify: distribute-all-lines;
+                text-justify: distribute-all-lines;
+                background: rgba(255,255,255,0.9);
+                border-radius: 5px;
+                padding: 10px;
+                border: 1px solid #999;
+            }
+
+            #year-select .year {
+                display: inline-block;
+                vertical-align: middle;
+                *display: inline;
+                zoom: 1;
+                padding: 3px;
+                cursor: pointer;
+            }
+
+            #year-select .year.selected {
+                background-color: rgba(0,0,0,.67);
+                color: white;
+                border-radius: 3px;
+                font-weight: bold;
+            }
+
+            #year-select .stretch {
+                width: 100%;
+                display: inline-block;
+                font-size: 0;
+                line-height: 0
+            }
+
             /*Menu Filter Icons*/
 
             span.filter-icon {
@@ -286,7 +325,6 @@
                         <li data="simple">
                             Reset
                         </li>
-                        <div id="year-slider"></div>
                     </ul>
                 </div>
             </div>
@@ -294,6 +332,12 @@
 
         <div class="container-fluid">
             <div class="row">
+                <div id="year-select" class="col-sm-2">
+                    <div class="year selected" data-year="2012">2012-13</div>
+                    <div class="year" data-year="2013">2013-14</div>
+                    <div class="year" data-year="2014">2014-15</div>
+                    <span class="stretch"></span>
+                </div>
             </div>
         </div>
 
@@ -303,13 +347,6 @@
 
             // var tableName = "all_day_cdb_gu_l3";
             var tableName = "measure_g_2012_13";
-
-            $('#year-slider').slider({
-                value:2012,
-                min: 2012,
-                max: 2014,
-                step: 1
-            });
 
             getSelectedPrograms = function () {
                 var programList = [];
@@ -330,17 +367,17 @@
             var getTableForSelectedYear = function () {
 
                 var yearToTable = {
-                    2012 : "measure_g_2012_13",
-                    2013 : "measure_g_2013_14"
+                    "2012" : "measure_g_2012_13",
+                    "2013" : "measure_g_2013_14"
                 };
 
-                var year = $( "#year-slider" ).slider( "value" );
+                var year = $( "#year-select .year.selected" ).data("year");
 
                 if (year in yearToTable) {
                     return yearToTable[year];
                 };
 
-                return yearToTable[2012];
+                return yearToTable["2012"];
 
             };
 
@@ -449,7 +486,9 @@
                 $('span.menu-icon').toggle();
             });
 
-            $('#year-slider').on("slidechange", function (){
+            $('#year-select .year').click(function (){
+                $('#year-select .year.selected').removeClass("selected");
+                $(this).addClass("selected");
                 updateSpendingMap();
             });
 
