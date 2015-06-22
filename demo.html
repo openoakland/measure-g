@@ -86,7 +86,7 @@
 				.style("margin-left", "auto")
 				.style("margin-right", "auto");
 
-		d3.json("data.json", function(error, root) {
+		d3.json("http://measureg.nfshost.com/data.json", function(error, root) {
 			var node = div.datum(root).selectAll(".node")
 					.data(treemap.nodes)
 				.enter().append("div")
