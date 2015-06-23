@@ -141,13 +141,18 @@
                 margin-right: 5px;
             }
 
-            #program-menu, #school-level-menu, #menu-heading.expanded {
+            #spending-menu, #program-menu, #school-level-menu, #menu-heading.expanded {
                 border-bottom: 1px solid #999;
             }
 
-            #program-menu, #school-level-menu {
+            #spending-menu, #program-menu, #school-level-menu {
                 padding-bottom: 5px;
                 padding-top: 5px;
+            }
+
+            #spending-menu .buttons {
+                display: inline-block;
+                padding-left: 30px;
             }
 
             #program-menu li.selected span.filter-icon {
@@ -215,23 +220,7 @@
             }
             </style>
 
-            <style type="cartocss/html" id="simple">
-                /** simple visualization */
-
-                #all_day_cdb_gu_l3 {
-                    marker-fill-opacity: 0.9;
-                    marker-line-color: #FFF;
-                    marker-line-width: 1.5;
-                    marker-line-opacity: 1;
-                    marker-placement: point;
-                    marker-type: ellipse;
-                    marker-width: 10;
-                    marker-fill: #FF6600;
-                    marker-allow-overlap: true;
-                }
-        </style>
-
-        <style type="cartocss/html" id="bubble-magnitude">
+        <style type="cartocss/html" id="school-bubble">
             /** bubble visualization */
 
             #measure_g_2012_13{
@@ -277,6 +266,53 @@
                marker-width: 10.0;
             }
         </style>
+
+        <style type="cartocss/html" id="per-student-bubble">
+            /** bubble visualization */
+
+            #measure_g_2012_13_per_student{
+              marker-fill-opacity: 0.9;
+              marker-line-color: #FFF;
+              marker-line-width: 1.5;
+              marker-line-opacity: 1;
+              marker-placement: point;
+              marker-multi-policy: largest;
+              marker-type: ellipse;
+              marker-fill: #229A00;
+              marker-allow-overlap: true;
+              marker-clip: false;
+            }
+            #measure_g_2012_13_per_student [ per_student <= 2527.57] {
+               marker-width: 25.0;
+            }
+            #measure_g_2012_13_per_student [ per_student <= 324.64] {
+               marker-width: 23.3;
+            }
+            #measure_g_2012_13_per_student [ per_student <= 303.68] {
+               marker-width: 21.7;
+            }
+            #measure_g_2012_13_per_student [ per_student <= 277.2] {
+               marker-width: 20.0;
+            }
+            #measure_g_2012_13_per_student [ per_student <= 269.38] {
+               marker-width: 18.3;
+            }
+            #measure_g_2012_13_per_student [ per_student <= 265.73] {
+               marker-width: 16.7;
+            }
+            #measure_g_2012_13_per_student [ per_student <= 260.19] {
+               marker-width: 15.0;
+            }
+            #measure_g_2012_13_per_student [ per_student <= 257.6] {
+               marker-width: 13.3;
+            }
+            #measure_g_2012_13_per_student [ per_student <= 243.29] {
+               marker-width: 11.7;
+            }
+            #measure_g_2012_13_per_student [ per_student <= 226.65] {
+               marker-width: 10.0;
+            }
+        </style>
     </head>
     <body>
         <div id="map"></div>
@@ -289,6 +325,13 @@
                         <span class="menu-icon glyphicon glyphicon-triangle-bottom" style="display: none" aria-hidden="true"></span>
                         <span class="menu-icon glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
                     </div>
+                    <ul id="spending-menu" class="collapsible">
+                        <span class="section-header">Spending By</span>
+                        <div class="buttons">
+                          <button type="button" data-spending="student" class="btn btn-success btn-xs">Student</button>
+                          <button type="button" data-spending="school" class="btn btn-default btn-xs">School</button>
+                        </div>
+                    </ul>
                     <ul id="program-menu" class="collapsible">
                         <span class="section-header">Programs</span>
                         <li data="1118 - ART" class="selected">
@@ -334,7 +377,7 @@
                             <span class="filter-icon"></span>
                             High
                         </li>
-                        <li data="simple">
+                        <li data="simple" style="display:none">
                             Reset
                         </li>
                     </ul>
@@ -444,6 +487,15 @@
                 spendingLayer.setSQL(generateSpendingSQLQuery());
             };
 
+            var updateMapCSSForSpendingType = function (spendingType) {
+
+                if (spendingType === "student") {
+                    spendingLayer.setCartoCSS($('#per-student-bubble').html());
+                } else {
+                    spendingLayer.setCartoCSS($('#school-bubble').html());
+                }
+            }
+
             // Add data layer to your map
             cartodb.createLayer(map_object,"http://measureg.nfshost.com/viz.json")
                 .addTo(map_object)
@@ -499,6 +551,15 @@
                 $('#year-select .year.selected').removeClass("selected");
                 $(this).addClass("selected");
                 updateSpendingMap();
+            });
+
+            $('#spending-menu button').click(function(){
+                // Update if the button clicked isn't currently selected
+                if($(this).hasClass('btn-default')) {
+                    $('#spending-menu button').toggleClass('btn-default btn-success');
+                    var spendingType = $(this).data("spending");
+                    updateMapCSSForSpendingType(spendingType);
+                }
             });
 
 
