@@ -26,9 +26,13 @@
              <div class="cartodb-popup-content-wrapper">
                <div class="cartodb-popup-content">
                 <div class="school-name">{{content.data.schnam}}</div>
-                <div class="total-spending">
-                    <span class="total-label">total spending</span>
+                <div class="info-row">
+                    <span class="spending-label">total spending</span>
                     <span class="spending">{{content.data.ytd_money}}</span>
+                </div>
+                <div class="info-row">
+                    <span class="spending-label">per student</span>
+                    <span class="spending highlight">{{content.data.per_student_money}}</span>
                 </div>
                </div>
              </div>
@@ -190,16 +194,24 @@
             .infowindow .school-name {
                 font-weight: bold;
             }
-            .total-spending .total-label {
+
+            .info-row {
+                width: 95%;
+            }
+
+            .info-row .spending-label {
                 color: black;
-                display: block;
                 float: left;
                 font-style: italic;
             }
-            .total-spending .spending {
+            .info-row .spending {
                 font-weight: bold;
-                display: block;
                 float: right;
+            }
+
+            .info-row .spending.highlight {
+                font-size: 12pt;
+                color: green;
             }
             </style>
 
@@ -345,9 +357,6 @@
         <script type="text/javascript">
         window.onload = function() {
 
-            // var tableName = "all_day_cdb_gu_l3";
-            var tableName = "measure_g_2012_13";
-
             getSelectedPrograms = function () {
                 var programList = [];
                 $('#program-menu .selected').each(function(){
@@ -367,7 +376,7 @@
             var getTableForSelectedYear = function () {
 
                 var yearToTable = {
-                    "2012" : "measure_g_2012_13",
+                    "2012" : "measure_g_2012_13_per_student",
                     "2013" : "measure_g_2013_14"
                 };
 
@@ -383,7 +392,7 @@
 
             generateSpendingSQLQuery = function () {
 
-                var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money) as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, mg.site_type "
+                var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money) as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, s.site_type, SUM(mg.per_student) per_student, SUM(per_student::numeric::money) as per_student_money "
                     + "FROM " + getTableForSelectedYear() + " mg, measure_g_schools_lat_long s "
                     + "WHERE prog_desc IN ("
                     + getSelectedPrograms()
@@ -393,7 +402,7 @@
                     + getSelectedSchoolLevels()
                     + ") "
                     + "AND mg.site = s.ousd_site "
-                    + "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, mg.site_type";
+                    + "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type";
 
                 return query;
             };
