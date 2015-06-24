@@ -153,6 +153,11 @@ vizjson({
                     "name": "ytd_actual",
                     "title": false,
                     "position": 1.7976931348623e+308
+                  },
+                  {
+                    "name": "per_student_money",
+                    "title": false,
+                    "position": 1.7976931348623e+308
                   }
                 ],
                 "template_name": "infowindow_light",
