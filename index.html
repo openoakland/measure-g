@@ -19,6 +19,7 @@
         <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.uncompressed.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" type="text/javascript"></script>
         <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="/schoolUrlIndex.js" type="text/javascript"></script>
 
         <script type="infowindow/html" id="infowindow_template_school">
           <div class="infowindow cartodb-popup v2">
@@ -501,6 +502,8 @@
 
                 return query;
             };
+            
+            
 
             var layerSource = {
                     user_name: 'jbaldo',
@@ -611,6 +614,9 @@
                     $('.info-row .spending').toggleClass("highlight");
                 }
             });
+            
+            
+
 
 
             }
