@@ -152,11 +152,11 @@
                 margin-right: 5px;
             }
 
-            #spending-menu, #program-menu, #school-level-menu, #menu-heading.expanded {
+            #spending-menu, #program-menu, #school-level-menu, #spending-level-menu, #menu-heading.expanded {
                 border-bottom: 1px solid #999;
             }
 
-            #spending-menu, #program-menu, #school-level-menu {
+            #spending-menu, #spending-level-menu, #program-menu, #school-level-menu {
                 padding-bottom: 5px;
                 padding-top: 5px;
             }
@@ -169,11 +169,15 @@
             #program-menu li.selected span.filter-icon {
                 background-color: #339933;
             }
-
+            
             #school-level-menu li.selected span.filter-icon {
                 background-color: #0608E0;
             }
-
+            
+            #spending-level-menu li.selected span.filter-icon {
+                background-color: #0608E0;
+            }
+            
             #menu {
                 position: absolute;
                 top: 20px;
@@ -355,7 +359,7 @@
                         </li>
                         <li data="1112 - CLASS SIZE REDUCTION">
                             <span class="filter-icon"></span>
-                            Class Size Reducation
+                            Class Size Reduction
                         </li>
                         <li data="9060 - HR Recruitment">
                             <span class="filter-icon"></span>
@@ -387,6 +391,24 @@
                         <li data="High" class="selected">
                             <span class="filter-icon"></span>
                             High
+                        </li>
+                        <li data="simple" style="display:none">
+                            Reset
+                        </li>
+                    </ul>
+                    <ul id="spending-level-menu" class="collapsible">
+                        <span class="section-header">Spending Levels</span>
+                        <li data="High" class="selected">
+                            <span class="filter-icon"></span>
+                            <span id="spendRange1"></span>
+                        </li>
+                        <li data="Middle" class="selected">
+                            <span class="filter-icon"></span>
+                            <span id="spendRange2"></span>
+                        </li>
+                        <li data="Low" class="selected">
+                            <span class="filter-icon"></span>
+                            <span id="spendRange3"></span>
                         </li>
                         <li data="simple" style="display:none">
                             Reset
@@ -426,6 +448,14 @@
                 });
                 return schoolLevelList.join();
             };
+            
+            getSelectedSpendingLevels = function () {
+                var spendingLevelList = [];
+                $('#spendinglevel-level-menu .selected').each(function(){
+                    spendingLevelList.push("'" + $(this).attr("data") + "'");
+                });
+                return spendingLevelList.join();
+            };
 
             var getTableForSelectedYear = function () {
 
@@ -444,6 +474,7 @@
 
             };
 
+            //filter the query just to get selected levels
             generateSpendingSQLQuery = function () {
 
                 var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money) as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, s.site_type, SUM(mg.per_student) per_student, SUM(per_student::numeric::money) as per_student_money "
@@ -499,20 +530,26 @@
             };
 
             var updateMapCSSForSpendingType = function (spendingType) {
-
+            //Change Spending value limits here
                 if (spendingType === "student") {
                     spendingLayer.setCartoCSS($('#per-student-bubble').html());
+                    document.getElementById("spendRange1").innerHTML = "$226-989";
+                    document.getElementById("spendRange2").innerHTML = "$989-1756";
+                    document.getElementById("spendRange3").innerHTML = "$1756-2527";
                 } else {
                     spendingLayer.setCartoCSS($('#school-bubble').html());
+                    document.getElementById("spendRange1").innerHTML = "$92k-100k";
+                    document.getElementById("spendRange2").innerHTML = "$100k-108k";
+                    document.getElementById("spendRange3").innerHTML = "#108k-116k";
                 }
-
+                console.log(xTest)
                 spendingLayer.infowindow.set({
                     template: $('#infowindow_template_' + spendingType).html()
                 });
             }
 
             // Add data layer to your map
-            cartodb.createLayer(map_object,"http://measureg.nfshost.com/viz.json")
+            cartodb.createLayer(map_object,"http://measure-g-jgordon510.c9.io/viz.json")
                 .addTo(map_object)
                 .done(function(layer) {
                     schoolsLayer = layer.getSubLayer(0);
@@ -540,7 +577,7 @@
                     console.log("error: " + err);
                 });
 
-            $('#program-menu li, #school-level-menu li').click(function(){
+            $('#program-menu li, #spending-level-menu li, #school-level-menu li').click(function(){
                 $(this).toggleClass("selected");
 
                 updateSpendingMap();
