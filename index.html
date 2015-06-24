@@ -400,15 +400,15 @@
                         <span class="section-header">Spending Levels</span>
                         <li data="High" class="selected">
                             <span class="filter-icon"></span>
-                            <span id="spendRange1">This text will change</span>
+                            <span id="spendRange1"></span>
                         </li>
                         <li data="Middle" class="selected">
                             <span class="filter-icon"></span>
-                            <span id="spendRange2">This text will change</span>
+                            <span id="spendRange2"></span>
                         </li>
                         <li data="Low" class="selected">
                             <span class="filter-icon"></span>
-                            <span id="spendRange3">This text will change</span>
+                            <span id="spendRange3"></span>
                         </li>
                         <li data="simple" style="display:none">
                             Reset
@@ -451,8 +451,8 @@
             
             getSelectedSpendingLevels = function () {
                 var spendingLevelList = [];
-                $('#school-level-menu .selected').each(function(){
-                    schoolLevelList.push("'" + $(this).attr("data") + "'");
+                $('#spendinglevel-level-menu .selected').each(function(){
+                    spendingLevelList.push("'" + $(this).attr("data") + "'");
                 });
                 return spendingLevelList.join();
             };
