@@ -4,11 +4,26 @@ function getSchoolURL(school)
     var schoolURLIndex  = createSchoolUrlIndex();
     var returnURL = "";
     for (var i = 0; i< schoolURLIndex.length; i++)
-    if(schoolURLIndex[i][1].toUpperCase() == school.toUpperCase())
     {
-        returnURL = schoolURLIndex[i][0]
-        console.log("Success! " + returnURL)
+         var compare1;
+        var compare2;
+        
+        if(schoolURLIndex[i][1].length>school.length)
+        {
+            compare1 = (schoolURLIndex[i][1].toUpperCase()).substring(0,school.length)
+            compare2 = school.toUpperCase()
+        } else
+        {
+            compare1 = schoolURLIndex[i][1].toUpperCase()
+            compare2 = (school.toUpperCase()).substring(0,schoolURLIndex[i][1].length)
+        }
+        if(compare1 == compare2)
+        {
+            returnURL = schoolURLIndex[i][0]
+            console.log("Success! " + returnURL)
+        }   
     }
+    
     
     return returnURL;
     
@@ -68,7 +83,7 @@ var createSchoolUrlIndex = function () {
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/454' , 'Franklin Elementary'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/2122' , 'Fremont High School'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/2178' , 'Freshman Prep Academy'])
-                schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/2379' , 'Frick Middle School'])
+                schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/2379' , 'Frick Middle'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/465' , 'Fruitvale Elementary'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/697' , 'Futures Elementary School'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/481' , 'Garfield Elementary'])
