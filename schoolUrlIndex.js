@@ -1,3 +1,33 @@
+function getSchoolURL(school)
+{
+    console.log(school)
+    var schoolURLIndex  = createSchoolUrlIndex();
+    var returnURL = "";
+    for (var i = 0; i< schoolURLIndex.length; i++)
+    if(schoolURLIndex[i][1].toUpperCase() == school.toUpperCase())
+    {
+        returnURL = schoolURLIndex[i][0]
+        console.log("Success! " + returnURL)
+    }
+    
+    return returnURL;
+    
+}
+
+var makeSchoolNamesClickable = function (){
+	var cells = document.getElementsByTagName('div')
+	for (var i = 0, cell; cell = cells[i]; i++){
+		if (cell.className != 'school-name') continue
+		console.log("test")
+		var caseId = cell.innerHTML
+		cell.innerHTML = ''
+		var link = document.createElement('a')
+		link.href = schoolURL
+		link.appendChild(document.createTextNode(caseId))
+		cell.appendChild(link)
+	}
+}
+
 var createSchoolUrlIndex = function () {
                 var schoolUrlIndex = [];
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/2348' , 'Adult and Career Education'])
@@ -10,7 +40,7 @@ var createSchoolUrlIndex = function () {
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/235' , 'Bella Vista Elementary'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/2441' , 'Bret Harte Middle School'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/789' , 'Bridges Academy'])
-                schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/246' , 'Brookfield Village Elementary'])
+                schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/246' , 'Brookfield Elementary'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/1861' , 'Bunche Academy'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/1367' , 'Burbank Center'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/261' , 'Burckhalter Elementary'])
@@ -46,7 +76,7 @@ var createSchoolUrlIndex = function () {
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/359' , 'Global Family School'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/643' , 'Grass Valley Elementary'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/337' , 'Greenleaf Elementary'])
-                schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/746' , 'Hillcrest K-8'])
+                schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/746' , 'Hillcrest Elementary'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/2375' , 'Hillside Academy'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/924' , 'Hoover Elementary'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/880' , 'Horace Mann Elementary'])
@@ -79,7 +109,7 @@ var createSchoolUrlIndex = function () {
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/1203' , 'New Highland Academy'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/1687' , 'Oakland High School'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/2308' , 'OAKLAND INTERNATIONAL HIGH'])
-                schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/1755' , 'Oakland Technical High School'])
+                schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/1755' , 'Oakland Technical High'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/198' , 'Oakland Unified School District'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/969' , 'Oakland Unified School District'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/1683' , 'Oakland Unified School District'])
@@ -108,7 +138,7 @@ var createSchoolUrlIndex = function () {
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/2833' , 'United for Success'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/2862' , 'Urban Promise Academy'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/2430' , 'West Oakland Middle School'])
-                schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/2630' , 'Westlake Middle School'])
+                schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/2630' , 'Westlake Middle'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/1318' , 'OUSD Career Pathways'])
                 schoolUrlIndex.push(['http://www.ousd.k12.ca.us/Domain/878' , 'ZZZ Additional Site'])
                 return schoolUrlIndex;

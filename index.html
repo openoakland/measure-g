@@ -53,7 +53,7 @@
                 </div>
                 <div class="info-row">
                     <span class="spending-label">per student</span>
-                    <span class="spending highlight">{{content.data.per_student_money}}</span>
+                    <span class="spending highlight"><td class="case">{{content.data.per_student_money}}</td></span>
                 </div>
                </div>
              </div>
@@ -432,8 +432,8 @@
 
         <!-- Place your code in the script tags below -->
         <script type="text/javascript">
+        var schoolURL;
         window.onload = function() {
-
             getSelectedPrograms = function () {
                 var programList = [];
                 $('#program-menu .selected').each(function(){
@@ -448,6 +448,7 @@
                     schoolLevelList.push("'" + $(this).attr("data") + "'");
                 });
                 return schoolLevelList.join();
+                
             };
             
             getSelectedSpendingLevels = function () {
@@ -489,7 +490,6 @@
                     + ") "
                     + "AND mg.site = s.ousd_site "
                     + "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type";
-
                 return query;
             };
 
@@ -524,12 +524,13 @@
             L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map_object);
-
+            
             // for storing spendingLayer outside of createlayer
             var spendingLayer, schoolsLayer;
 
             var updateSpendingMap = function () {
                 spendingLayer.setSQL(generateSpendingSQLQuery());
+                            
             };
 
             var updateMapCSSForSpendingType = function (spendingType) {
@@ -545,24 +546,26 @@
                     document.getElementById("spendRange2").innerHTML = "$100k-108k";
                     document.getElementById("spendRange3").innerHTML = "#108k-116k";
                 }
-                console.log(xTest)
+                
+                
                 spendingLayer.infowindow.set({
                     template: $('#infowindow_template_' + spendingType).html()
                 });
+                
             }
-
+            
+            
             // Add data layer to your map
             cartodb.createLayer(map_object,"http://measure-g-jgordon510.c9.io/viz.json")
                 .addTo(map_object)
                 .done(function(layer) {
                     schoolsLayer = layer.getSubLayer(0);
                     spendingLayer = layer.getSubLayer(1);
-
                     // Undocumented addField method here: https://github.com/CartoDB/cartodb/issues/54
                     updateMapCSSForSpendingType("student");
 
                     updateSpendingMap();
-
+                    
                     // maybe show on hover one day instead of on click
                     //  var i = new cdb.geo.ui.Tooltip({
                     //     layer: spendingLayer,
@@ -571,10 +574,9 @@
                     //     position: 'bottom|right'
                     // });
                     // $('body').append(i.render().el);
-
-                    // spendingLayer.on('featureOver', function(e, latlng, pos, data) {
-                    //     alert("Hey! You clicked " + data);
-                    // });
+                    spendingLayer.on('featureClick', function(e, latlng, pos, data) {
+                         schoolURL = getSchoolURL(data.schnam)
+                     });
                 })
                 .error(function(err) {
                     console.log("error: " + err);
@@ -584,7 +586,7 @@
                 $(this).toggleClass("selected");
 
                 updateSpendingMap();
-
+                
                 //Schools layer only needs to be updated when you show or hide school levels
                 schoolsLayer.setSQL(generateSchoolsSQLQuery());
             });
@@ -616,8 +618,6 @@
             });
             
             
-
-
 
             }
         </script>
