@@ -82,6 +82,21 @@
                 font-family:"Proxima Nova W01","Helvetica Neue",Helvetica,Arial,sans-serif
             }
 
+            /* Wrapper for page content to push down footer */
+            #wrap {
+              min-height: 100%;
+              height: 100%;
+            }
+
+            #wrap > .center-container {
+              padding: 50px 0 0 0;
+              margin:0;
+            }
+
+            .center-container, .center-row {
+              height:100%;
+            }
+
             /*Menu Headers*/
 
             span.menu-icon {
@@ -176,7 +191,7 @@
 
             #menu {
                 position: absolute;
-                top: 20px;
+                top: 70px;
                 right: 20px;
             }
             .layer_selector {
@@ -326,90 +341,110 @@
         </style>
     </head>
     <body>
-        <div id="map"></div>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div id="menu" class="layer_selector col-xs-6 col-sm-3">
-                    <div id="menu-heading" class="expanded">
-                        Explore
-                        <span class="menu-icon glyphicon glyphicon-triangle-bottom" style="display: none" aria-hidden="true"></span>
-                        <span class="menu-icon glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-                    </div>
-                    <ul id="spending-menu" class="collapsible">
-                        <span class="section-header">Spending By</span>
-                        <div class="buttons">
-                          <button type="button" data-spending="student" class="btn btn-success btn-xs">Student</button>
-                          <button type="button" data-spending="school" class="btn btn-default btn-xs">School</button>
+        <!-- Wrap all page content here -->
+        <div id="wrap">
+
+          <!-- Fixed navbar -->
+          <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+              <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html"><strong>Measure G</strong></a>
+              </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Geographic Map</a></li>
+                <li><a href="demo.html">Tree Map</a></li>
+            </ul>
+            </div>
+          </div>
+
+          <!-- Begin page content -->
+          <div class="center-container">
+
+            <div class="center-row">
+
+                <div id="map"></div>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div id="menu" class="layer_selector col-xs-6 col-sm-3">
+                            <div id="menu-heading" class="expanded">
+                                Explore
+                                <span class="menu-icon glyphicon glyphicon-triangle-bottom" style="display: none" aria-hidden="true"></span>
+                                <span class="menu-icon glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+                            </div>
+                            <ul id="spending-menu" class="collapsible">
+                                <span class="section-header">Spending By</span>
+                                <div class="buttons">
+                                  <button type="button" data-spending="student" class="btn btn-success btn-xs">Student</button>
+                                  <button type="button" data-spending="school" class="btn btn-default btn-xs">School</button>
+                                </div>
+                            </ul>
+                            <ul id="program-menu" class="collapsible">
+                                <span class="section-header">Programs</span>
+                                <li data="1118 - ART" class="selected">
+                                    <span class="filter-icon"></span>
+                                    Art
+                                </li>
+                                <li data="1191 - BASIC SCHOOL SUPPORT" class="selected">
+                                    <span class="filter-icon"></span>
+                                    Basic School Support
+                                </li>
+                                <li data="1112 - CLASS SIZE REDUCTION">
+                                    <span class="filter-icon"></span>
+                                    Class Size Reduction
+                                </li>
+                                <li data="1159 - COVERED ELEM INTERVENTION PDS">
+                                    <span class="filter-icon"></span>
+                                    Elementary Intervention
+                                </li>
+                                <li data="1552 - SCHOOL LIBRARIES">
+                                    <span class="filter-icon"></span>
+                                    Libraries
+                                </li>
+                                <li data="1598 - MIDDLE SCHOOL ELECTIVES">
+                                    <span class="filter-icon"></span>
+                                    Middle School Electives
+                                </li>
+                            </ul>
+                            <ul id="school-level-menu" class="collapsible">
+                                <span class="section-header">School Levels</span>
+                                <li data="Elem" class="selected">
+                                    <span class="filter-icon"></span>
+                                    Elementary
+                                </li>
+                                <li data="Middle" class="selected">
+                                    <span class="filter-icon"></span>
+                                    Middle
+                                </li>
+                                <li data="High" class="selected">
+                                    <span class="filter-icon"></span>
+                                    High
+                                </li>
+                                <li data="simple" style="display:none">
+                                    Reset
+                                </li>
+                            </ul>
                         </div>
-                    </ul>
-                    <ul id="program-menu" class="collapsible">
-                        <span class="section-header">Programs</span>
-                        <li data="1118 - ART" class="selected">
-                            <span class="filter-icon"></span>
-                            Art
-                        </li>
-                        <li data="1191 - BASIC SCHOOL SUPPORT" class="selected">
-                            <span class="filter-icon"></span>
-                            Basic School Support
-                        </li>
-                        <li data="1112 - CLASS SIZE REDUCTION">
-                            <span class="filter-icon"></span>
-                            Class Size Reduction
-                        </li>
-                        <li data="1159 - COVERED ELEM INTERVENTION PDS">
-                            <span class="filter-icon"></span>
-                            Elementary Intervention
-                        </li>
-                        <li data="9060 - HR Recruitment">
-                            <span class="filter-icon"></span>
-                            HR - Recruitment
-                        </li>
-                        <li data="1552 - SCHOOL LIBRARIES">
-                            <span class="filter-icon"></span>
-                            Libraries
-                        </li>
-                        <li data="1598 - MIDDLE SCHOOL ELECTIVES">
-                            <span class="filter-icon"></span>
-                            Middle School Electives
-                        </li>
-                        <li data="1564 - ORATORICAL FEST/PERFORMANCES">
-                            <span class="filter-icon"></span>
-                            Oratorical Festival
-                        </li>
-                    </ul>
-                    <ul id="school-level-menu" class="collapsible">
-                        <span class="section-header">School Levels</span>
-                        <li data="Elem" class="selected">
-                            <span class="filter-icon"></span>
-                            Elementary
-                        </li>
-                        <li data="Middle" class="selected">
-                            <span class="filter-icon"></span>
-                            Middle
-                        </li>
-                        <li data="High" class="selected">
-                            <span class="filter-icon"></span>
-                            High
-                        </li>
-                        <li data="simple" style="display:none">
-                            Reset
-                        </li>
-                    </ul>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div id="year-select" class="col-sm-4 col-md-3 col-lg-2">
-                    <div class="year selected" data-year="2012">2012-13</div>
-                    <div class="year" data-year="2013">2013-14</div>
-                    <div class="year" data-year="2014">2014-15</div>
-                    <span class="stretch"></span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div id="year-select">
+                            <div class="year selected" data-year="2012">2012-13</div>
+                            <div class="year" data-year="2013">2013-14</div>
+                            <span class="stretch"></span>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-        </div>
+
+
+          </div>
+
+        </div> <!-- end wrap -->
 
         <!-- Place your code in the script tags below -->
         <script type="text/javascript">
