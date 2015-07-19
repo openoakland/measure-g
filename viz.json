@@ -184,35 +184,11 @@ vizjson({
                 "maxHeight": 180
               },
               "legend": {
-                "type": "bubble",
+                "type": "none",
                 "show_title": false,
                 "title": "",
                 "template": "",
-                "visible": true,
-                "items": [
-                  {
-                    "name": "Left label",
-                    "visible": true,
-                    "value": 92392,
-                    "legend_type": "bubble",
-                    "type": "text",
-                    "sync": false
-                  },
-                  {
-                    "name": "Right Label",
-                    "visible": true,
-                    "value": 1167024,
-                    "legend_type": "bubble",
-                    "type": "text",
-                    "sync": false
-                  },
-                  {
-                    "name": "Color",
-                    "visible": true,
-                    "value": "#229A00",
-                    "type": "color"
-                  }
-                ]
+                "visible": true
               },
               "order": 101,
               "visible": true,
