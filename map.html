@@ -541,6 +541,7 @@
 
             var updateSpendingMap = function () {
                 spendingLayer.setSQL(generateSpendingSQLQuery());
+                infowindow.set('visibility', false);
             };
 
             var updateMapCSSForSpendingType = function (spendingType) {
@@ -562,6 +563,8 @@
                 .done(function(layer) {
                     schoolsLayer = layer.getSubLayer(0);
                     spendingLayer = layer.getSubLayer(1);
+
+                    infowindow = layer.infowindow;
 
                     // Undocumented addField method here: https://github.com/CartoDB/cartodb/issues/54
                     updateMapCSSForSpendingType("student");
