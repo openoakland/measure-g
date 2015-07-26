@@ -398,17 +398,17 @@
                             </ul>
                             <ul id="school-level-menu" class="collapsible">
                                 <span class="section-header">School Levels</span>
-                                <li data="Elem" class="selected">
-                                    Elementary
+                                <li>
+                                    <input type="checkbox" data="Elem" checked="checked">
+                                    <span class="filter-label">Elementary</span>
                                 </li>
-                                <li data="Middle" class="selected">
-                                    Middle
+                                <li>
+                                    <input type="checkbox" data="Middle" checked="checked">
+                                    <span class="filter-label">Middle</span>
                                 </li>
-                                <li data="High" class="selected">
-                                    High
-                                </li>
-                                <li data="simple" style="display:none">
-                                    Reset
+                                <li>
+                                    <input type="checkbox"  data="High" checked="checked">
+                                    <span class="filter-label">High</span>
                                 </li>
                             </ul>
                         </div>
@@ -452,7 +452,7 @@
 
            getSelectedSchoolLevels = function () {
                 var schoolLevelList = [];
-                $('#school-level-menu .selected').each(function(){
+                $('#school-level-menu input:checked').each(function(){
                     schoolLevelList.push("'" + $(this).attr("data") + "'");
                 });
                 return schoolLevelList.join();
@@ -572,8 +572,12 @@
                 });
 
             $('#school-level-menu li').click(function(){
-                $(this).toggleClass("selected");
-
+                var checkbox = $(this).find("input");
+                if(checkbox.is(':checked')){
+                    checkbox.prop('checked', false);
+                } else {
+                    checkbox.prop('checked', true);
+                };
                 updateSpendingMap();
 
                 //Schools layer only needs to be updated when you show or hide school levels
