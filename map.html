@@ -389,7 +389,7 @@
                                     <span class="program-name">Middle School Electives</span>
                                 </li>
                                 <li>
-                                    <input type="radio" data="">
+                                    <input type="radio" id="select-all">
                                     <span class="program-name">All Programs</span>
                                 </li>
                             </ul>
@@ -435,9 +435,15 @@
 
             getSelectedPrograms = function () {
                 var programList = [];
-                $('#program-menu input:checked').each(function(){
-                    programList.push("'" + $(this).attr("data") + "'");
-                });
+                var selectedOption = $('#program-menu input:checked');
+                if (selectedOption.attr('id') === "select-all") {
+                    $('#program-menu input[data]').each(function(){
+                        programList.push("'" + $(this).attr("data") + "'");
+                    });
+                } else {
+                    programList.push("'" + selectedOption.attr("data") + "'")
+                };
+
                 return programList.join();
             };
 
