@@ -170,6 +170,11 @@
                 padding-left: 30px;
             }
 
+            .filter-label {
+                padding-left: 5px;
+                vertical-align: middle;
+            }
+
             #menu {
                 position: absolute;
                 top: 70px;
@@ -192,14 +197,12 @@
                 font-size: 15px;
                 color: #444;
                 cursor: pointer;
+                height: 100%;
             }
+
             .layer_selector li:hover {
                 background-color: #A6CEE3;
                 cursor: pointer;
-            }
-            .layer_selector li.sql_selected,
-            .layer_selector li.cartocss_selected {
-                background-color: #A6CEE3;
             }
 
             /* Infowindows */
@@ -366,31 +369,31 @@
                                 <span class="section-header">Programs</span>
                                 <li>
                                     <input type="radio" data="1118 - ART" checked="checked">
-                                    <span class="program-name">Art</span>
+                                    <span class="filter-label">Art</span>
                                 </li>
                                 <li>
                                     <input type="radio" data="1191 - BASIC SCHOOL SUPPORT">
-                                    <span class="program-name">Basic School Support</span>
+                                    <span class="filter-label">Basic School Support</span>
                                 </li>
                                 <li>
                                     <input type="radio" data="1112 - CLASS SIZE REDUCTION">
-                                    <span class="program-name">Class Size Reduction</span>
+                                    <span class="filter-label">Class Size Reduction</span>
                                 </li>
                                 <li>
                                     <input type="radio" data="1159 - COVERED ELEM INTERVENTION PDS">
-                                    <span class="program-name">Elementary Intervention</span>
+                                    <span class="filter-label">Elementary Intervention</span>
                                 </li>
                                 <li>
                                     <input type="radio" data="1552 - SCHOOL LIBRARIES">
-                                    <span class="program-name">Libraries</span>
+                                    <span class="filter-label">Libraries</span>
                                 </li>
                                 <li>
                                     <input type="radio" data="1598 - MIDDLE SCHOOL ELECTIVES">
-                                    <span class="program-name">Middle School Electives</span>
+                                    <span class="filter-label">Middle School Electives</span>
                                 </li>
                                 <li>
                                     <input type="radio" id="select-all">
-                                    <span class="program-name">All Programs</span>
+                                    <span class="filter-label">All Programs</span>
                                 </li>
                             </ul>
                             <ul id="school-level-menu" class="collapsible">
