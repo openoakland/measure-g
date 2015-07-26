@@ -156,17 +156,6 @@
 
             /*Menu Filter Icons*/
 
-            span.filter-icon {
-                display: inline-block;
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                border-width: 2px;
-                border-style: solid;
-                border-color: black;
-                margin-right: 5px;
-            }
-
             #spending-menu, #program-menu, #school-level-menu, #menu-heading.expanded {
                 border-bottom: 1px solid #999;
             }
@@ -179,14 +168,6 @@
             #spending-menu .buttons {
                 display: inline-block;
                 padding-left: 30px;
-            }
-
-            #program-menu li.selected span.filter-icon {
-                background-color: #339933;
-            }
-
-            #school-level-menu li.selected span.filter-icon {
-                background-color: #0608E0;
             }
 
             #menu {
@@ -383,43 +364,44 @@
                             </ul>
                             <ul id="program-menu" class="collapsible">
                                 <span class="section-header">Programs</span>
-                                <li data="1118 - ART" class="selected">
-                                    <span class="filter-icon"></span>
-                                    Art
+                                <li>
+                                    <input type="radio" data="1118 - ART" checked="checked">
+                                    <span class="program-name">Art</span>
                                 </li>
-                                <li data="1191 - BASIC SCHOOL SUPPORT" class="selected">
-                                    <span class="filter-icon"></span>
-                                    Basic School Support
+                                <li>
+                                    <input type="radio" data="1191 - BASIC SCHOOL SUPPORT">
+                                    <span class="program-name">Basic School Support</span>
                                 </li>
-                                <li data="1112 - CLASS SIZE REDUCTION">
-                                    <span class="filter-icon"></span>
-                                    Class Size Reduction
+                                <li>
+                                    <input type="radio" data="1112 - CLASS SIZE REDUCTION">
+                                    <span class="program-name">Class Size Reduction</span>
                                 </li>
-                                <li data="1159 - COVERED ELEM INTERVENTION PDS">
-                                    <span class="filter-icon"></span>
-                                    Elementary Intervention
+                                <li>
+                                    <input type="radio" data="1159 - COVERED ELEM INTERVENTION PDS">
+                                    <span class="program-name">Elementary Intervention</span>
                                 </li>
-                                <li data="1552 - SCHOOL LIBRARIES">
-                                    <span class="filter-icon"></span>
-                                    Libraries
+                                <li>
+                                    <input type="radio" data="1552 - SCHOOL LIBRARIES">
+                                    <span class="program-name">Libraries</span>
                                 </li>
-                                <li data="1598 - MIDDLE SCHOOL ELECTIVES">
-                                    <span class="filter-icon"></span>
-                                    Middle School Electives
+                                <li>
+                                    <input type="radio" data="1598 - MIDDLE SCHOOL ELECTIVES">
+                                    <span class="program-name">Middle School Electives</span>
+                                </li>
+                                <li>
+                                    <input type="radio" data="">
+                                    <span class="program-name">All Programs</span>
                                 </li>
                             </ul>
                             <ul id="school-level-menu" class="collapsible">
                                 <span class="section-header">School Levels</span>
                                 <li data="Elem" class="selected">
-                                    <span class="filter-icon"></span>
                                     Elementary
                                 </li>
                                 <li data="Middle" class="selected">
-                                    <span class="filter-icon"></span>
                                     Middle
                                 </li>
                                 <li data="High" class="selected">
-                                    <span class="filter-icon"></span>
                                     High
                                 </li>
                                 <li data="simple" style="display:none">
@@ -453,7 +435,7 @@
 
             getSelectedPrograms = function () {
                 var programList = [];
-                $('#program-menu .selected').each(function(){
+                $('#program-menu input:checked').each(function(){
                     programList.push("'" + $(this).attr("data") + "'");
                 });
                 return programList.join();
@@ -580,13 +562,19 @@
                     console.log("error: " + err);
                 });
 
-            $('#program-menu li, #school-level-menu li').click(function(){
+            $('#school-level-menu li').click(function(){
                 $(this).toggleClass("selected");
 
                 updateSpendingMap();
 
                 //Schools layer only needs to be updated when you show or hide school levels
                 schoolsLayer.setSQL(generateSchoolsSQLQuery());
+            });
+
+            $('#program-menu li').click(function(){
+                $('#program-menu input:checked').prop("checked", false);
+                $(this).find("input").prop("checked", true);
+                updateSpendingMap();
             });
 
             $('#menu-heading').click(function(){
