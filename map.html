@@ -9,7 +9,8 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
-        <link rel="shortcut icon" href="http://sstatic.net/so/favicon.ico" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" type="text/css" />
@@ -17,8 +18,10 @@
 
         <!-- include cartodb.js library -->
         <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.uncompressed.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" type="text/javascript"></script>
         <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
         <script type="infowindow/html" id="infowindow_template_school">
           <div class="infowindow cartodb-popup v2">
@@ -156,17 +159,6 @@
 
             /*Menu Filter Icons*/
 
-            span.filter-icon {
-                display: inline-block;
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                border-width: 2px;
-                border-style: solid;
-                border-color: black;
-                margin-right: 5px;
-            }
-
             #spending-menu, #program-menu, #school-level-menu, #menu-heading.expanded {
                 border-bottom: 1px solid #999;
             }
@@ -181,12 +173,17 @@
                 padding-left: 30px;
             }
 
-            #program-menu li.selected span.filter-icon {
-                background-color: #339933;
+            .filter-label {
+                padding-left: 5px;
+                vertical-align: middle;
             }
 
-            #school-level-menu li.selected span.filter-icon {
-                background-color: #0608E0;
+            /* school levels */
+
+            label {
+                margin: 0;
+                font-weight: inherit;
+                display: inherit;
             }
 
             #menu {
@@ -211,14 +208,12 @@
                 font-size: 15px;
                 color: #444;
                 cursor: pointer;
+                height: 100%;
             }
+
             .layer_selector li:hover {
                 background-color: #A6CEE3;
                 cursor: pointer;
-            }
-            .layer_selector li.sql_selected,
-            .layer_selector li.cartocss_selected {
-                background-color: #A6CEE3;
             }
 
             /* Infowindows */
@@ -345,19 +340,27 @@
         <!-- Wrap all page content here -->
         <div id="wrap">
 
-          <!-- Fixed navbar -->
-          <div class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-              <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html"><strong>Measure G</strong></a>
-              </div>
-            <ul class="nav navbar-nav">
-                <li class=""><a href="index.html">About</a></li>
-                <li class="active"><a href="map.html">Geographic Map</a></li>
-                <li><a href="treemap.html">Tree Map</a></li>
-            </ul>
+            <!-- Fixed navbar -->
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-target" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html"><strong>Measure G</strong></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar-collapse-target">
+                        <ul class="nav navbar-nav">
+                            <li class=""><a href="index.html">About</a></li>
+                            <li class="active"><a href="map.html">Geographic Map</a></li>
+                            <li><a href="treemap.html">Tree Map</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
 
           <!-- Begin page content -->
           <div class="center-container">
@@ -383,48 +386,55 @@
                             </ul>
                             <ul id="program-menu" class="collapsible">
                                 <span class="section-header">Programs</span>
-                                <li data="1118 - ART" class="selected">
-                                    <span class="filter-icon"></span>
-                                    Art
+                                <li>
+                                    <input type="radio" data="1118 - ART" checked="checked">
+                                    <span class="filter-label">Art</span>
                                 </li>
-                                <li data="1191 - BASIC SCHOOL SUPPORT" class="selected">
-                                    <span class="filter-icon"></span>
-                                    Basic School Support
+                                <li>
+                                    <input type="radio" data="1191 - BASIC SCHOOL SUPPORT">
+                                    <span class="filter-label">Basic School Support</span>
                                 </li>
-                                <li data="1112 - CLASS SIZE REDUCTION">
-                                    <span class="filter-icon"></span>
-                                    Class Size Reduction
+                                <li>
+                                    <input type="radio" data="1112 - CLASS SIZE REDUCTION">
+                                    <span class="filter-label">Class Size Reduction</span>
                                 </li>
-                                <li data="1159 - COVERED ELEM INTERVENTION PDS">
-                                    <span class="filter-icon"></span>
-                                    Elementary Intervention
+                                <li>
+                                    <input type="radio" data="1159 - COVERED ELEM INTERVENTION PDS">
+                                    <span class="filter-label">Elementary Intervention</span>
                                 </li>
-                                <li data="1552 - SCHOOL LIBRARIES">
-                                    <span class="filter-icon"></span>
-                                    Libraries
+                                <li>
+                                    <input type="radio" data="1552 - SCHOOL LIBRARIES">
+                                    <span class="filter-label">Libraries</span>
                                 </li>
-                                <li data="1598 - MIDDLE SCHOOL ELECTIVES">
-                                    <span class="filter-icon"></span>
-                                    Middle School Electives
+                                <li>
+                                    <input type="radio" data="1598 - MIDDLE SCHOOL ELECTIVES">
+                                    <span class="filter-label">Middle School Electives</span>
+                                </li>
+                                <li>
+                                    <input type="radio" id="select-all">
+                                    <span class="filter-label">All Programs</span>
                                 </li>
                             </ul>
                             <ul id="school-level-menu" class="collapsible">
                                 <span class="section-header">School Levels</span>
-                                <li data="Elem" class="selected">
-                                    <span class="filter-icon"></span>
-                                    Elementary
-                                </li>
-                                <li data="Middle" class="selected">
-                                    <span class="filter-icon"></span>
-                                    Middle
-                                </li>
-                                <li data="High" class="selected">
-                                    <span class="filter-icon"></span>
-                                    High
-                                </li>
-                                <li data="simple" style="display:none">
-                                    Reset
-                                </li>
+                                <label for="elem">
+                                    <li>
+                                        <input type="checkbox" id="elem" data="Elem" checked="checked">
+                                        <span class="filter-label">Elementary</span>
+                                    </li>
+                                </label>
+                                <label for="middle">
+                                    <li>
+                                        <input type="checkbox" id="middle" data="Middle" checked="checked">
+                                        <span class="filter-label">Middle</span>
+                                    </li>
+                                </label>
+                                <label for="high">
+                                    <li>
+                                        <input type="checkbox" id="high" data="High" checked="checked">
+                                        <span class="filter-label">High</span>
+                                    </li>
+                                </label>
                             </ul>
                         </div>
                     </div>
@@ -453,15 +463,21 @@
 
             getSelectedPrograms = function () {
                 var programList = [];
-                $('#program-menu .selected').each(function(){
-                    programList.push("'" + $(this).attr("data") + "'");
-                });
+                var selectedOption = $('#program-menu input:checked');
+                if (selectedOption.attr('id') === "select-all") {
+                    $('#program-menu input[data]').each(function(){
+                        programList.push("'" + $(this).attr("data") + "'");
+                    });
+                } else {
+                    programList.push("'" + selectedOption.attr("data") + "'")
+                };
+
                 return programList.join();
             };
 
            getSelectedSchoolLevels = function () {
                 var schoolLevelList = [];
-                $('#school-level-menu .selected').each(function(){
+                $('#school-level-menu input:checked').each(function(){
                     schoolLevelList.push("'" + $(this).attr("data") + "'");
                 });
                 return schoolLevelList.join();
@@ -536,6 +552,7 @@
 
             var updateSpendingMap = function () {
                 spendingLayer.setSQL(generateSpendingSQLQuery());
+                infowindow.set('visibility', false);
             };
 
             var updateMapCSSForSpendingType = function (spendingType) {
@@ -557,6 +574,8 @@
                 .done(function(layer) {
                     schoolsLayer = layer.getSubLayer(0);
                     spendingLayer = layer.getSubLayer(1);
+
+                    infowindow = layer.infowindow;
 
                     // Undocumented addField method here: https://github.com/CartoDB/cartodb/issues/54
                     updateMapCSSForSpendingType("student");
@@ -580,13 +599,17 @@
                     console.log("error: " + err);
                 });
 
-            $('#program-menu li, #school-level-menu li').click(function(){
-                $(this).toggleClass("selected");
-
+            $('#school-level-menu :checkbox').click(function(){
                 updateSpendingMap();
 
                 //Schools layer only needs to be updated when you show or hide school levels
                 schoolsLayer.setSQL(generateSchoolsSQLQuery());
+            });
+
+            $('#program-menu li').click(function(){
+                $('#program-menu input:checked').prop("checked", false);
+                $(this).find("input").prop("checked", true);
+                updateSpendingMap();
             });
 
             $('#menu-heading').click(function(){
