@@ -175,6 +175,14 @@
                 vertical-align: middle;
             }
 
+            /* school levels */
+
+            label {
+                margin: 0;
+                font-weight: inherit;
+                display: inherit;
+            }
+
             #menu {
                 position: absolute;
                 top: 70px;
@@ -398,18 +406,24 @@
                             </ul>
                             <ul id="school-level-menu" class="collapsible">
                                 <span class="section-header">School Levels</span>
-                                <li>
-                                    <input type="checkbox" data="Elem" checked="checked">
-                                    <span class="filter-label">Elementary</span>
-                                </li>
-                                <li>
-                                    <input type="checkbox" data="Middle" checked="checked">
-                                    <span class="filter-label">Middle</span>
-                                </li>
-                                <li>
-                                    <input type="checkbox"  data="High" checked="checked">
-                                    <span class="filter-label">High</span>
-                                </li>
+                                <label for="elem">
+                                    <li>
+                                        <input type="checkbox" id="elem" data="Elem" checked="checked">
+                                        <span class="filter-label">Elementary</span>
+                                    </li>
+                                </label>
+                                <label for="middle">
+                                    <li>
+                                        <input type="checkbox" id="middle" data="Middle" checked="checked">
+                                        <span class="filter-label">Middle</span>
+                                    </li>
+                                </label>
+                                <label for="high">
+                                    <li>
+                                        <input type="checkbox" id="high" data="High" checked="checked">
+                                        <span class="filter-label">High</span>
+                                    </li>
+                                </label>
                             </ul>
                         </div>
                     </div>
@@ -571,13 +585,7 @@
                     console.log("error: " + err);
                 });
 
-            $('#school-level-menu li').click(function(){
-                var checkbox = $(this).find("input");
-                if(checkbox.is(':checked')){
-                    checkbox.prop('checked', false);
-                } else {
-                    checkbox.prop('checked', true);
-                };
+            $('#school-level-menu :checkbox').click(function(){
                 updateSpendingMap();
 
                 //Schools layer only needs to be updated when you show or hide school levels
