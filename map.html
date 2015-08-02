@@ -157,6 +157,18 @@
                 line-height: 0
             }
 
+            /* Loading Graphic */
+            #loading {
+                height: 50px;
+                background: rgba(255,255,255,0.9);
+                border-radius: 5px;
+                padding: 10px;
+                position: absolute;
+                top: 46%;
+                left: 46%;
+                border: 1px solid #999;
+            }
+
             /*Menu Filter Icons*/
 
             #spending-menu, #program-menu, #school-level-menu, #menu-heading.expanded {
@@ -450,6 +462,14 @@
                     </div>
                 </div>
 
+                <div class="container-fluid">
+                    <div class="row">
+                        <div id="loading" style="display: none;">
+                        Loading...
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
 
@@ -527,6 +547,14 @@
                 return query;
             };
 
+            var showLoading = function () {
+                $('#loading').show();
+            };
+
+            var hideLoading = function () {
+                $('#loading').hide();
+            };
+
             var layerSource = {
                     user_name: 'jbaldo',
                     type: 'cartodb',
@@ -577,6 +605,9 @@
 
                     infowindow = layer.infowindow;
 
+                    layer.on("loading", showLoading);
+                    layer.on("load", hideLoading);
+
                     // Undocumented addField method here: https://github.com/CartoDB/cartodb/issues/54
                     updateMapCSSForSpendingType("student");
 
@@ -591,9 +622,6 @@
                     // });
                     // $('body').append(i.render().el);
 
-                    // spendingLayer.on('featureOver', function(e, latlng, pos, data) {
-                    //     alert("Hey! You clicked " + data);
-                    // });
                 })
                 .error(function(err) {
                     console.log("error: " + err);
