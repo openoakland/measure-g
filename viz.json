@@ -171,13 +171,33 @@ vizjson({
               "tooltip": {
                 "fields": [
                   {
+                    "name": "site_type",
+                    "title": false,
+                    "position": 1.7976931348623e+308
+                  },
+                  {
+                    "name": "ytd_money",
+                    "title": false,
+                    "position": 1.7976931348623e+308
+                  },
+                  {
                     "name": "schnam",
+                    "title": false,
+                    "position": 1.7976931348623e+308
+                  },
+                  {
+                    "name": "ytd_actual",
+                    "title": false,
+                    "position": 1.7976931348623e+308
+                  },
+                  {
+                    "name": "per_student_money",
                     "title": false,
                     "position": 1.7976931348623e+308
                   }
                 ],
                 "template_name": "tooltip_light",
-                "template": "<div class=\"cartodb-tooltip-content-wrapper\">\n  <div class=\"cartodb-tooltip-content\">\n  {{#fields}}\n    {{#title}}\n    <h4>{{title}}<\/h4>\n    {{\/title}}\n    <p>{{{ value }}}<\/p>\n  {{\/fields}}\n  <\/div>\n<div>",
+                "template": "<div class=\"infowindow cartodb-tooltip-content-wrapper\">\n                                 <div class=\"cartodb-tooltip-content\">\n                                  <div class=\"school-name\">{{schnam}}<\/div>\n                                  <div class=\"info-row\">\n                                      <span class=\"spending-label\">total spending<\/span>\n                                      <span class=\"spending\">{{ytd_money}}<\/span>\n                                  <\/div>\n                                  <div class=\"info-row\">\n                                      <span class=\"spending-label\">per student<\/span>\n                                      <span class=\"spending highlight\">{{per_student_money}}<\/span>\n                                  <\/div>\n                                 <\/div>\n                               <\/div>",
                 "alternative_names": {
 
                 },
@@ -197,7 +217,7 @@ vizjson({
                 "layer_name": "measure_g_2012_13_merge",
                 "cartocss": "\/** bubble visualization *\/\n\n#measure_g_2012_13_merge{\n  marker-fill-opacity: 0.9;\n  marker-line-color: #FFF;\n  marker-line-width: 1.5;\n  marker-line-opacity: 1;\n  marker-placement: point;\n  marker-multi-policy: largest;\n  marker-type: ellipse;\n  marker-fill: #229A00;\n  marker-allow-overlap: true;\n  marker-clip: false;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 1167024] {\n   marker-width: 25.0;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 359829] {\n   marker-width: 23.3;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 283984] {\n   marker-width: 21.7;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 242304] {\n   marker-width: 20.0;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 213504] {\n   marker-width: 18.3;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 197312] {\n   marker-width: 16.7;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 183343] {\n   marker-width: 15.0;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 164460] {\n   marker-width: 13.3;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 150219] {\n   marker-width: 11.7;\n}\n#measure_g_2012_13_merge [ ytd_actual <= 92392] {\n   marker-width: 10.0;\n}",
                 "cartocss_version": "2.1.1",
-                "interactivity": "cartodb_id,schnam",
+                "interactivity": "cartodb_id,schnam,per_student_money,ytd_money,per_student",
                 "table_name": "\"\".",
                 "dynamic_cdn": false
               }
