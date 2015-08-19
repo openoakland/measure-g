@@ -613,6 +613,14 @@
 
                     updateSpendingMap();
 
+                    var i = new cdb.geo.ui.Tooltip({
+                        layer: layer,
+                        template: $('#infowindow_template_' + spendingType).html(),
+                        width: 200,
+                        position: 'bottom|right'
+                    });
+                    $('body').append(i.render().el);
+
                     // maybe show on hover one day instead of on click
                     //  var i = new cdb.geo.ui.Tooltip({
                     //     layer: spendingLayer,
