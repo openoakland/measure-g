@@ -251,11 +251,18 @@
                 font-size: 12pt;
                 color: green;
             }
-            .cartodb-tooltip-content-wrapper {
-                height: 60px;
-            }
+
             .cartodb-tooltip {
                 max-width: 1000px !important;
+            }
+
+            .cartodb-tooltip div.cartodb-popup.v2 div.cartodb-popup-content {
+                max-width: 190px;
+            }
+
+            /* Reusing cartodb infowindow classes for tooltip. this hides the carrot/arrow thing */
+            .cartodb-tooltip div.cartodb-popup.v2:before {
+                display: none;
             }
             </style>
 
@@ -528,7 +535,7 @@
 
             generateSpendingSQLQuery = function () {
 
-                var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money) as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, s.site_type, SUM(mg.per_student) per_student, SUM(per_student::numeric::money) as per_student_money "
+                var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money)::text as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, s.site_type, SUM(mg.per_student) per_student, SUM(per_student::numeric::money)::text as per_student_money "
                     + "FROM " + getTableForSelectedYear() + " mg, measure_g_schools_lat_long s "
                     + "WHERE prog_desc IN ("
                     + getSelectedPrograms()
