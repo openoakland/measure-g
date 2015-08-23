@@ -100,7 +100,7 @@ vizjson({
                   }
                 ],
                 "template_name": "tooltip_light",
-                "template": "<div class=\"cartodb-tooltip-content-wrapper\">\n  <div class=\"cartodb-tooltip-content\">\n  <div class=\"school-name\"> {{schnam}} <\/div> <div class=\"info-row\"> <span class=\"spending-label\">total spending<\/span> <span class=\"spending\">$0<\/span> <\/div>  <\/div>\n<div>",
+                "template": "<div class=\"cartodb-popup v2\">\n <div class=\"cartodb-popup-content-wrapper\">\n  <div class=\"cartodb-popup-content\">\n  <div class=\"school-name\"> {{schnam}} <\/div> <div class=\"info-row\"> <span class=\"spending-label\">total spending<\/span> <span class=\"spending\">$0<\/span> <\/div>  <\/div>\n<\/div>",
                 "alternative_names": {
 
                 },
