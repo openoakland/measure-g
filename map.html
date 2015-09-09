@@ -182,7 +182,7 @@
 
             #spending-menu .buttons {
                 display: inline-block;
-                padding-left: 30px;
+                padding-left: 15px;
             }
 
             .filter-label {
@@ -269,54 +269,7 @@
         <style type="cartocss/html" id="school-bubble">
             /** bubble visualization */
 
-            #measure_g_2012_13{
-              marker-fill-opacity: 0.9;
-              marker-line-color: #FFF;
-              marker-line-width: 1;
-              marker-line-opacity: 1;
-              marker-placement: point;
-              marker-multi-policy: largest;
-              marker-type: ellipse;
-              marker-fill: #229A00;
-              marker-allow-overlap: true;
-              marker-clip: false;
-            }
-            #measure_g_2012_13 [ ytd_actual <= 1167024] {
-               marker-width: 25.0;
-            }
-            #measure_g_2012_13 [ ytd_actual <= 359829] {
-               marker-width: 23.3;
-            }
-            #measure_g_2012_13 [ ytd_actual <= 283984] {
-               marker-width: 21.7;
-            }
-            #measure_g_2012_13 [ ytd_actual <= 242304] {
-               marker-width: 20.0;
-            }
-            #measure_g_2012_13 [ ytd_actual <= 213504] {
-               marker-width: 18.3;
-            }
-            #measure_g_2012_13 [ ytd_actual <= 197312] {
-               marker-width: 16.7;
-            }
-            #measure_g_2012_13 [ ytd_actual <= 183343] {
-               marker-width: 15.0;
-            }
-            #measure_g_2012_13 [ ytd_actual <= 164460] {
-               marker-width: 13.3;
-            }
-            #measure_g_2012_13 [ ytd_actual <= 150219] {
-               marker-width: 11.7;
-            }
-            #measure_g_2012_13 [ ytd_actual <= 92392] {
-               marker-width: 10.0;
-            }
-        </style>
-
-        <style type="cartocss/html" id="per-student-bubble">
-            /** bubble visualization */
-
-            #measure_g_2012_13_per_student{
+            #measure_g_2012_13_merge{
               marker-fill-opacity: 0.9;
               marker-line-color: #FFF;
               marker-line-width: 1.5;
@@ -328,34 +281,81 @@
               marker-allow-overlap: true;
               marker-clip: false;
             }
-            #measure_g_2012_13_per_student [ per_student <= 2527.57] {
+            #measure_g_2012_13_merge [ bubble_school <= 10] {
                marker-width: 25.0;
             }
-            #measure_g_2012_13_per_student [ per_student <= 324.64] {
+            #measure_g_2012_13_merge [ bubble_school <= 9] {
                marker-width: 23.3;
             }
-            #measure_g_2012_13_per_student [ per_student <= 303.68] {
+            #measure_g_2012_13_merge [ bubble_school <= 8] {
                marker-width: 21.7;
             }
-            #measure_g_2012_13_per_student [ per_student <= 277.2] {
+            #measure_g_2012_13_merge [ bubble_school <= 7] {
                marker-width: 20.0;
             }
-            #measure_g_2012_13_per_student [ per_student <= 269.38] {
+            #measure_g_2012_13_merge [ bubble_school <= 6] {
                marker-width: 18.3;
             }
-            #measure_g_2012_13_per_student [ per_student <= 265.73] {
+            #measure_g_2012_13_merge [ bubble_school <= 5] {
                marker-width: 16.7;
             }
-            #measure_g_2012_13_per_student [ per_student <= 260.19] {
+            #measure_g_2012_13_merge [ bubble_school <= 4] {
                marker-width: 15.0;
             }
-            #measure_g_2012_13_per_student [ per_student <= 257.6] {
+            #measure_g_2012_13_merge [ bubble_school <= 3] {
                marker-width: 13.3;
             }
-            #measure_g_2012_13_per_student [ per_student <= 243.29] {
+            #measure_g_2012_13_merge [ bubble_school <= 2] {
                marker-width: 11.7;
             }
-            #measure_g_2012_13_per_student [ per_student <= 226.65] {
+            #measure_g_2012_13_merge [ bubble_school <= 1] {
+               marker-width: 10.0;
+            }
+        </style>
+
+        <style type="cartocss/html" id="per-student-bubble">
+            /** bubble visualization */
+
+            #measure_g_2012_13_merge{
+              marker-fill-opacity: 0.9;
+              marker-line-color: #FFF;
+              marker-line-width: 1.5;
+              marker-line-opacity: 1;
+              marker-placement: point;
+              marker-multi-policy: largest;
+              marker-type: ellipse;
+              marker-fill: #229A00;
+              marker-allow-overlap: true;
+              marker-clip: false;
+            }
+            #measure_g_2012_13_merge [ bubble_student <= 10] {
+               marker-width: 25.0;
+            }
+            #measure_g_2012_13_merge [ bubble_student <= 9] {
+               marker-width: 23.3;
+            }
+            #measure_g_2012_13_merge [ bubble_student <= 8] {
+               marker-width: 21.7;
+            }
+            #measure_g_2012_13_merge [ bubble_student <= 7] {
+               marker-width: 20.0;
+            }
+            #measure_g_2012_13_merge [ bubble_student <= 6] {
+               marker-width: 18.3;
+            }
+            #measure_g_2012_13_merge [ bubble_student <= 5] {
+               marker-width: 16.7;
+            }
+            #measure_g_2012_13_merge [ bubble_student <= 4] {
+               marker-width: 15.0;
+            }
+            #measure_g_2012_13_merge [ bubble_student <= 3] {
+               marker-width: 13.3;
+            }
+            #measure_g_2012_13_merge [ bubble_student <= 2] {
+               marker-width: 11.7;
+            }
+            #measure_g_2012_13_merge [ bubble_student <= 1] {
                marker-width: 10.0;
             }
         </style>
@@ -403,10 +403,10 @@
                                 <span class="menu-icon glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
                             </div>
                             <ul id="spending-menu" class="collapsible">
-                                <span class="section-header">Spending By</span>
+                                <span class="section-header">Bubble Sizes</span>
                                 <div class="buttons">
-                                  <button type="button" data-spending="student" class="btn btn-success btn-xs">Student</button>
-                                  <button type="button" data-spending="school" class="btn btn-default btn-xs">School</button>
+                                  <button type="button" data-spending="student" class="btn btn-success btn-xs">Per Student</button>
+                                  <button type="button" data-spending="school" class="btn btn-default btn-xs">Whole School</button>
                                 </div>
                             </ul>
                             <ul id="program-menu" class="collapsible">
@@ -535,7 +535,9 @@
 
             generateSpendingSQLQuery = function () {
 
-                var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money)::text as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, s.site_type, SUM(mg.per_student) per_student, SUM(per_student::numeric::money)::text as per_student_money "
+                var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money)::text as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, s.site_type, SUM(mg.per_student) per_student, SUM(per_student::numeric::money)::text as per_student_money, "
+                    + "ntile(10) OVER (ORDER BY mg.ytd_actual) as bubble_school, "
+                    + "ntile(10) OVER (ORDER BY per_student) as bubble_student "
                     + "FROM " + getTableForSelectedYear() + " mg, measure_g_schools_lat_long s "
                     + "WHERE prog_desc IN ("
                     + getSelectedPrograms()
@@ -545,7 +547,7 @@
                     + getSelectedSchoolLevels()
                     + ") "
                     + "AND mg.site = s.ousd_site "
-                    + "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type";
+                    + "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type, mg.ytd_actual, mg.per_student";
 
                 return query;
             };
