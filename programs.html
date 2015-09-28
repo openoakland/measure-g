@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            About Measure G
+        </title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+        <!--Load the AJAX API. Do this only once per web page! -->
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+
+            // Load the Visualization API and the piechart package.
+            google.load('visualization', '1.1', {'packages':['bar']});
+
+            //Get Data from CartoDb
+            sql = "SELECT split_part(prog_desc,' - ',2) as program, " +
+                "split_part(obj_desc,' - ',2) as category, " +
+                "SUM(ytd_actual) total " +
+                "FROM measure_g_2013_14 " +
+                "GROUP BY obj_desc, prog_desc " +
+                "HAVING SUM(ytd_actual) > 1000 " +
+                "ORDER BY program, total ";
+
+            // Group objects by program
+
+            var dataByProgram = {};
+
+            $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
+
+                $.each(data.rows, function(key, row) {
+
+                    var program = row.program;
+                    delete row.program;
+                    item = [row.category, row.total]
+
+                    if(dataByProgram[program]) {
+                        dataByProgram[program].push(item);
+                    } else {
+                        dataByProgram[program] = [item];
+                    }
+                });
+            });
+
+            // Set a callback to run when the Google Visualization API is loaded.
+            google.setOnLoadCallback(drawChart);
+
+
+            // Callback that creates and populates a data table, 
+            // instantiates the pie chart, passes in the data and
+            // draws it.
+            function drawChart() {
+
+                // Create the data table.
+                // var data = google.visualization.arrayToDataTable([
+                //     ['Expense Type', 'Amount Spent'],
+                //     ["SUPV, ADMIN, INSTR COACHES SAL",1095],
+                //     ["BOOKS-OTHER THAN TEXTBOOKS",2677],
+                //     ["HEALTH & WELFARE CLASSIFIED",2922],
+                //     ["ST UNEMPLOY INS CERTIFICATED",3624],
+                //     ["PUPILSUPPT SALARIES",4400],
+                //     ["CLERICAL SALARIES",5354],
+                //     ["TEACHERS SUBSTITUTES",6405],
+                //     ["CLERICAL SALARIES EXTRA COMP",7156],
+                //     ["OTHER BENEFITS CERTIFICATED",7610],
+                //     ["PERS CERTIFICATED",8426],
+                //     ["CONSULTANTS",8578],
+                //     ["SUPPLIES",37514],
+                //     ["TEACHERS SALARIES STIPENDS",51061],
+                //     ["SOCSEC,MEDI,ALTSS CERTIFICATED",98590],
+                //     ["WORKERS COMP CERTIFICATED",391145],
+                //     ["TEACHER ON SPEC ASSIN SCHOOL",402399],
+                //     ["STRS CERTIFICATED",542582],
+                //     ["HEALTH & WELFARE CERTIFICATED",1534684],
+                //     ["TEACHERS SALARIES",11983262]
+                // ]);
+                
+                var dataWithHeaders = dataByProgram['ART'];
+                dataWithHeaders.unshift(['Expense Type', 'Amount Spent']);
+                var data = google.visualization.arrayToDataTable(dataWithHeaders);
+
+                data.sort([{column: 1, desc:true}]);
+
+                var options = {
+                    chart: {
+                    },
+                    bars: 'horizontal' // Required for Material Bar Charts.
+                };
+
+                var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+                chart.draw(data, google.charts.Bar.convertOptions(options));
+
+
+            }
+        </script>
+
+        <style type="text/css">
+
+            html, body {
+                height: 100%;
+                padding: 0;
+                margin: 0;
+
+                background-color:#fff;
+                text-rendering:optimizeLegibility;
+                -webkit-text-rendering:optimizeLegibility;
+                -webkit-font-smoothing:antialiased;
+                color:#333;
+                font-weight:300;
+                line-height:25px;
+                font-family:"Proxima Nova W01","Helvetica Neue",Helvetica,Arial,sans-serif
+            }
+
+            /* Wrapper for page content to push down footer */
+            #wrap {
+              min-height: 100%;
+              height: 100%;
+            }
+
+            #wrap > .center-container {
+              padding: 50px 0 0 0;
+              margin:0;
+            }
+
+            .center-container, .center-row {
+              height:100%;
+            }
+
+            .preview-image {
+                width: 100%;
+            }
+
+            /*Program Selector*/
+
+            #program-select {
+                display: table;
+                margin: 0 auto;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            .program {
+                display: inline-block;
+                padding: 5px 5px;
+            }
+
+            .program.active {
+                font-weight: bold;
+            }
+
+        </style>
+
+    </head>
+    <body>
+
+        <!-- Wrap all page content here -->
+        <div id="wrap">
+
+            <!-- Fixed navbar -->
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-target" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html"><strong>Measure G</strong></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar-collapse-target">
+                        <ul class="nav navbar-nav">
+                            <li class=""><a href="index.html">About</a></li>
+                            <li class=""><a href="map.html">Geographic Map</a></li>
+                            <li class="active"><a href="programs.html">Programs</a></li>
+                            <li><a href="treemap.html">Tree Map</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+          <!-- Begin page content -->
+          <div class="center-container">
+
+            <div class="center-row">
+                <div class="container">
+                    <div id="program-select">
+                        <div class="program active" id="art">Art</div>
+                        <div class="program" id="basic-school-support">Basic School Support</div>
+                        <div class="program" id="class-size-reduction">Class Size Reduction</div>
+                        <div class="program" id="elementary-intervention">Elementary Intervention</div>
+                        <div class="program" id="libraries">Libraries</div>
+                        <div class="program" id="middle-school-electives">Middle School Electives</div>
+                    </div>
+
+                    <h3>How has money been spent for this program?</h3>
+
+                    <div id="chart_div" style="height: 800px;"></div>
+
+                </div>
+
+            </div>
+
+
+          </div>
+
+        </div> <!-- end wrap -->
+
+        <!-- Place your code in the script tags below -->
+        <script type="text/javascript">
+            window.onload = function() {
+
+
+
+            }
+        </script>
+    </body>
+</html>
