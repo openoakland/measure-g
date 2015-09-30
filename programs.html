@@ -86,15 +86,19 @@
                 // ]);
                 
                 var dataWithHeaders = dataByProgram['ART'];
+                var numBars = dataWithHeaders.length - 1;
+                var chartHeight = numBars * 40;
                 dataWithHeaders.unshift(['Expense Type', 'Amount Spent']);
                 var data = google.visualization.arrayToDataTable(dataWithHeaders);
 
                 data.sort([{column: 1, desc:true}]);
 
+
                 var options = {
                     chart: {
                     },
-                    bars: 'horizontal' // Required for Material Bar Charts.
+                    bars: 'horizontal', // Required for Material Bar Charts.
+                    height: chartHeight
                 };
 
                 var chart = new google.charts.Bar(document.getElementById('chart_div'));
@@ -143,7 +147,7 @@
 
             /*Program Selector*/
 
-            #program-select {
+            #program-select, h3 {
                 display: table;
                 margin: 0 auto;
                 margin-top: 20px;
@@ -206,7 +210,7 @@
 
                     <h3>How has money been spent for this program?</h3>
 
-                    <div id="chart_div" style="height: 800px;"></div>
+                    <div id="chart_div"></div>
 
                 </div>
 
