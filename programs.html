@@ -80,7 +80,8 @@
             if(selectedProgram in supportedPrograms) {
                 var programDataKey = supportedPrograms[selectedProgram];
             } else {
-                selectedProgram = "ART";
+                selectedProgram = "art";
+                window.location.hash = "art";
             }
 
 
@@ -119,6 +120,7 @@
                 }
 
                 updateChartData(selectedProgram);
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
 
                 $('#program-select #'+selectedProgram).addClass('active');
 
@@ -202,13 +204,13 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html"><strong>Measure G</strong></a>
+                        <a class="navbar-brand" href="index.html"><strong>Explore Measure G</strong></a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse-target">
                         <ul class="nav navbar-nav">
                             <li class=""><a href="index.html">About</a></li>
-                            <li class=""><a href="map.html">Geographic Map</a></li>
-                            <li class="active"><a href="programs.html">Programs</a></li>
+                            <li class=""><a href="map.html">By Location</a></li>
+                            <li class="active"><a href="programs.html">By Program</a></li>
                             <li><a href="treemap.html">Tree Map</a></li>
                         </ul>
                     </div>
