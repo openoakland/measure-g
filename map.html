@@ -633,25 +633,27 @@
             }
 
             // Add data layer to your map
-            cartodb.createLayer(map_object,"http://measureg.nfshost.com/viz.json")
-                .addTo(map_object)
-                .done(function(layer) {
-                    schoolsLayer = layer.getSubLayer(0);
-                    spendingLayer = layer.getSubLayer(1);
+            $.getJSON('viz.jsonp', function(data) {
+                cartodb.createLayer(map_object,data)
+                    .addTo(map_object)
+                    .done(function(layer) {
+                        schoolsLayer = layer.getSubLayer(0);
+                        spendingLayer = layer.getSubLayer(1);
 
-                    infowindow = layer.infowindow;
+                        infowindow = layer.infowindow;
 
-                    layer.on("loading", showLoading);
-                    layer.on("load", hideLoading);
+                        layer.on("loading", showLoading);
+                        layer.on("load", hideLoading);
 
-                    // Undocumented addField method here: https://github.com/CartoDB/cartodb/issues/54
-                    updateMapCSSForSpendingType("student");
+                        // Undocumented addField method here: https://github.com/CartoDB/cartodb/issues/54
+                        updateMapCSSForSpendingType("student");
 
-                    updateSpendingMap();
+                        updateSpendingMap();
 
-                })
-                .error(function(err) {
-                    console.log("error: " + err);
+                    })
+                    .error(function(err) {
+                        console.log("error: " + err);
+                    });
                 });
 
             $('#school-level-menu :checkbox').click(function(){
