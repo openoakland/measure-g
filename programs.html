@@ -36,9 +36,30 @@
 
             var dataByProgram = {};
 
-            $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
+            // Call cartodb
+            // $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
 
-                $.each(data.rows, function(key, row) {
+            //     $.each(data.rows, function(key, row) {
+
+            //         var program = row.program;
+            //         delete row.program;
+            //         item = [row.category, row.total]
+
+            //         if(dataByProgram[program]) {
+            //             dataByProgram[program].push(item);
+            //         } else {
+            //             dataByProgram[program] = [item];
+            //         }
+            //     });
+
+            //     //Add a header to each program data set (only happens once)
+            //     for(var key in dataByProgram) dataByProgram[key].unshift(['Expense Type', 'Amount Spent']);
+
+            // });
+
+            $.getJSON('programs.json', function(data) {
+
+                $.each(data, function(key, row) {
 
                     var program = row.program;
                     delete row.program;
