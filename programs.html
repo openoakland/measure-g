@@ -29,7 +29,7 @@
                 "SUM(ytd_actual) total " +
                 "FROM measure_g_2013_14 " +
                 "GROUP BY obj_desc, prog_desc " +
-                "HAVING SUM(ytd_actual) > 1000 " +
+                "HAVING SUM(ytd_actual) > 2000 " +
                 "ORDER BY program, total ";
 
             // Group objects by program
@@ -50,6 +50,10 @@
                         dataByProgram[program] = [item];
                     }
                 });
+
+                //Add a header to each program data set (only happens once)
+                for(var key in dataByProgram) dataByProgram[key].unshift(['Expense Type', 'Amount Spent']);
+
             });
 
             // Set a callback to run when the Google Visualization API is loaded.
@@ -90,12 +94,11 @@
                     window.location.hash = programId;
                     var programDataKey = supportedPrograms[programId];
                     var dataWithHeaders = dataByProgram[programDataKey];
-                    // dataWithHeaders.unshift(['Expense Type', 'Amount Spent']);
 
                     var numBars = dataWithHeaders.length - 1;
                     var chartHeight = numBars * 50;
 
-                    var data = google.visualization.arrayToDataTable(dataWithHeaders, true);
+                    var data = google.visualization.arrayToDataTable(dataWithHeaders);
 
                     data.sort([{column: 1, desc:true}]);
 
@@ -111,6 +114,8 @@
                     chart.draw(data, google.charts.Bar.convertOptions(options));
                     $('#program-select div').removeClass('active');
                     $('#program-select #'+programId).addClass('active');
+
+                    document.body.scrollTop = document.documentElement.scrollTop = 0;
                 }
 
                 updateChartData(selectedProgram);
@@ -224,7 +229,7 @@
                         <div class="program" id="middle-school-electives">Middle School Electives</div>
                     </div>
 
-                    <h3>How has money been spent for this program?</h3>
+                    <h3>How is money spent on this program?</h3>
 
                     <div id="chart_div"></div>
 
