@@ -264,6 +264,11 @@
             .cartodb-tooltip div.cartodb-popup.v2:before {
                 display: none;
             }
+
+            .more-info {
+                padding-left: 5px;
+                font-size: 10pt;
+            }
             </style>
 
         <style type="cartocss/html" id="school-bubble">
@@ -375,13 +380,14 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html"><strong>Measure G</strong></a>
+                        <a class="navbar-brand" href="index.html"><strong>Explore Measure G</strong></a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse-target">
                         <ul class="nav navbar-nav">
                             <li class=""><a href="index.html">About</a></li>
-                            <li class="active"><a href="map.html">Geographic Map</a></li>
-                            <li><a href="treemap.html">Tree Map</a></li>
+                            <li class="active"><a href="map.html">By Location</a></li>
+                            <li class=""><a href="programs.html">By Program</a></li>
+                            <li class=""><a href="treemap.html">Tree Map</a></li>
                         </ul>
                     </div>
                 </div>
@@ -413,31 +419,46 @@
                                 <span class="section-header">Programs</span>
                                 <li>
                                     <input type="radio" data="1118 - ART" checked="checked">
-                                    <span class="filter-label">Art</span>
+                                    <span class="filter-label">
+                                        Art<a href="programs.html#art" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+                                    </span>
+
                                 </li>
                                 <li>
                                     <input type="radio" data="1191 - BASIC SCHOOL SUPPORT">
-                                    <span class="filter-label">Basic School Support</span>
+                                    <span class="filter-label">
+                                        Basic School Support<a href="programs.html#basic-school-support" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+                                    </span>
                                 </li>
                                 <li>
                                     <input type="radio" data="1112 - CLASS SIZE REDUCTION">
-                                    <span class="filter-label">Class Size Reduction</span>
+                                    <span class="filter-label">
+                                        Class Size Reduction<a href="programs.html#class-size-reduction" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"><span></a>
+                                    </span>
                                 </li>
                                 <li>
                                     <input type="radio" data="1159 - COVERED ELEM INTERVENTION PDS">
-                                    <span class="filter-label">Elementary Intervention</span>
+                                    <span class="filter-label">
+                                        Elementary Intervention<a href="programs.html#elementary-intervention" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></a>
+                                    </span>
                                 </li>
                                 <li>
                                     <input type="radio" data="1552 - SCHOOL LIBRARIES">
-                                    <span class="filter-label">Libraries</span>
+                                    <span class="filter-label">
+                                        Libraries<a href="programs.html#libraries" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></a>
+                                    </span>
                                 </li>
                                 <li>
                                     <input type="radio" data="1598 - MIDDLE SCHOOL ELECTIVES">
-                                    <span class="filter-label">Middle School Electives</span>
+                                    <span class="filter-label">
+                                        Middle School Electives<a href="programs.html#middle-school-electives" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></a>
+                                    </span>
                                 </li>
                                 <li>
                                     <input type="radio" id="select-all">
-                                    <span class="filter-label">All Programs</span>
+                                    <span class="filter-label">
+                                        All Programs
+                                    </span>
                                 </li>
                             </ul>
                             <ul id="school-level-menu" class="collapsible">
@@ -612,25 +633,27 @@
             }
 
             // Add data layer to your map
-            cartodb.createLayer(map_object,"http://measureg.nfshost.com/viz.json")
-                .addTo(map_object)
-                .done(function(layer) {
-                    schoolsLayer = layer.getSubLayer(0);
-                    spendingLayer = layer.getSubLayer(1);
+            $.getJSON('viz.jsonp', function(data) {
+                cartodb.createLayer(map_object,data)
+                    .addTo(map_object)
+                    .done(function(layer) {
+                        schoolsLayer = layer.getSubLayer(0);
+                        spendingLayer = layer.getSubLayer(1);
 
-                    infowindow = layer.infowindow;
+                        infowindow = layer.infowindow;
 
-                    layer.on("loading", showLoading);
-                    layer.on("load", hideLoading);
+                        layer.on("loading", showLoading);
+                        layer.on("load", hideLoading);
 
-                    // Undocumented addField method here: https://github.com/CartoDB/cartodb/issues/54
-                    updateMapCSSForSpendingType("student");
+                        // Undocumented addField method here: https://github.com/CartoDB/cartodb/issues/54
+                        updateMapCSSForSpendingType("student");
 
-                    updateSpendingMap();
+                        updateSpendingMap();
 
-                })
-                .error(function(err) {
-                    console.log("error: " + err);
+                    })
+                    .error(function(err) {
+                        console.log("error: " + err);
+                    });
                 });
 
             $('#school-level-menu :checkbox').click(function(){

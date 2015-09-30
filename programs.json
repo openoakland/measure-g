@@ -1,0 +1,647 @@
+[
+        {
+            "program": "ART",
+            "category": "EXTERNAL WORK ORDER SERVICES",
+            "total": 1046
+        },
+        {
+            "program": "ART",
+            "category": "SOCSEC,MEDI,ALTSS CERTIFICATED",
+            "total": 1101
+        },
+        {
+            "program": "ART",
+            "category": "Audio Visual Equip $500-4,999",
+            "total": 1699
+        },
+        {
+            "program": "ART",
+            "category": "Computer $500-4,999",
+            "total": 2886
+        },
+        {
+            "program": "ART",
+            "category": "WORKERS COMP CERTIFICATED",
+            "total": 2960
+        },
+        {
+            "program": "ART",
+            "category": "STRS CERTIFICATED",
+            "total": 3688
+        },
+        {
+            "program": "ART",
+            "category": "HEALTH & WELFARE CERTIFICATED",
+            "total": 4663
+        },
+        {
+            "program": "ART",
+            "category": "ASSEMBLIES/CLASSRM PRESENTION",
+            "total": 7525
+        },
+        {
+            "program": "ART",
+            "category": "TEACHERS SALARIES",
+            "total": 14442
+        },
+        {
+            "program": "ART",
+            "category": "TEACHERS SALARIES STIPENDS",
+            "total": 35563
+        },
+        {
+            "program": "ART",
+            "category": "SUPPLIES",
+            "total": 39889
+        },
+        {
+            "program": "ART",
+            "category": "CONSULTANTS",
+            "total": 350606
+        },
+        {
+            "program": "BALANCE SHEET ACCOUNT",
+            "category": "PARCEL TAXES",
+            "total": 20655839
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "SUPV, ADMIN, INSTR COACHES SAL",
+            "total": 1095
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "BOOKS-OTHER THAN TEXTBOOKS",
+            "total": 2677
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "HEALTH & WELFARE CLASSIFIED",
+            "total": 2922
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "ST UNEMPLOY INS CERTIFICATED",
+            "total": 3624
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "PUPILSUPPT SALARIES",
+            "total": 4400
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "CLERICAL SALARIES",
+            "total": 5354
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "TEACHERS SUBSTITUTES",
+            "total": 6405
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "CLERICAL SALARIES EXTRA COMP",
+            "total": 7156
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "OTHER BENEFITS CERTIFICATED",
+            "total": 7610
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "PERS CERTIFICATED",
+            "total": 8426
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "CONSULTANTS",
+            "total": 8578
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "SUPPLIES",
+            "total": 37514
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "TEACHERS SALARIES STIPENDS",
+            "total": 51061
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "SOCSEC,MEDI,ALTSS CERTIFICATED",
+            "total": 98590
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "WORKERS COMP CERTIFICATED",
+            "total": 391145
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "TEACHER ON SPEC ASSIN SCHOOL",
+            "total": 402399
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "STRS CERTIFICATED",
+            "total": 542582
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "HEALTH & WELFARE CERTIFICATED",
+            "total": 1534684
+        },
+        {
+            "program": "BASIC SCHOOL SUPPORT",
+            "category": "TEACHERS SALARIES",
+            "total": 11983262
+        },
+        {
+            "program": "CLASS SIZE REDUCTION",
+            "category": "ST UNEMPLOY INS CERTIFICATED",
+            "total": 1196
+        },
+        {
+            "program": "CLASS SIZE REDUCTION",
+            "category": "OTHER BENEFITS CERTIFICATED",
+            "total": 2757
+        },
+        {
+            "program": "CLASS SIZE REDUCTION",
+            "category": "SUPPLIES",
+            "total": 4589
+        },
+        {
+            "program": "CLASS SIZE REDUCTION",
+            "category": "PERS CERTIFICATED",
+            "total": 6983
+        },
+        {
+            "program": "CLASS SIZE REDUCTION",
+            "category": "TEACHERS SUBSTITUTES",
+            "total": 8206
+        },
+        {
+            "program": "CLASS SIZE REDUCTION",
+            "category": "SOCSEC,MEDI,ALTSS CERTIFICATED",
+            "total": 36737
+        },
+        {
+            "program": "CLASS SIZE REDUCTION",
+            "category": "WORKERS COMP CERTIFICATED",
+            "total": 138812
+        },
+        {
+            "program": "CLASS SIZE REDUCTION",
+            "category": "STRS CERTIFICATED",
+            "total": 180308
+        },
+        {
+            "program": "CLASS SIZE REDUCTION",
+            "category": "HEALTH & WELFARE CERTIFICATED",
+            "total": 609042
+        },
+        {
+            "program": "CLASS SIZE REDUCTION",
+            "category": "TEACHERS SALARIES",
+            "total": 2397499
+        },
+        {
+            "program": "COVERED ELEM INTERVENTION PDS",
+            "category": "OTHER BENEFITS CERTIFICATED",
+            "total": 1461
+        },
+        {
+            "program": "COVERED ELEM INTERVENTION PDS",
+            "category": "PERS CERTIFICATED",
+            "total": 3460
+        },
+        {
+            "program": "COVERED ELEM INTERVENTION PDS",
+            "category": "TEACHER ON SPEC ASSIN SCHOOL",
+            "total": 3986
+        },
+        {
+            "program": "COVERED ELEM INTERVENTION PDS",
+            "category": "TEACHERS SUBSTITUTES",
+            "total": 8780
+        },
+        {
+            "program": "COVERED ELEM INTERVENTION PDS",
+            "category": "SOCSEC,MEDI,ALTSS CERTIFICATED",
+            "total": 22883
+        },
+        {
+            "program": "COVERED ELEM INTERVENTION PDS",
+            "category": "SUPPLIES",
+            "total": 24258
+        },
+        {
+            "program": "COVERED ELEM INTERVENTION PDS",
+            "category": "WORKERS COMP CERTIFICATED",
+            "total": 77211
+        },
+        {
+            "program": "COVERED ELEM INTERVENTION PDS",
+            "category": "STRS CERTIFICATED",
+            "total": 108996
+        },
+        {
+            "program": "COVERED ELEM INTERVENTION PDS",
+            "category": "HEALTH & WELFARE CERTIFICATED",
+            "total": 322342
+        },
+        {
+            "program": "COVERED ELEM INTERVENTION PDS",
+            "category": "TEACHERS SALARIES",
+            "total": 1355836
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "OTHER BENEFITS CLASSIFIED",
+            "total": 1074
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "EXTERNAL WORK ORDER SERVICES",
+            "total": 1080
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "CLERICAL SUBSTITUTES",
+            "total": 2355
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "MEETING REFRESHMENTS",
+            "total": 2579
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "SUPPLIES",
+            "total": 3506
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "LICENSING AGREEMENTS",
+            "total": 7452
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "MEDICARE CLASSIFIED",
+            "total": 7556
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "STRS CLASSIFIED",
+            "total": 14136
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "SOCSEC,MEDI,ALTSS CLASSIFIED",
+            "total": 21086
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "WORKERS COMP CLASSIFIED",
+            "total": 30440
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "PERS CLASSIFIED",
+            "total": 40239
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "CLERICAL SALARIES",
+            "total": 73886
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "HEALTH & WELFARE CLASSIFIED",
+            "total": 89615
+        },
+        {
+            "program": "HR Recruitment",
+            "category": "SUPV&ADM SALARIES",
+            "total": 449224
+        },
+        {
+            "program": "MIDDLE SCHOOL ELECTIVES",
+            "category": "CONFERENCE  EXPENSE",
+            "total": 1200
+        },
+        {
+            "program": "MIDDLE SCHOOL ELECTIVES",
+            "category": "CLASSSUPPT SALARIES",
+            "total": 1337
+        },
+        {
+            "program": "MIDDLE SCHOOL ELECTIVES",
+            "category": "Equipment $500-4,999",
+            "total": 1707
+        },
+        {
+            "program": "MIDDLE SCHOOL ELECTIVES",
+            "category": "Computer $500-4,999",
+            "total": 2350
+        },
+        {
+            "program": "MIDDLE SCHOOL ELECTIVES",
+            "category": "ASSEMBLIES/CLASSRM PRESENTION",
+            "total": 3841
+        },
+        {
+            "program": "MIDDLE SCHOOL ELECTIVES",
+            "category": "ADMISSION  FEES",
+            "total": 4900
+        },
+        {
+            "program": "MIDDLE SCHOOL ELECTIVES",
+            "category": "SOCSEC,MEDI,ALTSS CERTIFICATED",
+            "total": 7799
+        },
+        {
+            "program": "MIDDLE SCHOOL ELECTIVES",
+            "category": "TEACHER ON SPEC ASSIN SCHOOL",
+            "total": 18141
+        },
+        {
+            "program": "MIDDLE SCHOOL ELECTIVES",
+            "category": "SUPPLIES",
+            "total": 34414
+        },
+        {
+            "program": "MIDDLE SCHOOL ELECTIVES",
+            "category": "WORKERS COMP CERTIFICATED",
+            "total": 34676
+        },
+        {
+            "program": "MIDDLE SCHOOL ELECTIVES",
+            "category": "STRS CERTIFICATED",
+            "total": 49257
+        },
+        {
+            "program": "MIDDLE SCHOOL ELECTIVES",
+            "category": "HEALTH & WELFARE CERTIFICATED",
+            "total": 191277
+        },
+        {
+            "program": "MIDDLE SCHOOL ELECTIVES",
+            "category": "TEACHERS SALARIES",
+            "total": 579768
+        },
+        {
+            "program": "MUSIC",
+            "category": "WORKERS COMP CERTIFICATED",
+            "total": 3053
+        },
+        {
+            "program": "MUSIC",
+            "category": "STRS CERTIFICATED",
+            "total": 4350
+        },
+        {
+            "program": "MUSIC",
+            "category": "HEALTH & WELFARE CERTIFICATED",
+            "total": 11283
+        },
+        {
+            "program": "MUSIC",
+            "category": "TEACHER ON SPEC ASSIN SCHOOL",
+            "total": 52731
+        },
+        {
+            "program": "NCLB HQT COMPLIANCE",
+            "category": "CONFERENCE  EXPENSE",
+            "total": 7484
+        },
+        {
+            "program": "NCLB HQT COMPLIANCE",
+            "category": "SUPPLIES",
+            "total": 7874
+        },
+        {
+            "program": "NCLB HQT COMPLIANCE",
+            "category": "Computer $500-4,999",
+            "total": 12776
+        },
+        {
+            "program": "NCLB HQT COMPLIANCE",
+            "category": "EXTERNAL WORK ORDER SERVICES",
+            "total": 33900
+        },
+        {
+            "program": "NCLB HQT COMPLIANCE",
+            "category": "CONSULTANTS",
+            "total": 34680
+        },
+        {
+            "program": "Oakland Fine Arts Summer Schl",
+            "category": "WORKERS COMP CERTIFICATED",
+            "total": 2406
+        },
+        {
+            "program": "Oakland Fine Arts Summer Schl",
+            "category": "STRS CERTIFICATED",
+            "total": 3419
+        },
+        {
+            "program": "Oakland Fine Arts Summer Schl",
+            "category": "CLERICAL SALARIES STIPENDS",
+            "total": 3445
+        },
+        {
+            "program": "Oakland Fine Arts Summer Schl",
+            "category": "SUPV&ADM SALARIES STIPENDS",
+            "total": 6238
+        },
+        {
+            "program": "Oakland Fine Arts Summer Schl",
+            "category": "TEACHERS SALARIES STIPENDS",
+            "total": 35203
+        },
+        {
+            "program": "ORATORICAL FEST/PERFORMANCES",
+            "category": "TEACHERS SALARIES STIPENDS",
+            "total": 4871
+        },
+        {
+            "program": "ORATORICAL FEST/PERFORMANCES",
+            "category": "EXTERNAL WORK ORDER SERVICES",
+            "total": 6068
+        },
+        {
+            "program": "ORATORICAL FEST/PERFORMANCES",
+            "category": "MEETING REFRESHMENTS",
+            "total": 13058
+        },
+        {
+            "program": "ORATORICAL FEST/PERFORMANCES",
+            "category": "SUPPLIES",
+            "total": 16388
+        },
+        {
+            "program": "ORATORICAL FEST/PERFORMANCES",
+            "category": "CONSULTANTS",
+            "total": 20000
+        },
+        {
+            "program": "OTH PROGRAMS / LOCAL GOALS",
+            "category": "OTH SERVICES & OPERATING EXPS",
+            "total": 346077
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "MILEAGE/PERSONAL EXP REIMB",
+            "total": 1406
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "FURNITURE",
+            "total": 2219
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "SOCSEC,MEDI,ALTSS CERTIFICATED",
+            "total": 3187
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "SUPV&ADM SALARIES EXTRA COMP",
+            "total": 3734
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "EXTERNAL WORK ORDER SERVICES",
+            "total": 4000
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "MEDICARE CLASSIFIED",
+            "total": 4556
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "MAINFRAME SOFTWARE",
+            "total": 4848
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "Audio Visual Equip $500-4,999",
+            "total": 5025
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "TEACHERS SALARIES EXTRA COMP",
+            "total": 5072
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "OTHER BENEFITS CLASSIFIED",
+            "total": 10794
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "OTHERCLASS SALARIES HOURLY",
+            "total": 10795
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "WORKERS COMP CERTIFICATED",
+            "total": 13518
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "CLERICAL SALARIES OVERTIME",
+            "total": 13964
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "TEACHERS SALARIES STIPENDS",
+            "total": 14521
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "WORKERS COMP CLASSIFIED",
+            "total": 18015
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "STRS CERTIFICATED",
+            "total": 18380
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "SOCSEC,MEDI,ALTSS CLASSIFIED",
+            "total": 18713
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "TEACHERS SUBSTITUTES",
+            "total": 25151
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "PERS CLASSIFIED",
+            "total": 28370
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "Furniture $500-4,999",
+            "total": 29045
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "CLERICAL SALARIES",
+            "total": 29385
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "TEACHER ON SPEC ASSIN SCHOOL",
+            "total": 35297
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "HEALTH & WELFARE CERTIFICATED",
+            "total": 47307
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "Computer $500-4,999",
+            "total": 73052
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "SUPPLIES",
+            "total": 86104
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "HEALTH & WELFARE CLASSIFIED",
+            "total": 112663
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "TEACHERS SALARIES",
+            "total": 149771
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "CONSULTANTS",
+            "total": 152551
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "CLASSSUPPT SALARIES",
+            "total": 259580
+        },
+        {
+            "program": "SCHOOL LIBRARIES",
+            "category": "BOOKS-OTHER THAN TEXTBOOKS",
+            "total": 259729
+        }
+]
