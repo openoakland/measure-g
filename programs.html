@@ -126,6 +126,10 @@
 
                     var chart = new google.charts.Bar(document.getElementById('chart_div'));
 
+                    google.visualization.events.addListener(chart, 'ready', function() {
+                        document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    });
+
                     var options = {
                         chart: {
                         },
@@ -136,19 +140,15 @@
                     chart.draw(data, google.charts.Bar.convertOptions(options));
                     $('#program-select div').removeClass('active');
                     $('#program-select #'+programId).addClass('active');
-
                     document.body.scrollTop = document.documentElement.scrollTop = 0;
                 }
 
                 updateChartData(selectedProgram);
-                document.body.scrollTop = document.documentElement.scrollTop = 0;
-
                 $('#program-select #'+selectedProgram).addClass('active');
 
                 $('#program-select').click(function(event) {
                     updateChartData(event.target.id);
                 });
-
 
             }
         </script>
@@ -279,7 +279,6 @@
         <!-- Place your code in the script tags below -->
         <script type="text/javascript">
             window.onload = function() {
-
 
 
             }
