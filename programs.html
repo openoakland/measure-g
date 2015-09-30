@@ -178,12 +178,23 @@
             }
 
             .program {
+                font-weight: bold;
                 display: inline-block;
-                padding: 5px 5px;
+                padding: 5px 20px;
+                cursor: pointer;
+
             }
 
-            .program.active {
-                font-weight: bold;
+            .program.active, .program.active:hover {
+                color: white;
+                background-color: #4285F4;
+                border-radius: 5px;
+            }
+
+            .program:hover {
+                color: black;
+                background-color: #E7E7E7;
+                border-radius: 5px;
             }
 
         </style>
