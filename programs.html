@@ -55,6 +55,30 @@
             // Set a callback to run when the Google Visualization API is loaded.
             google.setOnLoadCallback(drawChart);
 
+            var supportedPrograms = {
+                'art': 'ART',
+                'basic-school-support': 'BASIC SCHOOL SUPPORT',
+                'class-size-reduction': "CLASS SIZE REDUCTION", 
+                'elementary-intervention': "COVERED ELEM INTERVENTION PDS",
+                'hr-recruitment': "HR Recruitment",
+                'middle-school-electives': "MIDDLE SCHOOL ELECTIVES",
+                'music': "MUSIC",
+                'nclb-hqt-compliance': "NCLB HQT COMPLIANCE",
+                'arts-summer-school': "Oakland Fine Arts Summer Schl",
+                'oratorical-fest': "ORATORICAL FEST/PERFORMANCES",
+                'oth-programs': "OTH PROGRAMS / LOCAL GOALS",
+                'libraries':"SCHOOL LIBRARIES"
+            }
+
+            //get selected program from URL
+            var selectedProgram = window.location.hash.slice(1);
+
+            if(selectedProgram in supportedPrograms) {
+                var programDataKey = supportedPrograms[selectedProgram];
+            } else {
+                selectedProgram = "ART";
+            }
+
 
             // Callback that creates and populates a data table, 
             // instantiates the pie chart, passes in the data and
@@ -85,7 +109,7 @@
                 //     ["TEACHERS SALARIES",11983262]
                 // ]);
                 
-                var dataWithHeaders = dataByProgram['ART'];
+                var dataWithHeaders = dataByProgram[programDataKey];
                 var numBars = dataWithHeaders.length - 1;
                 var chartHeight = numBars * 50;
                 dataWithHeaders.unshift(['Expense Type', 'Amount Spent']);
