@@ -234,7 +234,7 @@
             }
 
             .info-row {
-                width: 95%;
+                width: 80%;
             }
 
             .info-row .spending-label {
@@ -489,8 +489,9 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div id="year-select">
-                            <div class="year selected" data-year="2012">2012-13</div>
+                            <div class="year" data-year="2012">2012-13</div>
                             <div class="year" data-year="2013">2013-14</div>
+                            <div class="year selected" data-year="2014">2014-15</div>
                             <span class="stretch"></span>
                         </div>
                     </div>
@@ -541,7 +542,8 @@
 
                 var yearToTable = {
                     "2012" : "measure_g_2012_13_per_student",
-                    "2013" : "measure_g_2013_14_per_student"
+                    "2013" : "measure_g_2013_14_per_student",
+                    "2014" : "measure_g_2014_15_per_student"
                 };
 
                 var year = $( "#year-select .year.selected" ).data("year");
@@ -550,7 +552,7 @@
                     return yearToTable[year];
                 };
 
-                return yearToTable["2012"];
+                return yearToTable["2014"];
 
             };
 
