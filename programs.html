@@ -63,7 +63,7 @@
 
                     var program = row.program;
                     delete row.program;
-                    item = [row.category, row.total]
+                    item = [row.category, row.g2014, row.g2013, row.g2012]
 
                     if(dataByProgram[program]) {
                         dataByProgram[program].push(item);
@@ -73,7 +73,7 @@
                 });
 
                 //Add a header to each program data set (only happens once)
-                for(var key in dataByProgram) dataByProgram[key].unshift(['Expense Type', 'Amount Spent']);
+                for(var key in dataByProgram) dataByProgram[key].unshift(['Expense Type', '2014-15', '2013-14', '2012-13']);
 
             });
 
@@ -118,7 +118,7 @@
                     var dataWithHeaders = dataByProgram[programDataKey];
 
                     var numBars = dataWithHeaders.length - 1;
-                    var chartHeight = numBars * 50;
+                    var chartHeight = numBars * 70;
 
                     var data = google.visualization.arrayToDataTable(dataWithHeaders);
 
