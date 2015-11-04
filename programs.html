@@ -134,7 +134,12 @@
                         chart: {
                         },
                         bars: 'horizontal', // Required for Material Bar Charts.
-                        height: chartHeight
+                        height: chartHeight,
+                        axes: {
+                            x: {
+                              0: { side: 'top', label: 'Amount spent'} // Top x-axis.
+                            }
+                          }
                     };
 
                     chart.draw(data, google.charts.Bar.convertOptions(options));
