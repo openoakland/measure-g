@@ -360,9 +360,9 @@
         maxColor: '#ee8100',
         headerHeight: 15,
         showScale: true,
-        height: 500,
+        height: window.innerHeight - 100,
         useWeightedAverageForAggregation: true,
-        generateTooltip: showFullTooltip
+        generateTooltip: showFullTooltip,
       };
 
         tree.draw(data, options);
