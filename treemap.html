@@ -55,6 +55,9 @@
             .container {
                 height: 97%
             }
+            #goUp {
+                margin: 0 5px;
+            }
 
             </style>
 
@@ -93,11 +96,10 @@
             <div class="center-row">
                 <div class="container">
                     <div id="chart_div">
-
                     </div>
-   
+                    <input type="button" id="goUp" value="Go up one level" />
                 </div>
-
+                
             </div>
 
 
@@ -365,6 +367,13 @@
         generateTooltip: showFullTooltip,
         hintOpacity: 1
       };
+
+    document.getElementById('goUp').onclick = function () {
+        // this needs some work still, as the event isn't firing
+        tree.goUpAndDraw();
+    };
+
+
 
     tree.draw(data, options);
 
