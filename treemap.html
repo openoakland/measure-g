@@ -363,9 +363,10 @@
         height: window.innerHeight - 100,
         useWeightedAverageForAggregation: true,
         generateTooltip: showFullTooltip,
+        hintOpacity: 1
       };
 
-        tree.draw(data, options);
+    tree.draw(data, options);
 
           function showFullTooltip(row, size, value) {
     return '<div style="background:#fd9; padding:10px; border-style:solid">' +
