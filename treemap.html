@@ -131,35 +131,40 @@
 
             years = ["2012", "2013", "2014"];
 
-            $.getJSON('treemap.json', function(data) {
+            $.ajax('treemap.json',{
+                async: false
+            })
 
-                $.each(data, function(key, row) {
 
-                    $.each(years, function (key, year) {
-                        item = [
-                            {v: ""+row.uid, f: row.object},
-                            row.program,
-                            {v: row["g"+year], f: row["money_"+year]}
-                        ];
+                .done(function (data) {
 
-                        if(dataByYear[year]) {
-                            dataByYear[year].push(item);
-                        } else {
-                            dataByYear[year] = [item];
-                        }
-                    });
+                  $.each(data, function(key, row) {
+
+                      $.each(years, function (key, year) {
+                          item = [
+                              {v: ""+row.uid, f: row.object},
+                              row.program,
+                              {v: row["g"+year], f: row["money_"+year]}
+                          ];
+
+                          if(dataByYear[year]) {
+                              dataByYear[year].push(item);
+                          } else {
+                              dataByYear[year] = [item];
+                          }
+                      });
+
+                  });
+
+                  //Add a header to each program data set (only happens once)
+                  for(var year in dataByYear) {
+                      for(var key in dataHeader) {
+                          dataByYear[year].unshift(dataHeader[key]);
+                      };
+                      dataByYear[year].unshift(['Object','Program','Spending by Program']);
+                  };
 
                 });
-
-                //Add a header to each program data set (only happens once)
-                for(var year in dataByYear) {
-                    for(var key in dataHeader) {
-                        dataByYear[year].unshift(dataHeader[key]);
-                    };
-                    dataByYear[year].unshift(['Object','Program','Spending by Program']);
-                };
-
-            });
 
             google.setOnLoadCallback(drawChart);
 
