@@ -109,284 +109,98 @@
 
         <!-- Place your code in the script tags below -->
         <script type="text/javascript">
-                  google.load("visualization", "1.1", {packages:["treemap"]});
-      google.setOnLoadCallback(drawChart);
+            google.load("visualization", "1.1", {packages:["treemap"]});
 
-      function drawChart() {
-      var data = new google.visualization.DataTable();
-          
-          <!-- var data =  -->
-      data.addColumn('string', 'label on box');
-      data.addColumn('string', 'Parent');
-      data.addColumn('number', 'expenditure');
-      data.addRows([
-        ['Expenditures, by type', null, 0],
+            var dataHeader = [
+                ['Spending by Program', null, 0],
+                ['CLASS SIZE REDUCTION', 'Spending by Program', null],
+                ['ART', 'Spending by Program', null],
+                ['MUSIC', 'Spending by Program', null],
+                ['COVERED ELEM INTERVENTION PDS', 'Spending by Program', null],
+                ['BASIC SCHOOL SUPPORT', 'Spending by Program', null],
+                ['SCHOOL LIBRARIES', 'Spending by Program', null],
+                ['ORATORICAL FEST/PERFORMANCES', 'Spending by Program', null],
+                ['Oakland Fine Arts Summer Schl', 'Spending by Program', null],
+                ['MIDDLE SCHOOL ELECTIVES', 'Spending by Program', null],
+                ['NCLB HQT COMPLIANCE', 'Spending by Program', null],
+                ['OTH PROGRAMS / LOCAL GOALS', 'Spending by Program', null],
+                ['HR Recruitment', 'Spending by Program', null]
+            ];
 
-          ['1112 - CLASS SIZE REDUCTION', 'Expenditures, by type', null],
-          ['1118 - ART', 'Expenditures, by type', null],
-          ['1135 - MUSIC', 'Expenditures, by type', null],
-          ['1159 - COVERED ELEM INTERVENTION PDS', 'Expenditures, by type', null],
-          ['1191 - BASIC SCHOOL SUPPORT', 'Expenditures, by type', null],
-          ['1552 - SCHOOL LIBRARIES', 'Expenditures, by type', null],
-          ['1564 - ORATORICAL FEST/PERFORMANCES', 'Expenditures, by type', null],
-          ['1596 - Oakland Fine Arts Summer Schl', 'Expenditures, by type', null],
-          ['1598 - MIDDLE SCHOOL ELECTIVES', 'Expenditures, by type', null],
-          ['1626 - NCLB HQT COMPLIANCE', 'Expenditures, by type', null],
-          ['9000 - OTH PROGRAMS / LOCAL GOALS', 'Expenditures, by type', null],
-          ['9060 - HR Recruitment', 'Expenditures, by type', null],
-          
-          ['3901 - OTHER BENEFITS CERTIFICATED', '1112 - CLASS SIZE REDUCTION', 2757],
-          ['4310 - SUPPLIES', '1112 - CLASS SIZE REDUCTION', 4589],
-          ['3601 - WORKERS COMP CERTIFICATED', '1112 - CLASS SIZE REDUCTION', 138812],
-          ['1105 - TEACHERS SALARIES', '1112 - CLASS SIZE REDUCTION', 2397499],
-          ['3401 - HEALTH & WELFARE CERTIFICATED', '1112 - CLASS SIZE REDUCTION', 609042],
-          ['3301 - SOCSEC,MEDI,ALTSS CERTIFICATED', '1112 - CLASS SIZE REDUCTION', 36737],
-          ['3101 - STRS CERTIFICATED', '1112 - CLASS SIZE REDUCTION', 180308],
-          ['3201 - PERS CERTIFICATED', '1112 - CLASS SIZE REDUCTION', 6983],
-          ['1150 - TEACHERS SUBSTITUTES', '1112 - CLASS SIZE REDUCTION', 8206],
-          ['1120 - TEACHERS SALARIES STIPENDS', '1112 - CLASS SIZE REDUCTION', 502],
-          
-          
-          ['4474 - Audio Visual Equip $500-4,999', '1118 - ART', 1699],
-          [{v:'1120a', f:'1120 - TEACHERS SALARIES STIPENDS'}, '1118 - ART', 35563],
-          ['4410 - Equipment $500-4,999', '1118 - ART', 956],
-          [{v:'3101a', f:'3101 - STRS CERTIFICATED'}, '1118 - ART', 3688],
-          [{v:'3201a', f:'3201 - PERS CERTIFICATED'}, '1118 - ART', 32],
-          ['5826 - EXTERNAL WORK ORDER SERVICES', '1118 - ART', 1046],
-          [{v:'3601a', f:'3601 - WORKERS COMP CERTIFICATED'}, '1118 - ART', 2960],
-          [{v:'3301a', f:'3301 - SOCSEC,MEDI,ALTSS CERTIFICATED'}, '1118 - ART', 1101],
-          ['4420 - Computer $500-4,999', '1118 - ART', 2886],
-          [{v:'1105a', f:'1105 - TEACHERS SALARIES'}, '1118 - ART', 14442],
-          [{v:'3401', f:'3401 - HEALTH & WELFARE CERTIFICATED'}, '1118 - ART', 4663],
-          ['1122 - TEACHERS SALARIES EXTRA COMP', '1118 - ART', 914],
-          ['3501 - ST UNEMPLOY INS CERTIFICATED', '1118 - ART', 26],
-          [{v:'4310', f:'4310 - SUPPLIES'}, '1118 - ART', 39889],
-          [{v:'5825a', f:'5825 - CONSULTANTS'}, '1118 - ART', 350606],
-          [{v:'4310a', f:'3901 - OTHER BENEFITS CERTIFICATED'}, '1118 - ART', 12],
-          ['5828 - ASSEMBLIES/CLASSRM PRESENTION', '1118 - ART', 7525],
-          
-          [{v:'3101b', f:'3101 - STRS CERTIFICATED'}, '1135 - MUSIC', 4350],
-          [{v:'', f:'3501 - ST UNEMPLOY INS CERTIFICATED'}, '1135 - MUSIC', 26],
-          [{v:'1119b', f:'1119 - TEACHER ON SPEC ASSIN SCHOOL'}, '1135 - MUSIC', 52731],
-          [{v:'3401b', f:'3401 - HEALTH & WELFARE CERTIFICATED'}, '1135 - MUSIC', 11283],
-          [{v:'3301b', f:'3301 - SOCSEC,MEDI,ALTSS CERTIFICATED'}, '1135 - MUSIC', 765],
-          [{v:'3601b', f:'3601 - WORKERS COMP CERTIFICATED'}, '1135 - MUSIC', 3053],
-          [{v:'3901b', f:'3901 - OTHER BENEFITS CERTIFICATED'}, '1135 - MUSIC', 46],
-          
-          
-          
-          [{v:'1119c', f:'1119 - TEACHER ON SPEC ASSIN SCHOOL'}, '1159 - COVERED ELEM INTERVENTION PDS', 3986],
-          [{v:'3501c', f:'3501 - ST UNEMPLOY INS CERTIFICATED'}, '1159 - COVERED ELEM INTERVENTION PDS', 665],
-          [{v:'3601c', f:'3601 - WORKERS COMP CERTIFICATED'}, '1159 - COVERED ELEM INTERVENTION PDS', 77211],
-          [{v:'1105c', f:'1105 - TEACHERS SALARIES'}, '1159 - COVERED ELEM INTERVENTION PDS', 1355836],
-          [{v:'3401c', f:'3401 - HEALTH & WELFARE CERTIFICATED'}, '1159 - COVERED ELEM INTERVENTION PDS', 322342],
-          [{v:'3301c', f:'3301 - SOCSEC,MEDI,ALTSS CERTIFICATED'}, '1159 - COVERED ELEM INTERVENTION PDS', 22883],
-          [{v:'3901c', f:'3901 - OTHER BENEFITS CERTIFICATED'}, '1159 - COVERED ELEM INTERVENTION PDS', 1461],
-          [{v:'4310c', f:'4310 - SUPPLIES'}, '1159 - COVERED ELEM INTERVENTION PDS', 24258],
-          [{v:'1150c', f:'1150 - TEACHERS SUBSTITUTES'}, '1159 - COVERED ELEM INTERVENTION PDS', 8780],
-          [{v:'3101c', f:'3101 - STRS CERTIFICATED'}, '1159 - COVERED ELEM INTERVENTION PDS', 108996],
-          [{v:'3201c', f:'3201 - PERS CERTIFICATED'}, '1159 - COVERED ELEM INTERVENTION PDS', 3460],
-                     
-          
-          
-          [{v:'3502d', f:'3502 - ST UNEMPLOY INS CLASSIFIED'}, '1191 - BASIC SCHOOL SUPPORT', 7],
-          [{v:'3902d', f:'3902 - OTHER BENEFITS CLASSIFIED'}, '1191 - BASIC SCHOOL SUPPORT', 380],
-          [{v:'3501d', f:'3501 - ST UNEMPLOY INS CERTIFICATED'}, '1191 - BASIC SCHOOL SUPPORT', 3624],
-          [{v:'2405d', f:'2405 - CLERICAL SALARIES'}, '1191 - BASIC SCHOOL SUPPORT', 5354],
-          [{v:'1119d', f:'1119 - TEACHER ON SPEC ASSIN SCHOOL'}, '1191 - BASIC SCHOOL SUPPORT', 402399],
-          [{v:'1105d', f:'1105 - TEACHERS SALARIES'}, '1191 - BASIC SCHOOL SUPPORT', 11983262],
-          [{v:'3401d', f:'3401 - HEALTH & WELFARE CERTIFICATED'}, '1191 - BASIC SCHOOL SUPPORT', 1534684],
-          [{v:'4200d', f:'4200 - BOOKS-OTHER THAN TEXTBOOKS'}, '1191 - BASIC SCHOOL SUPPORT', 2677],
-          [{v:'2422d', f:'2422 - CLERICAL SALARIES EXTRA COMP'}, '1191 - BASIC SCHOOL SUPPORT', 7156],
-          [{v:'3301d', f:'3301 - SOCSEC,MEDI,ALTSS CERTIFICATED'}, '1191 - BASIC SCHOOL SUPPORT', 98590],
-          [{v:'3601d', f:'3601 - WORKERS COMP CERTIFICATED'}, '1191 - BASIC SCHOOL SUPPORT', 391145],
-          [{v:'3402d', f:'3402 - HEALTH & WELFARE CLASSIFIED'}, '1191 - BASIC SCHOOL SUPPORT', 2922],
-          [{v:'3901d', f:'3901 - OTHER BENEFITS CERTIFICATED'}, '1191 - BASIC SCHOOL SUPPORT', 7610],
-          [{v:'5825d', f:'5825 - CONSULTANTS'}, '1191 - BASIC SCHOOL SUPPORT', 8578],
-          [{v:'4310d', f:'4310 - SUPPLIES'}, '1191 - BASIC SCHOOL SUPPORT', 37514],
-          [{v:'3322d', f:'3322 - MEDICARE CLASSIFIED'}, '1191 - BASIC SCHOOL SUPPORT', 176],
-          [{v:'1120d', f:'1120 - TEACHERS SALARIES STIPENDS'}, '1191 - BASIC SCHOOL SUPPORT', 51061],
-          [{v:'1205d', f:'1205 - PUPILSUPPT SALARIES'}, '1191 - BASIC SCHOOL SUPPORT', 4400],
-          [{v:'1150d', f:'1150 - TEACHERS SUBSTITUTES'}, '1191 - BASIC SCHOOL SUPPORT', 6405],
-          [{v:'3201d', f:'3201 - PERS CERTIFICATED'}, '1191 - BASIC SCHOOL SUPPORT', 8426],
-          [{v:'3602d', f:'3602 - WORKERS COMP CLASSIFIED'}, '1191 - BASIC SCHOOL SUPPORT', 713],
-          [{v:'3202d', f:'3202 - PERS CLASSIFIED'}, '1191 - BASIC SCHOOL SUPPORT', 603],
-          [{v:'3101d', f:'3101 - STRS CERTIFICATED'}, '1191 - BASIC SCHOOL SUPPORT', 542582],
-          [{v:'1305d', f:'1305 - SUPV, ADMIN, INSTR COACHES SAL'}, '1191 - BASIC SCHOOL SUPPORT', 1095],
-          [{v:'3302d', f:'3302 - SOCSEC,MEDI,ALTSS CLASSIFIED'}, '1191 - BASIC SCHOOL SUPPORT', 713],
-          
-          
-          
-          
-          [{v:'4420e', f:'4420 - Computer $500-4,999'}, '1552 - SCHOOL LIBRARIES', 73052], 
-          [{v:'2928e', f:'2928 - OTHERCLASS SALARIES HOURLY'}, '1552 - SCHOOL LIBRARIES', 10795],
-          [{v:'4200e', f:'4200 - BOOKS-OTHER THAN TEXTBOOKS'}, '1552 - SCHOOL LIBRARIES', 259729],
-          [{v:'6432e', f:'6432 - FURNITURE'}, '1552 - SCHOOL LIBRARIES', 2219],
-          [{v:'1105e', f:'1105 - TEACHERS SALARIES'}, '1552 - SCHOOL LIBRARIES', 149771],
-          [{v:'3401e', f:'3401 - HEALTH & WELFARE CERTIFICATED'}, '1552 - SCHOOL LIBRARIES', 47307],
-          [{v:'3301e', f:'3301 - SOCSEC,MEDI,ALTSS CERTIFICATED'}, '1552 - SCHOOL LIBRARIES', 3187],
-          [{v:'5829e', f:'5829 - ADMISSION  FEES'}, '1552 - SCHOOL LIBRARIES', 300],
-          [{v:'3402e', f:'3402 - HEALTH & WELFARE CLASSIFIED'}, '1552 - SCHOOL LIBRARIES', 112663],
-          [{v:'3601e', f:'3601 - WORKERS COMP CERTIFICATED'}, '1552 - SCHOOL LIBRARIES', 13518],
-          [{v:'2220e', f:'2220 - CLASSSUPPT SALARIES STIPENDS'}, '1552 - SCHOOL LIBRARIES', 412],
-          [{v:'3502e', f:'3502 - ST UNEMPLOY INS CLASSIFIED'}, '1552 - SCHOOL LIBRARIES', 158],
-          [{v:'3102e', f:'3102 - STRS CLASSIFIED'}, '1552 - SCHOOL LIBRARIES', 352],
-          [{v:'1122e', f:'1122 - TEACHERS SALARIES EXTRA COMP'}, '1552 - SCHOOL LIBRARIES', 5072],
-          [{v:'3501e', f:'3501 - ST UNEMPLOY INS CERTIFICATED'}, '1552 - SCHOOL LIBRARIES', 117],
-          [{v:'1322e', f:'1322 - SUPV&ADM SALARIES EXTRA COMP'}, '1552 - SCHOOL LIBRARIES', 3734],
-          [{v:'3902e', f:'3902 - OTHER BENEFITS CLASSIFIED'}, '1552 - SCHOOL LIBRARIES', 10794],
-          [{v:'1119e', f:'1119 - TEACHER ON SPEC ASSIN SCHOOL'}, '1552 - SCHOOL LIBRARIES', 35297],
-          [{v:'2405e', f:'2405 - CLERICAL SALARIES'}, '1552 - SCHOOL LIBRARIES', 29385],
-          [{v:'3322e', f:'3322 - MEDICARE CLASSIFIED'}, '1552 - SCHOOL LIBRARIES', 4556],
-          [{v:'5828e', f:'5828 - ASSEMBLIES/CLASSRM PRESENTION'}, '1552 - SCHOOL LIBRARIES', 650],
-          [{v:'5825e', f:'5825 - CONSULTANTS'}, '1552 - SCHOOL LIBRARIES', 152551],
-          [{v:'3901e', f:'3901 - OTHER BENEFITS CERTIFICATED'}, '1552 - SCHOOL LIBRARIES', 190],
-          [{v:'4310e', f:'4310 - SUPPLIES'}, '1552 - SCHOOL LIBRARIES', 86104],
-          [{v:'4432e', f:'4432 - Furniture $500-4,999'}, '1552 - SCHOOL LIBRARIES', 29045],
-          [{v:'1150e', f:'1150 - TEACHERS SUBSTITUTES'}, '1552 - SCHOOL LIBRARIES', 25151],
-          [{v:'4474e', f:'4474 - Audio Visual Equip $500-4,999'}, '1552 - SCHOOL LIBRARIES', 5025],
-          [{v:'5220e', f:'5220 - CONFERENCE  EXPENSE'}, '1552 - SCHOOL LIBRARIES', 80],
-          [{v:'1120e', f:'1120 - TEACHERS SALARIES STIPENDS'}, '1552 - SCHOOL LIBRARIES', 14521],
-          [{v:'2425e', f:'2425 - CLERICAL SALARIES OVERTIME'}, '1552 - SCHOOL LIBRARIES', 13964],
-          [{v:'6421e', f:'6421 - MAINFRAME SOFTWARE'}, '1552 - SCHOOL LIBRARIES', 4848],
-          [{v:'4410e', f:'4410 - Equipment $500-4,999'}, '1552 - SCHOOL LIBRARIES', 553],
-          [{v:'2205e', f:'2205 - CLASSSUPPT SALARIES'}, '1552 - SCHOOL LIBRARIES', 259580],
-          [{v:'3302e', f:'3302 - SOCSEC,MEDI,ALTSS CLASSIFIED'}, '1552 - SCHOOL LIBRARIES', 18713],
-          [{v:'5210e', f:'5210 - MILEAGE/PERSONAL EXP REIMB'}, '1552 - SCHOOL LIBRARIES', 1406],
-          [{v:'5826e', f:'5826 - EXTERNAL WORK ORDER SERVICES'}, '1552 - SCHOOL LIBRARIES', 4000],
-          [{v:'3602e', f:'3602 - WORKERS COMP CLASSIFIED'}, '1552 - SCHOOL LIBRARIES', 18015],
-          [{v:'3202e', f:'3202 - PERS CLASSIFIED'}, '1552 - SCHOOL LIBRARIES', 28370],
-          [{v:'3101e', f:'3101 - STRS CERTIFICATED'}, '1552 - SCHOOL LIBRARIES', 18380],
-                                                
-          
-          [{v:'3322f', f:'3322 - MEDICARE CLASSIFIED'}, '1564 - ORATORICAL FEST/PERFORMANCES', 9],
-          [{v:'2450f', f:'2450 - CLERICAL SUBSTITUTES'}, '1564 - ORATORICAL FEST/PERFORMANCES', 301],
-          [{v:'4311f', f:'4311 - MEETING REFRESHMENTS'}, '1564 - ORATORICAL FEST/PERFORMANCES', 13058],
-          [{v:'4310f', f:'4310 - SUPPLIES'}, '1564 - ORATORICAL FEST/PERFORMANCES', 16388],
-          [{v:'5825f', f:'5825 - CONSULTANTS'}, '1564 - ORATORICAL FEST/PERFORMANCES', 20000],
-          [{v:'3301f', f:'3301 - SOCSEC,MEDI,ALTSS CERTIFICATED'}, '1564 - ORATORICAL FEST/PERFORMANCES', 86],
-          [{v:'3601f', f:'3601 - WORKERS COMP CERTIFICATED'}, '1564 - ORATORICAL FEST/PERFORMANCES', 282],
-          [{v:'3501f', f:'3501 - ST UNEMPLOY INS CERTIFICATED'}, '1564 - ORATORICAL FEST/PERFORMANCES', 2],
-          [{v:'2420f', f:'2420 - CLERICAL SALARIES STIPENDS'}, '1564 - ORATORICAL FEST/PERFORMANCES', 289],
-          [{v:'3302f', f:'3302 - SOCSEC,MEDI,ALTSS CLASSIFIED'}, '1564 - ORATORICAL FEST/PERFORMANCES', 29],
-          [{v:'3201f', f:'3201 - PERS CERTIFICATED'}, '1564 - ORATORICAL FEST/PERFORMANCES', 29],
-          [{v:'3602f', f:'3602 - WORKERS COMP CLASSIFIED'}, '1564 - ORATORICAL FEST/PERFORMANCES', 34],
-          [{v:'5826f', f:'5826 - EXTERNAL WORK ORDER SERVICES'}, '1564 - ORATORICAL FEST/PERFORMANCES', 6068],
-          [{v:'3101f', f:'3101 - STRS CERTIFICATED'}, '1564 - ORATORICAL FEST/PERFORMANCES', 381],
-          [{v:'1120f', f:'1120 - TEACHERS SALARIES STIPENDS'}, '1564 - ORATORICAL FEST/PERFORMANCES', 4871],
-          
-          
-          [{v:'3602g', f:'3602 - WORKERS COMP CLASSIFIED'}, '1596 - Oakland Fine Arts Summer Schl', 199],
-          [{v:'3101g', f:'3101 - STRS CERTIFICATED'}, '1596 - Oakland Fine Arts Summer Schl', 3419],
-          [{v:'3202g', f:'3202 - PERS CLASSIFIED'}, '1596 - Oakland Fine Arts Summer Schl', 393],
-          [{v:'3302g', f:'3302 - SOCSEC,MEDI,ALTSS CLASSIFIED'}, '1596 - Oakland Fine Arts Summer Schl', 214],
-          [{v:'2420g', f:'2420 - CLERICAL SALARIES STIPENDS'}, '1596 - Oakland Fine Arts Summer Schl', 3445],
-          [{v:'1120g', f:'1120 - TEACHERS SALARIES STIPENDS'}, '1596 - Oakland Fine Arts Summer Schl', 35203],
-          [{v:'1150g', f:'1150 - TEACHERS SUBSTITUTES'}, '1596 - Oakland Fine Arts Summer Schl', 120],
-          [{v:'3901g', f:'3901 - OTHER BENEFITS CERTIFICATED'}, '1596 - Oakland Fine Arts Summer Schl', 26],
-          [{v:'3322g', f:'3322 - MEDICARE CLASSIFIED'}, '1596 - Oakland Fine Arts Summer Schl', 50],
-          [{v:'3501g', f:'3501 - ST UNEMPLOY INS CERTIFICATED'}, '1596 - Oakland Fine Arts Summer Schl', 343],
-          [{v:'3902g', f:'3902 - OTHER BENEFITS CLASSIFIED'}, '1596 - Oakland Fine Arts Summer Schl', 56],
-          [{v:'3502g', f:'3502 - ST UNEMPLOY INS CLASSIFIED'}, '1596 - Oakland Fine Arts Summer Schl', 30],
-          [{v:'3301g', f:'3301 - SOCSEC,MEDI,ALTSS CERTIFICATED'}, '1596 - Oakland Fine Arts Summer Schl', 602],
-          [{v:'1320g', f:'1320 - SUPV&ADM SALARIES STIPENDS'}, '1596 - Oakland Fine Arts Summer Schl', 6238],
-          [{v:'3601g', f:'3601 - WORKERS COMP CERTIFICATED'}, '1596 - Oakland Fine Arts Summer Schl', 2406],
-          
-          [{v:'1119h', f:'1119 - TEACHER ON SPEC ASSIN SCHOOL'}, '1598 - MIDDLE SCHOOL ELECTIVES', 18141],
-          [{v:'3502h', f:'3502 - ST UNEMPLOY INS CLASSIFIED'}, '1598 - MIDDLE SCHOOL ELECTIVES', 1],
-          [{v:'3902h', f:'3902 - OTHER BENEFITS CLASSIFIED'}, '1598 - MIDDLE SCHOOL ELECTIVES', 55],
-          [{v:'1122h', f:'1122 - TEACHERS SALARIES EXTRA COMP'}, '1598 - MIDDLE SCHOOL ELECTIVES', 950],
-          [{v:'3501h', f:'3501 - ST UNEMPLOY INS CERTIFICATED'}, '1598 - MIDDLE SCHOOL ELECTIVES', 298],
-          [{v:'5829h', f:'5829 - ADMISSION  FEES'}, '1598 - MIDDLE SCHOOL ELECTIVES', 4900],
-          [{v:'3402h', f:'3402 - HEALTH & WELFARE CLASSIFIED'}, '1598 - MIDDLE SCHOOL ELECTIVES', 437],
-          [{v:'3601h', f:'3601 - WORKERS COMP CERTIFICATED'}, '1598 - MIDDLE SCHOOL ELECTIVES', 34676],
-          [{v:'1105h', f:'1105 - TEACHERS SALARIES'}, '1598 - MIDDLE SCHOOL ELECTIVES', 579768], 
-          [{v:'3401h', f:'3401 - HEALTH & WELFARE CERTIFICATED'}, '1598 - MIDDLE SCHOOL ELECTIVES', 191277], 
-          [{v:'4420h', f:'4420 - Computer $500-4,999'}, '1598 - MIDDLE SCHOOL ELECTIVES', 2350],
-          [{v:'3301h', f:'3301 - SOCSEC,MEDI,ALTSS CERTIFICATED'}, '1598 - MIDDLE SCHOOL ELECTIVES', 7799],
-          [{v:'3901h', f:'3901 - OTHER BENEFITS CERTIFICATED'}, '1598 - MIDDLE SCHOOL ELECTIVES', 700], 
-          [{v:'4310h', f:'4310 - SUPPLIES'}, '1598 - MIDDLE SCHOOL ELECTIVES', 34414],
-          [{v:'5828h', f:'5828 - ASSEMBLIES/CLASSRM PRESENTION'}, '1598 - MIDDLE SCHOOL ELECTIVES', 3841],
-          [{v:'3322h', f:'3322 - MEDICARE CLASSIFIED'}, '1598 - MIDDLE SCHOOL ELECTIVES', 19],
-          [{v:'5220h', f:'5220 - CONFERENCE  EXPENSE'}, '1598 - MIDDLE SCHOOL ELECTIVES', 1200],
-          [{v:'3202h', f:'3202 - PERS CLASSIFIED'}, '1598 - MIDDLE SCHOOL ELECTIVES', 21],
-          [{v:'3101h', f:'3101 - STRS CERTIFICATED'}, '1598 - MIDDLE SCHOOL ELECTIVES', 49257],
-          [{v:'3602h', f:'3602 - WORKERS COMP CLASSIFIED'}, '1598 - MIDDLE SCHOOL ELECTIVES', 45],
-          [{v:'3302h', f:'3302 - SOCSEC,MEDI,ALTSS CLASSIFIED'}, '1598 - MIDDLE SCHOOL ELECTIVES', 82],
-          [{v:'2205h', f:'2205 - CLASSSUPPT SALARIES'}, '1598 - MIDDLE SCHOOL ELECTIVES', 1337],
-          [{v:'4410h', f:'4410 - Equipment $500-4,999'}, '1598 - MIDDLE SCHOOL ELECTIVES', 1707],
-          
-          
-          [{v:'5220i', f:'5220 - CONFERENCE  EXPENSE'}, '1626 - NCLB HQT COMPLIANCE', 7484],
-          [{v:'5826i', f:'5826 - EXTERNAL WORK ORDER SERVICES'}, '1626 - NCLB HQT COMPLIANCE', 33900],
-          [{v:'4420i', f:'4420 - Computer $500-4,999'}, '1626 - NCLB HQT COMPLIANCE', 12776],
-          [{v:'5675i', f:'5675 - REPAIRS CONT  - EQUIP OTHER'}, '1626 - NCLB HQT COMPLIANCE', 726],
-          [{v:'4310i', f:'4310 - SUPPLIES'}, '1626 - NCLB HQT COMPLIANCE', 7874],
-          [{v:'5825i', f:'5825 - CONSULTANTS'}, '1626 - NCLB HQT COMPLIANCE', 34680],
-          
-          
-           [{v:'5800j', f:'5800 - OTH SERVICES & OPERATING EXPS'}, '9000 - OTH PROGRAMS / LOCAL GOALS', 34680],
-       
-          [{v:'', f:'3402 - HEALTH & WELFARE CLASSIFIED'}, '9060 - HR Recruitment', 89615],
-          [{v:'', f:'3902 - OTHER BENEFITS CLASSIFIED'}, '9060 - HR Recruitment', 1074],
-          [{v:'', f:'3102 - STRS CLASSIFIED'}, '9060 - HR Recruitment', 14136],
-          [{v:'', f:'3502 - ST UNEMPLOY INS CLASSIFIED'}, '9060 - HR Recruitment', 713],
-          [{v:'', f:'2405 - CLERICAL SALARIES'}, '9060 - HR Recruitment', 73886],
-          [{v:'', f:'2450 - CLERICAL SUBSTITUTES'}, '9060 - HR Recruitment', 2355],
-          [{v:'', f:'3322 - MEDICARE CLASSIFIED'}, '9060 - HR Recruitment', 7556],
-          [{v:'', f:'4311 - MEETING REFRESHMENTS'}, '9060 - HR Recruitment', 2579],
-          [{v:'', f:'5846 - LICENSING AGREEMENTS'}, '9060 - HR Recruitment', 7452],
-          [{v:'', f:'4310 - SUPPLIES'}, '9060 - HR Recruitment', 3506],
-          [{v:'', f:'3302 - SOCSEC,MEDI,ALTSS CLASSIFIED'}, '9060 - HR Recruitment', 21086],
-          [{v:'', f:'2305 - SUPV&ADM SALARIES'}, '9060 - HR Recruitment', 449224],
-          [{v:'', f:'5624 - RENTALS - FACILITY'}, '9060 - HR Recruitment', 475],
-          [{v:'', f:'3602 - WORKERS COMP CLASSIFIED'}, '9060 - HR Recruitment', 30440],
-          [{v:'', f:'5826 - EXTERNAL WORK ORDER SERVICES'}, '9060 - HR Recruitment', 1080],
-          [{v:'', f:'1305 - SUPV, ADMIN, INSTR COACHES SAL'}, '9060 - HR Recruitment', 2],
-          [{v:'', f:'5758 - INTERFUND - FOOD SERVICES'}, '9060 - HR Recruitment', 287],
-          [{v:'', f:'3202 - PERS CLASSIFIED'}, '9060 - HR Recruitment', 40239] 
-                     
-      ]);
+            var dataByYear = {};
 
-      var tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+            years = ["2012", "2013", "2014"];
 
-      var options = {
-        highlightOnMouseOver: true,
-        maxDepth: 1,
-        maxPostDepth: 2,
-        minHighlightColor: '#8c6bb1',
-        midHighlightColor: '#9ebcda',
-        maxHighlightColor: '#edf8fb',
-        minColor: '#009688',
-        midColor: '#f7f7f7',
-        maxColor: '#ee8100',
-        headerHeight: 15,
-        showScale: true,
-        height: window.innerHeight - 100,
-        useWeightedAverageForAggregation: true,
-        generateTooltip: showFullTooltip,
-        hintOpacity: 1
-      };
+            $.getJSON('treemap.json', function(data) {
 
-    document.getElementById('goUp').onclick = function () {
-        // this needs some work still, as the event isn't firing
-        tree.goUpAndDraw();
-    };
+                $.each(data, function(key, row) {
 
+                    $.each(years, function (key, year) {
+                        item = [
+                            {v: ""+row.uid, f: row.object},
+                            row.program,
+                            {v: row["g"+year], f: row["money_"+year]}
+                        ];
 
+                        if(dataByYear[year]) {
+                            dataByYear[year].push(item);
+                        } else {
+                            dataByYear[year] = [item];
+                        }
+                    });
 
-    tree.draw(data, options);
+                });
 
-          function showFullTooltip(row, size, value) {
-    return '<div style="background:#fd9; padding:10px; border-style:solid">' +
-           '<span style="font-family:Times New Roman"><b>' + data.getFormattedValue(row, 0) +
-           '</b> '  +  '</span><br>' + 
-       data.getColumnLabel(2) +
-           ' (in dollars): $' + size + '<br>' 
-          }
-      }
+                //Add a header to each program data set (only happens once)
+                for(var year in dataByYear) {
+                    for(var key in dataHeader) {
+                        dataByYear[year].unshift(dataHeader[key]);
+                    };
+                    dataByYear[year].unshift(['Object','Program','Spending by Program']);
+                };
 
+            });
 
+            google.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable(dataByYear["2014"]);
+
+                var tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+
+                var options = {
+                  highlightOnMouseOver: true,
+                  maxDepth: 1,
+                  maxPostDepth: 2,
+                  minHighlightColor: '#8c6bb1',
+                  midHighlightColor: '#9ebcda',
+                  maxHighlightColor: '#edf8fb',
+                  minColor: '#009688',
+                  midColor: '#f7f7f7',
+                  maxColor: '#ee8100',
+                  headerHeight: 15,
+                  showScale: true,
+                  height: window.innerHeight - 100,
+                  useWeightedAverageForAggregation: true,
+                  generateTooltip: showFullTooltip,
+                  hintOpacity: 1
+                };
+
+                document.getElementById('goUp').onclick = function () {
+                    // this needs some work still, as the event isn't firing
+                    tree.goUpAndDraw();
+                };
+
+                tree.draw(data, options);
+
+                function showFullTooltip(row, size, value) {
+                    return '<div style="background:#fd9; padding:10px; border-style:solid">' +
+                           '<span style="font-family:Times New Roman"><b>' + data.getFormattedValue(row, 0) +
+                           '</b> '  +  '</span><br>' + 
+                       data.getColumnLabel(2) +
+                           ' (in dollars): $' + size + '<br>' 
+                }
+            }
 
             
         </script>
