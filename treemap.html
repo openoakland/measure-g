@@ -59,6 +59,36 @@
                 margin: 0 5px;
             }
 
+            /*Program Selector*/
+
+            #year-select, h3 {
+                display: table;
+                margin: 0 auto;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            .year {
+                font-weight: bold;
+                display: inline-block;
+                padding: 5px 8px;
+                margin: 1px 1px;
+                cursor: pointer;
+
+            }
+
+            .year.active, .year.active:hover {
+                color: white;
+                background-color: #4285F4;
+                border-radius: 5px;
+            }
+
+            .year:hover {
+                color: black;
+                background-color: #E7E7E7;
+                border-radius: 5px;
+            }
+
             </style>
 
     </head>
@@ -84,7 +114,7 @@
                             <li class=""><a href="index.html">About</a></li>
                             <li class=""><a href="map.html">By Location</a></li>
                             <li class=""><a href="programs.html">By Program</a></li>
-                            <li class="active"><a href="treemap.html">Tree Map</a></li>
+                            <li class="active"><a href="treemap.html">In Summary</a></li>
                         </ul>
                     </div>
                 </div>
@@ -95,6 +125,12 @@
 
             <div class="center-row">
                 <div class="container">
+                    <div id="year-select">
+                        <div class="year" id="2012">2012-13</div>
+                        <div class="year" id="2013">2013-14</div>
+                        <div class="year" id="2014">2014-15</div>
+                    </div>
+
                     <div id="chart_div">
                     </div>
                     <input type="button" id="goUp" value="Go up one level" />
@@ -129,7 +165,7 @@
 
             var dataByYear = {};
 
-            years = ["2012", "2013", "2014"];
+            supportedYears = ["2012", "2013", "2014"];
 
             $.ajax('treemap.json',{
                 async: false
@@ -140,7 +176,7 @@
 
                   $.each(data, function(key, row) {
 
-                      $.each(years, function (key, year) {
+                      $.each(supportedYears, function (key, year) {
                           item = [
                               {v: ""+row.uid, f: row.object},
                               row.program,
@@ -168,43 +204,67 @@
 
             google.setOnLoadCallback(drawChart);
 
+            //get selected program from URL
+            var selectedYear = window.location.hash.slice(1);
+
+            if(selectedYear in supportedYears) {
+            } else {
+                selectedYear = "2014";
+                window.location.hash = "2014";
+            }
+
             function drawChart() {
-                var data = google.visualization.arrayToDataTable(dataByYear["2014"]);
 
-                var tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+                function updateChartData(year) {
 
-                var options = {
-                  highlightOnMouseOver: true,
-                  maxDepth: 1,
-                  maxPostDepth: 2,
-                  minHighlightColor: '#8c6bb1',
-                  midHighlightColor: '#9ebcda',
-                  maxHighlightColor: '#edf8fb',
-                  minColor: '#009688',
-                  midColor: '#f7f7f7',
-                  maxColor: '#ee8100',
-                  headerHeight: 15,
-                  showScale: true,
-                  height: window.innerHeight - 100,
-                  useWeightedAverageForAggregation: true,
-                  generateTooltip: showFullTooltip,
-                  hintOpacity: 1
-                };
+                    var data = google.visualization.arrayToDataTable(dataByYear[year]);
 
-                document.getElementById('goUp').onclick = function () {
-                    // this needs some work still, as the event isn't firing
-                    tree.goUpAndDraw();
-                };
+                    var chart = new google.visualization.TreeMap(document.getElementById('chart_div'));
 
-                tree.draw(data, options);
+                    var options = {
+                      highlightOnMouseOver: true,
+                      maxDepth: 1,
+                      maxPostDepth: 2,
+                      minHighlightColor: '#8c6bb1',
+                      midHighlightColor: '#9ebcda',
+                      maxHighlightColor: '#edf8fb',
+                      minColor: '#009688',
+                      midColor: '#f7f7f7',
+                      maxColor: '#ee8100',
+                      headerHeight: 15,
+                      showScale: true,
+                      height: window.innerHeight - 200,
+                      useWeightedAverageForAggregation: true,
+                      generateTooltip: showFullTooltip,
+                      hintOpacity: 1
+                    };
 
-                function showFullTooltip(row, size, value) {
-                    return '<div style="background:#fd9; padding:10px; border-style:solid">' +
-                           '<span style="font-family:Times New Roman"><b>' + data.getFormattedValue(row, 0) +
-                           '</b> '  +  '</span><br>' + 
-                       data.getColumnLabel(2) +
-                           ' (in dollars): $' + size + '<br>' 
+                    document.getElementById('goUp').onclick = function () {
+                        // this needs some work still, as the event isn't firing
+                        chart.goUpAndDraw();
+                    };
+
+                    chart.draw(data, options);
+
+                    function showFullTooltip(row, size, value) {
+                        return '<div style="background:#fff; padding:10px; border-style:solid">' +
+                               '<span><b>' + data.getFormattedValue(row, 0) +
+                               '</b> '  +  '</span><br>' +
+                               'Total Spending (in dollars): $' + size + '<br>' 
+                    }
+                    chart.draw(data, options);
+                    $('#year-select div').removeClass('active');
+                    $('#year-select #'+year).addClass('active');
+                    window.scrollTo(0, 0);
+
                 }
+
+                updateChartData(selectedYear);
+                $('#year-select #'+selectedYear).addClass('active');
+
+                $('#year-select').click(function(event) {
+                    updateChartData(event.target.id);
+                });
             }
 
             
