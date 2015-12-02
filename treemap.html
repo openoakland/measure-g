@@ -221,6 +221,9 @@
 
                     var chart = new google.visualization.TreeMap(document.getElementById('chart_div'));
 
+                    var formatter = new google.visualization.NumberFormat(
+                        {fractionDigits:0});
+
                     var options = {
                       highlightOnMouseOver: true,
                       maxDepth: 1,
@@ -250,7 +253,7 @@
                         return '<div style="background:#fff; padding:10px; border-style:solid">' +
                                '<span><b>' + data.getFormattedValue(row, 0) +
                                '</b> '  +  '</span><br>' +
-                               'Total Spending (in dollars): $' + size + '<br>' 
+                               'Total Spending (in dollars): $' + formatter.formatValue(size) + '<br>' 
                     }
                     chart.draw(data, options);
                     $('#year-select div').removeClass('active');
