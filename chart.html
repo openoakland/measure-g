@@ -27,31 +27,29 @@
 
 
     google.charts.load('current', {'packages':['table']});
-    google.charts.setOnLoadCallback(drawTable);
+
     var dataBySchool = [];
          $.getJSON('school_summary.json', function(data) {
 
-                // $.each(data, function(key, row) {
+                $.each(data, function(key, row) {
 
-                // //     var site_desc = row.site_desc;
-                // //     delete row.site_desc;
-                // //     item = [row.site_desc, row.g2014, row.g2013, row.g2012]
-                // //     dataBySchool[site_desc].push(item);
-                // // });
+                    item = [row.site_desc, row.g2014, row.g2013, row.g2012]
+                    dataBySchool.push(item);
+                });
 
                 // //Add a header to each program data set (only happens once)
-                // for(var key in dataBySchool) dataBySchool[key].unshift(['School', '2014-15', '2013-14', '2012-13']);
-                dataBySchool = data.unshift(['School', '2014-15', '2013-14', '2012-13']);
+                dataBySchool.unshift(['School', '2014-15', '2013-14', '2012-13']);
                 
             });
-      function drawTable() {
-        dataBySchool = google.visualization.arrayToDataTable(dataBySchool);
-        var table = new google.visualization.Table(document.getElementById('table_div'));
 
-        table.draw(dataBySchool, {showRowNumber: true, width: '100%', height: '100%'});
-      }
+            function drawTable() {
+                dataBySchool = google.visualization.arrayToDataTable(dataBySchool);
+                var table = new google.visualization.Table(document.getElementById('table_div'));
 
+                table.draw(dataBySchool, {showRowNumber: true, width: '100%', height: '100%'});
+            }
 
+            google.charts.setOnLoadCallback(drawTable);
 
 
             // function drawChart() {
@@ -268,32 +266,32 @@
             // }
         </script>
          <script>
-        //     // Include the UserVoice JavaScript SDK (only needed once on a page)
-        //     UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/fE7XpxXMOWc2yipGiIhow.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+            // Include the UserVoice JavaScript SDK (only needed once on a page)
+            UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/fE7XpxXMOWc2yipGiIhow.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
 
-        //     //
-        //     // UserVoice Javascript SDK developer documentation:
-        //     // https://www.uservoice.com/o/javascript-sdk
-        //     //
+            //
+            // UserVoice Javascript SDK developer documentation:
+            // https://www.uservoice.com/o/javascript-sdk
+            //
 
-        //     // Set colors
-        //     UserVoice.push(['set', {
-        //       accent_color: '#6aba2e',
-        //       trigger_color: 'white',
-        //       trigger_background_color: '#6aba2e',
-        //       forum_id: '347124',
-        //       strings: {
-        //             post_suggestion_title: 'Post an idea to improve this page',
-        //             post_suggestion_body: 'Publica una idea para mejorar esta página. \n 张贴想法，以改善此页面',
-        //             suggestion_category_label: 'Which page are you on?'
-        //         }
-        //     }]);
+            // Set colors
+            UserVoice.push(['set', {
+              accent_color: '#6aba2e',
+              trigger_color: 'white',
+              trigger_background_color: '#6aba2e',
+              forum_id: '347124',
+              strings: {
+                    post_suggestion_title: 'Post an idea to improve this page',
+                    post_suggestion_body: 'Publica una idea para mejorar esta página. \n 张贴想法，以改善此页面',
+                    suggestion_category_label: 'Which page are you on?'
+                }
+            }]);
 
-        //     // Add default trigger to the bottom-right corner of the window:
-        //     UserVoice.push(['addTrigger', {mode: 'feedback', trigger_position: 'bottom-right' }]);
+            // Add default trigger to the bottom-right corner of the window:
+            UserVoice.push(['addTrigger', {mode: 'feedback', trigger_position: 'bottom-right' }]);
 
-        //     // Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
-        //     UserVoice.push(['autoprompt', {}]);
+            // Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+            UserVoice.push(['autoprompt', {}]);
         // </script>
     </body>
 </html>
