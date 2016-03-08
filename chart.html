@@ -29,16 +29,16 @@
     google.charts.load('current', {'packages':['table']});
 
     var dataBySchool = [];
-         $.getJSON('school_summary.json', function(data) {
+         $.getJSON('perpupil.json', function(data) {
 
                 $.each(data, function(key, row) {
 
-                    item = [row.site_desc, row.g2014, row.g2013, row.g2012]
+                    item = [row.site_desc, row.g2014, row.numberpupil, row.perpupil]
                     dataBySchool.push(item);
                 });
 
                 // //Add a header to each program data set (only happens once)
-                dataBySchool.unshift(['School', '2014-15', '2013-14', '2012-13']);
+                dataBySchool.unshift(['School', '2014-15 total expenditure', 'number of pupils', 'expenditure per pupil']);
                 
             });
 
