@@ -1,0 +1,482 @@
+[
+  {
+    "site_desc": "Acorn Woodland K-5",
+    "g2014": 172255,
+    "numberpupil": 296,
+    "perpupil": 582
+  },
+  {
+    "site_desc": "Allendale",
+    "g2014": 291174,
+    "numberpupil": 393,
+    "perpupil": 741
+  },
+  {
+    "site_desc": "Alliance Academy",
+    "g2014": 131957,
+    "numberpupil": 390,
+    "perpupil": 338
+  },
+  {
+    "site_desc": "Bella Vista",
+    "g2014": 349203,
+    "numberpupil": 469,
+    "perpupil": 745
+  },
+  {
+    "site_desc": "Bret Harte Middle",
+    "g2014": 161497,
+    "numberpupil": 504,
+    "perpupil": 320
+  },
+  {
+    "site_desc": "Bridges Academy @ Melrose",
+    "g2014": 238588,
+    "numberpupil": 414,
+    "perpupil": 576
+  },
+  {
+    "site_desc": "Brookfield",
+    "g2014": 283175,
+    "numberpupil": 359,
+    "perpupil": 789
+  },
+  {
+    "site_desc": "Bunche Academy",
+    "g2014": 45107,
+    "numberpupil": 109,
+    "perpupil": 414
+  },
+  {
+    "site_desc": "Burckhalter",
+    "g2014": 206201,
+    "numberpupil": 271,
+    "perpupil": 761
+  },
+  {
+    "site_desc": "Carl Munck",
+    "g2014": 153850,
+    "numberpupil": 285,
+    "perpupil": 540
+  },
+  {
+    "site_desc": "Castlemont High School",
+    "g2014": 76534,
+    "numberpupil": 505,
+    "perpupil": 152
+  },
+  {
+    "site_desc": "Chabot",
+    "g2014": 375997,
+    "numberpupil": 573,
+    "perpupil": 656
+  },
+  {
+    "site_desc": "Claremont Middle",
+    "g2014": 146531,
+    "numberpupil": 435,
+    "perpupil": 337
+  },
+  {
+    "site_desc": "Cleveland",
+    "g2014": 338828,
+    "numberpupil": 398,
+    "perpupil": 851
+  },
+  {
+    "site_desc": "Coliseum College Prep Academy",
+    "g2014": 133092,
+    "numberpupil": 476,
+    "perpupil": 280
+  },
+  {
+    "site_desc": "Community Day School",
+    "g2014": 11844,
+    "numberpupil": 21,
+    "perpupil": 564
+  },
+  {
+    "site_desc": "Community United Elementary",
+    "g2014": 405161,
+    "numberpupil": 430,
+    "perpupil": 942
+  },
+  {
+    "site_desc": "Crocker Highlands",
+    "g2014": 294437,
+    "numberpupil": 432,
+    "perpupil": 682
+  },
+  {
+    "site_desc": "Dewey High School",
+    "g2014": 73938,
+    "numberpupil": 240,
+    "perpupil": 308
+  },
+  {
+    "site_desc": "East Oakland Pride",
+    "g2014": 342372,
+    "numberpupil": 436,
+    "perpupil": 785
+  },
+  {
+    "site_desc": "Edna Brewer Middle",
+    "g2014": 249925,
+    "numberpupil": 827,
+    "perpupil": 302
+  },
+  {
+    "site_desc": "Elmhurst Community Prep",
+    "g2014": 94208,
+    "numberpupil": 380,
+    "perpupil": 248
+  },
+  {
+    "site_desc": "Emerson",
+    "g2014": 244126,
+    "numberpupil": 301,
+    "perpupil": 811
+  },
+  {
+    "site_desc": "Encompass Small School",
+    "g2014": 211774,
+    "numberpupil": 316,
+    "perpupil": 670
+  },
+  {
+    "site_desc": "Esperanza Academy",
+    "g2014": 224457,
+    "numberpupil": 340,
+    "perpupil": 660
+  },
+  {
+    "site_desc": "Franklin",
+    "g2014": 548352,
+    "numberpupil": 743,
+    "perpupil": 738
+  },
+  {
+    "site_desc": "Fred T Korematsu Discovery Ac",
+    "g2014": 259918,
+    "numberpupil": 439,
+    "perpupil": 592
+  },
+  {
+    "site_desc": "Fremont High School",
+    "g2014": 197897,
+    "numberpupil": 811,
+    "perpupil": 244
+  },
+  {
+    "site_desc": "Frick Middle",
+    "g2014": 66816,
+    "numberpupil": 241,
+    "perpupil": 277
+  },
+  {
+    "site_desc": "Fruitvale",
+    "g2014": 315185,
+    "numberpupil": 385,
+    "perpupil": 819
+  },
+  {
+    "site_desc": "Futures Elementary",
+    "g2014": 267454,
+    "numberpupil": 329,
+    "perpupil": 813
+  },
+  {
+    "site_desc": "Garfield",
+    "g2014": 441048,
+    "numberpupil": 588,
+    "perpupil": 750
+  },
+  {
+    "site_desc": "Glenview",
+    "g2014": 467824,
+    "numberpupil": 460,
+    "perpupil": 1017
+  },
+  {
+    "site_desc": "Global Family School",
+    "g2014": 274559,
+    "numberpupil": 427,
+    "perpupil": 643
+  },
+  {
+    "site_desc": "Grass Valley",
+    "g2014": 218468,
+    "numberpupil": 285,
+    "perpupil": 767
+  },
+  {
+    "site_desc": "Greenleaf Elementary",
+    "g2014": 214333,
+    "numberpupil": 613,
+    "perpupil": 350
+  },
+  {
+    "site_desc": "Hillcrest",
+    "g2014": 190446,
+    "numberpupil": 359,
+    "perpupil": 530
+  },
+  {
+    "site_desc": "Hoover",
+    "g2014": 180891,
+    "numberpupil": 312,
+    "perpupil": 580
+  },
+  {
+    "site_desc": "Horace Mann",
+    "g2014": 303196,
+    "numberpupil": 395,
+    "perpupil": 768
+  },
+  {
+    "site_desc": "Howard",
+    "g2014": 105349,
+    "numberpupil": 241,
+    "perpupil": 437
+  },
+  {
+    "site_desc": "International Community School",
+    "g2014": 242015,
+    "numberpupil": 336,
+    "perpupil": 720
+  },
+  {
+    "site_desc": "Joaquin Miller",
+    "g2014": 398334,
+    "numberpupil": 430,
+    "perpupil": 926
+  },
+  {
+    "site_desc": "Kaiser",
+    "g2014": 171838,
+    "numberpupil": 279,
+    "perpupil": 616
+  },
+  {
+    "site_desc": "La Escuelita",
+    "g2014": 195359,
+    "numberpupil": 340,
+    "perpupil": 575
+  },
+  {
+    "site_desc": "Lafayette",
+    "g2014": 191878,
+    "numberpupil": 234,
+    "perpupil": 820
+  },
+  {
+    "site_desc": "Laurel",
+    "g2014": 467096,
+    "numberpupil": 544,
+    "perpupil": 859
+  },
+  {
+    "site_desc": "Life Academy",
+    "g2014": 141903,
+    "numberpupil": 481,
+    "perpupil": 295
+  },
+  {
+    "site_desc": "Lincoln",
+    "g2014": 476770,
+    "numberpupil": 737,
+    "perpupil": 647
+  },
+  {
+    "site_desc": "Madison Middle",
+    "g2014": 145928,
+    "numberpupil": 858,
+    "perpupil": 170
+  },
+  {
+    "site_desc": "Manzanita Community School",
+    "g2014": 223727,
+    "numberpupil": 331,
+    "perpupil": 676
+  },
+  {
+    "site_desc": "Manzanita Seed",
+    "g2014": 244528,
+    "numberpupil": 405,
+    "perpupil": 604
+  },
+  {
+    "site_desc": "Markham",
+    "g2014": 213584,
+    "numberpupil": 367,
+    "perpupil": 582
+  },
+  {
+    "site_desc": "Martin Luther King Jr. K-3",
+    "g2014": 179952,
+    "numberpupil": 318,
+    "perpupil": 566
+  },
+  {
+    "site_desc": "McClymonds",
+    "g2014": 95524,
+    "numberpupil": 286,
+    "perpupil": 334
+  },
+  {
+    "site_desc": "Melrose Leadership Acad",
+    "g2014": 279292,
+    "numberpupil": 457,
+    "perpupil": 611
+  },
+  {
+    "site_desc": "Metwest",
+    "g2014": 33646,
+    "numberpupil": 161,
+    "perpupil": 209
+  },
+  {
+    "site_desc": "Montclair",
+    "g2014": 363644,
+    "numberpupil": 579,
+    "perpupil": 628
+  },
+  {
+    "site_desc": "Montera Middle",
+    "g2014": 250481,
+    "numberpupil": 878,
+    "perpupil": 285
+  },
+  {
+    "site_desc": "New Highland Academy",
+    "g2014": 323808,
+    "numberpupil": 375,
+    "perpupil": 863
+  },
+  {
+    "site_desc": "Oakland High School",
+    "g2014": 443956,
+    "numberpupil": 1515,
+    "perpupil": 293
+  },
+  {
+    "site_desc": "Oakland International High Sch",
+    "g2014": 65341,
+    "numberpupil": 380,
+    "perpupil": 172
+  },
+  {
+    "site_desc": "Oakland Tech High School",
+    "g2014": 614843,
+    "numberpupil": 2014,
+    "perpupil": 305
+  },
+  {
+    "site_desc": "Parker",
+    "g2014": 173685,
+    "numberpupil": 276,
+    "perpupil": 629
+  },
+  {
+    "site_desc": "Peralta",
+    "g2014": 252193,
+    "numberpupil": 329,
+    "perpupil": 767
+  },
+  {
+    "site_desc": "Piedmont Avenue",
+    "g2014": 208142,
+    "numberpupil": 372,
+    "perpupil": 560
+  },
+  {
+    "site_desc": "Reach Academy",
+    "g2014": 248619,
+    "numberpupil": 399,
+    "perpupil": 623
+  },
+  {
+    "site_desc": "Redwood Heights",
+    "g2014": 274863,
+    "numberpupil": 373,
+    "perpupil": 737
+  },
+  {
+    "site_desc": "Rise",
+    "g2014": 194731,
+    "numberpupil": 305,
+    "perpupil": 638
+  },
+  {
+    "site_desc": "Roosevelt Middle",
+    "g2014": 216054,
+    "numberpupil": 526,
+    "perpupil": 411
+  },
+  {
+    "site_desc": "Roots International Academy",
+    "g2014": 75806,
+    "numberpupil": 308,
+    "perpupil": 246
+  },
+  {
+    "site_desc": "Rudsdale Continuation",
+    "g2014": 42174,
+    "numberpupil": 147,
+    "perpupil": 287
+  },
+  {
+    "site_desc": "Sankofa Academy",
+    "g2014": 178238,
+    "numberpupil": 362,
+    "perpupil": 492
+  },
+  {
+    "site_desc": "Sequoia",
+    "g2014": 363536,
+    "numberpupil": 429,
+    "perpupil": 847
+  },
+  {
+    "site_desc": "Skyline High School",
+    "g2014": 592503,
+    "numberpupil": 1845,
+    "perpupil": 321
+  },
+  {
+    "site_desc": "Think College Now",
+    "g2014": 192388,
+    "numberpupil": 301,
+    "perpupil": 639
+  },
+  {
+    "site_desc": "Thornhill",
+    "g2014": 304093,
+    "numberpupil": 394,
+    "perpupil": 772
+  },
+  {
+    "site_desc": "United For Success Academy",
+    "g2014": 110796,
+    "numberpupil": 403,
+    "perpupil": 275
+  },
+  {
+    "site_desc": "Urban Promise Academy",
+    "g2014": 109272,
+    "numberpupil": 323,
+    "perpupil": 338
+  },
+  {
+    "site_desc": "West Oakland Middle",
+    "g2014": 61593,
+    "numberpupil": 224,
+    "perpupil": 275
+  },
+  {
+    "site_desc": "Westlake Middle",
+    "g2014": 237703,
+    "numberpupil": 524,
+    "perpupil": 454
+  }
+]

@@ -1,0 +1,542 @@
+[
+    {
+      "site_desc": "INTERNATIONAL COMMUNITY SCHOOL",
+      "g2012": 256695,
+      "g2013": 269655,
+      "g2014": 242015
+    },
+    {
+      "site_desc": "EDNA BREWER MIDDLE",
+      "g2012": 359829,
+      "g2013": 459299,
+      "g2014": 249925
+    },
+    {
+      "site_desc": "RUDSDALE CONTINUATION",
+      "g2012": 46786,
+      "g2013": 41738,
+      "g2014": 42174
+    },
+    {
+      "site_desc": "ROOSEVELT MIDDLE",
+      "g2012": 300964,
+      "g2013": 327907,
+      "g2014": 216054
+    },
+    {
+      "site_desc": "MARKHAM",
+      "g2012": 197312,
+      "g2013": 237109,
+      "g2014": 213584
+    },
+    {
+      "site_desc": "Encompass Small School",
+      "g2012": 184672,
+      "g2013": 234397,
+      "g2014": 211774
+    },
+    {
+      "site_desc": "GARFIELD",
+      "g2012": 356740,
+      "g2013": 505785,
+      "g2014": 441048
+    },
+    {
+      "site_desc": "MONTCLAIR",
+      "g2012": 284253,
+      "g2013": 386906,
+      "g2014": 363644
+    },
+    {
+      "site_desc": "THINK COLLEGE NOW",
+      "g2012": 167139,
+      "g2013": 198220,
+      "g2014": 192388
+    },
+    {
+      "site_desc": "WEST OAKLAND MIDDLE",
+      "g2012": 92392,
+      "g2013": 108008,
+      "g2014": 61593
+    },
+    {
+      "site_desc": "CLEVELAND",
+      "g2012": 214411,
+      "g2013": 334029,
+      "g2014": 338828
+    },
+    {
+      "site_desc": "MADISON MIDDLE",
+      "g2012": 159527,
+      "g2013": 256970,
+      "g2014": 145928
+    },
+    {
+      "site_desc": "BRET HARTE MIDDLE",
+      "g2012": 273013,
+      "g2013": 343958,
+      "g2014": 161497
+    },
+    {
+      "site_desc": "CLAREMONT MIDDLE",
+      "g2012": 137213,
+      "g2013": 225702,
+      "g2014": 146531
+    },
+    {
+      "site_desc": "THORNHILL",
+      "g2012": 221761,
+      "g2013": 267211,
+      "g2014": 304093
+    },
+    {
+      "site_desc": "LA ESCUELITA",
+      "g2012": 161375,
+      "g2013": 285431,
+      "g2014": 195359
+    },
+    {
+      "site_desc": "ALLIANCE ACADEMY",
+      "g2012": 132095,
+      "g2013": 207084,
+      "g2014": 131957
+    },
+    {
+      "site_desc": "OAKLAND INTERNATIONAL HIGH SCH",
+      "g2012": 89220,
+      "g2013": 129717,
+      "g2014": 65341
+    },
+    {
+      "site_desc": "Districtwide Expenses",
+      "g2012": 347674,
+      "g2013": 346077,
+      "g2014": 345842
+    },
+    {
+      "site_desc": "FRICK MIDDLE",
+      "g2012": 259577,
+      "g2013": 157290,
+      "g2014": 66816
+    },
+    {
+      "site_desc": "CARL MUNCK",
+      "g2012": 198250,
+      "g2013": 243883,
+      "g2014": 153850
+    },
+    {
+      "site_desc": "MONTERA MIDDLE",
+      "g2012": 392690,
+      "g2013": 532140,
+      "g2014": 250481
+    },
+    {
+      "site_desc": "BROOKFIELD",
+      "g2012": 210725,
+      "g2013": 251059,
+      "g2014": 283175
+    },
+    {
+      "site_desc": "ALLENDALE",
+      "g2012": 246161,
+      "g2013": 319619,
+      "g2014": 291174
+    },
+    {
+      "site_desc": "COLISEUM COLLEGE PREP ACADEMY",
+      "g2012": 156750,
+      "g2013": 215018,
+      "g2014": 133092
+    },
+    {
+      "site_desc": "PIEDMONT AVENUE",
+      "g2012": 214980,
+      "g2013": 270338,
+      "g2014": 208142
+    },
+    {
+      "site_desc": "LINCOLN",
+      "g2012": 414146,
+      "g2013": 526590,
+      "g2014": 476770
+    },
+    {
+      "site_desc": "SOBRANTE PARK",
+      "g2012": 114649,
+      "g2013": 161736,
+      "g2014": 189861
+    },
+    {
+      "site_desc": "PERALTA",
+      "g2012": 204910,
+      "g2013": 258930,
+      "g2014": 252193
+    },
+    {
+      "site_desc": "CASTLEMONT HIGH SCHOOL",
+      "g2012": 172344,
+      "g2013": 153663,
+      "g2014": 76534
+    },
+    {
+      "site_desc": "GRASS VALLEY",
+      "g2012": 172886,
+      "g2013": 198324,
+      "g2014": 218468
+    },
+    {
+      "site_desc": "NEW HIGHLAND ACADEMY",
+      "g2012": 199960,
+      "g2013": 271532,
+      "g2014": 323808
+    },
+    {
+      "site_desc": "LAFAYETTE",
+      "g2012": 161364,
+      "g2013": 188217,
+      "g2014": 191878
+    },
+    {
+      "site_desc": "Teaching & Learning",
+      "g2012": 0,
+      "g2013": 277790,
+      "g2014": 161943
+    },
+    {
+      "site_desc": "INDEPENDENT STUDY 9-12",
+      "g2012": 27155,
+      "g2013": 92358,
+      "g2014": 44348
+    },
+    {
+      "site_desc": "FRANKLIN",
+      "g2012": 424657,
+      "g2013": 750731,
+      "g2014": 548352
+    },
+    {
+      "site_desc": "KAISER",
+      "g2012": 174527,
+      "g2013": 220427,
+      "g2014": 171838
+    },
+    {
+      "site_desc": "OAKLAND HIGH SCHOOL",
+      "g2012": 377237,
+      "g2013": 611417,
+      "g2014": 443956
+    },
+    {
+      "site_desc": "RISE",
+      "g2012": 212216,
+      "g2013": 212777,
+      "g2014": 194731
+    },
+    {
+      "site_desc": "LAUREL",
+      "g2012": 320238,
+      "g2013": 414280,
+      "g2014": 467096
+    },
+    {
+      "site_desc": "SANKOFA ACADEMY",
+      "g2012": 183794,
+      "g2013": 251619,
+      "g2014": 178238
+    },
+    {
+      "site_desc": "UNITED FOR SUCCESS ACADEMY",
+      "g2012": 188981,
+      "g2013": 267021,
+      "g2014": 110796
+    },
+    {
+      "site_desc": "BUNCHE ACADEMY",
+      "g2012": 66969,
+      "g2013": 70592,
+      "g2014": 45107
+    },
+    {
+      "site_desc": "PREP LITERARY ACAD\/CULTURAL EX",
+      "g2012": 121221,
+      "g2013": 153486,
+      "g2014": 120769
+    },
+    {
+      "site_desc": "ROOTS INTERNATIONAL ACADEMY",
+      "g2012": 153233,
+      "g2013": 175321,
+      "g2014": 75806
+    },
+    {
+      "site_desc": "FREMONT HIGH SCHOOL",
+      "g2012": 152913,
+      "g2013": 182204,
+      "g2014": 197897
+    },
+    {
+      "site_desc": "MARTIN LUTHER KING JR. K-3",
+      "g2012": 130942,
+      "g2013": 184740,
+      "g2014": 179952
+    },
+    {
+      "site_desc": "MANZANITA SEED",
+      "g2012": 185303,
+      "g2013": 278983,
+      "g2014": 244528
+    },
+    {
+      "site_desc": "MetWest",
+      "g2012": 44801,
+      "g2013": 69700,
+      "g2014": 33646
+    },
+    {
+      "site_desc": "BURCKHALTER",
+      "g2012": 195845,
+      "g2013": 224807,
+      "g2014": 206201
+    },
+    {
+      "site_desc": "JOAQUIN MILLER",
+      "g2012": 232308,
+      "g2013": 301232,
+      "g2014": 398334
+    },
+    {
+      "site_desc": "ESPERANZA ACADEMY",
+      "g2012": 202713,
+      "g2013": 238445,
+      "g2014": 224457
+    },
+    {
+      "site_desc": "MELROSE LEADERSHIP ACAD",
+      "g2012": 164460,
+      "g2013": 259766,
+      "g2014": 279292
+    },
+    {
+      "site_desc": "EAST OAKLAND PRIDE",
+      "g2012": 283984,
+      "g2013": 338135,
+      "g2014": 342372
+    },
+    {
+      "site_desc": "LIFE ACADEMY",
+      "g2012": 105618,
+      "g2013": 178436,
+      "g2014": 141903
+    },
+    {
+      "site_desc": "McClymonds",
+      "g2012": 74289,
+      "g2013": 0,
+      "g2014": 0
+    },
+    {
+      "site_desc": "COMMUNITY UNITED ELEMENTARY",
+      "g2012": 244087,
+      "g2013": 340831,
+      "g2014": 405161
+    },
+    {
+      "site_desc": "FRUITVALE",
+      "g2012": 229940,
+      "g2013": 351048,
+      "g2014": 315185
+    },
+    {
+      "site_desc": "FUTURES ELEMENTARY",
+      "g2012": 152948,
+      "g2013": 258575,
+      "g2014": 267454
+    },
+    {
+      "site_desc": "CROCKER HIGHLANDS",
+      "g2012": 242304,
+      "g2013": 361381,
+      "g2014": 294437
+    },
+    {
+      "site_desc": "GREENLEAF ELEMENTARY",
+      "g2012": 282938,
+      "g2013": 364969,
+      "g2014": 214333
+    },
+    {
+      "site_desc": "ACORN WOODLAND K-5",
+      "g2012": 149888,
+      "g2013": 194819,
+      "g2014": 172255
+    },
+    {
+      "site_desc": "WESTLAKE MIDDLE",
+      "g2012": 309226,
+      "g2013": 344521,
+      "g2014": 237703
+    },
+    {
+      "site_desc": "BRIDGES ACADEMY @ MELROSE",
+      "g2012": 244356,
+      "g2013": 306906,
+      "g2014": 238588
+    },
+    {
+      "site_desc": "HILLCREST",
+      "g2012": 190631,
+      "g2013": 309087,
+      "g2014": 190446
+    },
+    {
+      "site_desc": "ELMHURST COMMUNITY PREP",
+      "g2012": 167786,
+      "g2013": 205350,
+      "g2014": 94208
+    },
+    {
+      "site_desc": "EMERSON",
+      "g2012": 173728,
+      "g2013": 260093,
+      "g2014": 244126
+    },
+    {
+      "site_desc": "GLENVIEW",
+      "g2012": 285395,
+      "g2013": 406562,
+      "g2014": 467824
+    },
+    {
+      "site_desc": "HORACE MANN",
+      "g2012": 214943,
+      "g2013": 271516,
+      "g2014": 303196
+    },
+    {
+      "site_desc": "OAKLAND TECH HIGH SCHOOL",
+      "g2012": 545238,
+      "g2013": 884557,
+      "g2014": 614843
+    },
+    {
+      "site_desc": "BUSINESS INFORMATION TECH HI",
+      "g2012": 539,
+      "g2013": 0,
+      "g2014": 0
+    },
+    {
+      "site_desc": "HOOVER",
+      "g2012": 183359,
+      "g2013": 218890,
+      "g2014": 180891
+    },
+    {
+      "site_desc": "CHABOT",
+      "g2012": 339883,
+      "g2013": 494554,
+      "g2014": 375997
+    },
+    {
+      "site_desc": "Reach Academy",
+      "g2012": 181193,
+      "g2013": 247032,
+      "g2014": 248619
+    },
+    {
+      "site_desc": "Community Day School",
+      "g2012": 37027,
+      "g2013": 13860,
+      "g2014": 11844
+    },
+    {
+      "site_desc": "BELLA VISTA",
+      "g2012": 298977,
+      "g2013": 406086,
+      "g2014": 349203
+    },
+    {
+      "site_desc": "SKYLINE HIGH SCHOOL",
+      "g2012": 493547,
+      "g2013": 753537,
+      "g2014": 592503
+    },
+    {
+      "site_desc": "School Contingency Funds",
+      "g2012": 149795,
+      "g2013": 208963,
+      "g2014": 204024
+    },
+    {
+      "site_desc": "Leadership, Curriculum and In",
+      "g2012": 413094,
+      "g2013": 0,
+      "g2014": 0
+    },
+    {
+      "site_desc": "URBAN PROMISE ACADEMY",
+      "g2012": 183343,
+      "g2013": 197462,
+      "g2014": 109272
+    },
+    {
+      "site_desc": "SEQUOIA",
+      "g2012": 213504,
+      "g2013": 346375,
+      "g2014": 363536
+    },
+    {
+      "site_desc": "MCCLYMONDS HIGH SCHOOL",
+      "g2012": 0,
+      "g2013": 71205,
+      "g2014": 95524
+    },
+    {
+      "site_desc": "Human Resources Services, Supp",
+      "g2012": 752875,
+      "g2013": 743334,
+      "g2014": 732273
+    },
+    {
+      "site_desc": "FRED T KOREMATSU DISCOVERY AC",
+      "g2012": 235462,
+      "g2013": 277701,
+      "g2014": 259918
+    },
+    {
+      "site_desc": "MANZANITA COMMUNITY SCHOOL",
+      "g2012": 176402,
+      "g2013": 222414,
+      "g2014": 223727
+    },
+    {
+      "site_desc": "REDWOOD HEIGHTS",
+      "g2012": 205828,
+      "g2013": 251582,
+      "g2014": 274863
+    },
+    {
+      "site_desc": "PARKER",
+      "g2012": 109140,
+      "g2013": 141357,
+      "g2014": 173685
+    },
+    {
+      "site_desc": "GLOBAL FAMILY SCHOOL",
+      "g2012": 232023,
+      "g2013": 339120,
+      "g2014": 274559
+    },
+    {
+      "site_desc": "HOWARD",
+      "g2012": 82829,
+      "g2013": 104732,
+      "g2014": 105349
+    },
+    {
+      "site_desc": "DEWEY HIGH SCHOOL",
+      "g2012": 60712,
+      "g2013": 66128,
+      "g2014": 73938
+    }
+  ]
