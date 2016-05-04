@@ -33,16 +33,16 @@
     google.charts.load('current', {'packages':['table']});
 
     var dataBySchool = [];
-         $.getJSON('perpupil.json', function(data) {
+         $.getJSON('per_pupil_total.json', function(data) {
 
                 $.each(data, function(key, row) {
 
-                    item = [row.site_desc, row.g2014, row.numberpupil, row.perpupil]
+                    item = [row.school, row.enrollment, row.g2014, row.perpupilv, row.Budget, row.CostperStd, row.measuregOverTotal]
                     dataBySchool.push(item);
                 });
 
                 // //Add a header to each program data set (only happens once)
-                dataBySchool.unshift(['School', '2014-15 Total $', 'Enrollment', '$ Per Pupil']);
+                dataBySchool.unshift(['School', 'Enrollment', 'Measure G Total $',  'Measure G $ Per Pupil', 'School Total $', 'Total $ Per Pupil', '% from Measure G']);
                 
             });
 

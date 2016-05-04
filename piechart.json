@@ -1,0 +1,1617 @@
+[
+  {
+    "prog_desc": "School Libraries",
+    "sum": 11608.52,
+    "site_desc": "Hillcrest"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 77054.96,
+    "site_desc": "Sequoia"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 21000,
+    "site_desc": "Elmhurst Community Prep"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 17199.61,
+    "site_desc": "Emerson"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 69701.44,
+    "site_desc": "Metwest"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 141433.66,
+    "site_desc": "Manzanita Seed"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 7385.28,
+    "site_desc": "Sankofa Academy"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 29958.33,
+    "site_desc": "Westlake Middle"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 57230.26,
+    "site_desc": "United For Success Academy"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 182203.44,
+    "site_desc": "Fremont High School"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 98440.05,
+    "site_desc": "Martin Luther King Jr. K-3"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 31692.19,
+    "site_desc": "Rise"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 125304.55,
+    "site_desc": "Roots International Academy"
+  },
+  {
+    "prog_desc": "Balance Sheet Account",
+    "sum": 20655839.39,
+    "site_desc": "General Fund - Unrestricted"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 53940.71,
+    "site_desc": "Laurel"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 13402.56,
+    "site_desc": "Acorn Woodland K-5"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 74751.06,
+    "site_desc": "Prep Literary Acad/Cultural Ex"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 17309.09,
+    "site_desc": "Bridges Academy @ Melrose"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 11500,
+    "site_desc": "West Oakland Middle"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 27010.84,
+    "site_desc": "Sankofa Academy"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 27310.7,
+    "site_desc": "Manzanita Seed"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 21385.06,
+    "site_desc": "Fruitvale"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 41528.39,
+    "site_desc": "Futures Elementary"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 21756.97,
+    "site_desc": "East Oakland Pride"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 24738.26,
+    "site_desc": "Community United Elementary"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 7686.67,
+    "site_desc": "Life Academy"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 27000,
+    "site_desc": "Bret Harte Middle"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 59406.76,
+    "site_desc": "Bunche Academy"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 23585.99,
+    "site_desc": "Howard"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 12245.61,
+    "site_desc": "Crocker Highlands"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 73805.94,
+    "site_desc": "Global Family School"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 26356.1,
+    "site_desc": "Greenleaf Elementary"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 185077.24,
+    "site_desc": "United For Success Academy"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 39146.17,
+    "site_desc": "Parker"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 123528.66,
+    "site_desc": "Sankofa Academy"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 54210.53,
+    "site_desc": "Redwood Heights"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 60588.08,
+    "site_desc": "Manzanita Community School"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 19361.85,
+    "site_desc": "Prep Literary Acad/Cultural Ex"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 12001.17,
+    "site_desc": "Burckhalter"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 36547.18,
+    "site_desc": "Roots International Academy"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 241124.02,
+    "site_desc": "Laurel"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 67030.96,
+    "site_desc": "Fred T Korematsu Discovery Ac"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 18006.86,
+    "site_desc": "Esperanza Academy"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 26387.28,
+    "site_desc": "Joaquin Miller"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 26722.9,
+    "site_desc": "Martin Luther King Jr. K-3"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 108879.03,
+    "site_desc": "Rise"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 18221.91,
+    "site_desc": "Melrose Leadership Acad"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 611418.75,
+    "site_desc": "Oakland High School"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 50714.79,
+    "site_desc": "Community United Elementary"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 39362.15,
+    "site_desc": "East Oakland Pride"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 164173.97,
+    "site_desc": "Emerson"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 112701.51,
+    "site_desc": "Elmhurst Community Prep"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 38254.62,
+    "site_desc": "Fruitvale"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 2589.57,
+    "site_desc": "Futures Elementary"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 18468.75,
+    "site_desc": "Manzanita Seed"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 14605.93,
+    "site_desc": "Greenleaf Elementary"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 38169,
+    "site_desc": "Crocker Highlands"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 13215.29,
+    "site_desc": "Greenleaf Elementary"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 201453.98,
+    "site_desc": "Hillcrest"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 18045.63,
+    "site_desc": "International Community School"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 17680.14,
+    "site_desc": "Life Academy"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 168491.77,
+    "site_desc": "Bridges Academy @ Melrose"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 22429.95,
+    "site_desc": "Burckhalter"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 10309.47,
+    "site_desc": "Prep Literary Acad/Cultural Ex"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 18531.77,
+    "site_desc": "Melrose Leadership Acad"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 62276.34,
+    "site_desc": "Horace Mann"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 37348.48,
+    "site_desc": "Joaquin Miller"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 15308.59,
+    "site_desc": "Martin Luther King Jr. K-3"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 37374.29,
+    "site_desc": "Esperanza Academy"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 222544.23,
+    "site_desc": "Westlake Middle"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 22822.17,
+    "site_desc": "Melrose Leadership Acad"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 74179.23,
+    "site_desc": "Glenview"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 101432.92,
+    "site_desc": "Acorn Woodland K-5"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 13548.92,
+    "site_desc": "Roots International Academy"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 47985.91,
+    "site_desc": "Elmhurst Community Prep"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 38670.09,
+    "site_desc": "Hillcrest"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 75278.95,
+    "site_desc": "Bella Vista"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 237699.7,
+    "site_desc": "Greenleaf Elementary"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 232791.06,
+    "site_desc": "Crocker Highlands"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 225341.45,
+    "site_desc": "Fruitvale"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 162183.61,
+    "site_desc": "Futures Elementary"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 29688.34,
+    "site_desc": "Emerson"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 169479.42,
+    "site_desc": "Community United Elementary"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 66418.14,
+    "site_desc": "Reach Academy"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 153070.73,
+    "site_desc": "Life Academy"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 201481.67,
+    "site_desc": "East Oakland Pride"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 11903.1,
+    "site_desc": "Hillcrest"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 99408.54,
+    "site_desc": "Chabot"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 26468.6,
+    "site_desc": "Laurel"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 29333.37,
+    "site_desc": "Acorn Woodland K-5"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 139718.13,
+    "site_desc": "Melrose Leadership Acad"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 165964.11,
+    "site_desc": "Joaquin Miller"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 15876.79,
+    "site_desc": "Rise"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 51793.22,
+    "site_desc": "Hoover"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 128458.7,
+    "site_desc": "Esperanza Academy"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 22939.76,
+    "site_desc": "Sankofa Academy"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 68130.92,
+    "site_desc": "Westlake Middle"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 24757.82,
+    "site_desc": "United For Success Academy"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 143265.45,
+    "site_desc": "Burckhalter"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 55484.97,
+    "site_desc": "Bridges Academy @ Melrose"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 20123.71,
+    "site_desc": "Encompass Small School"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 8640.65,
+    "site_desc": "Howard"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 753536.27,
+    "site_desc": "Skyline High School"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 264063.32,
+    "site_desc": "Bella Vista"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 73094.76,
+    "site_desc": "Greenleaf Elementary"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 11985.33,
+    "site_desc": "Community Day School"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 78179.76,
+    "site_desc": "Crocker Highlands"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 21972.74,
+    "site_desc": "Global Family School"
+  },
+  {
+    "prog_desc": "Hr Recruitment",
+    "sum": 743335.01,
+    "site_desc": "Human Resources Services, Supp"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 66068.66,
+    "site_desc": "Fruitvale"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 52271.34,
+    "site_desc": "Futures Elementary"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 74220.67,
+    "site_desc": "Community United Elementary"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 131927.37,
+    "site_desc": "Reach Academy"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 75563.17,
+    "site_desc": "East Oakland Pride"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 300939.54,
+    "site_desc": "Chabot"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 41107.27,
+    "site_desc": "Glenview"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 17447.92,
+    "site_desc": "Peralta"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 23800.06,
+    "site_desc": "Fred T Korematsu Discovery Ac"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 42504.03,
+    "site_desc": "Melrose Leadership Acad"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 71532.68,
+    "site_desc": "Joaquin Miller"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 119707.38,
+    "site_desc": "Hoover"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 54603.55,
+    "site_desc": "Esperanza Academy"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 41718.1,
+    "site_desc": "Horace Mann"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 12876.4,
+    "site_desc": "Parker"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 13000,
+    "site_desc": "Grass Valley"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 47124.35,
+    "site_desc": "Burckhalter"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 852045.54,
+    "site_desc": "Oakland Tech High School"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 20420.17,
+    "site_desc": "Redwood Heights"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 18311.83,
+    "site_desc": "Manzanita Community School"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 28879.07,
+    "site_desc": "Reach Academy"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 52963.84,
+    "site_desc": "Emerson"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 15423,
+    "site_desc": "New Highland Academy"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 3663.08,
+    "site_desc": "Elmhurst Community Prep"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 1754.93,
+    "site_desc": "Community Day School"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 18695.07,
+    "site_desc": "Urban Promise Academy"
+  },
+  {
+    "prog_desc": "Nclb Hqt Compliance",
+    "sum": 97440.83,
+    "site_desc": "Teaching & Learning"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 45450.53,
+    "site_desc": "Hillcrest"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 20845.89,
+    "site_desc": "Sequoia"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 43746.31,
+    "site_desc": "Bella Vista"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 65620.8,
+    "site_desc": "Bridges Academy @ Melrose"
+  },
+  {
+    "prog_desc": "General Education, K-12",
+    "sum": 0,
+    "site_desc": "School Contingency Funds"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 135826.97,
+    "site_desc": "Horace Mann"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 14600,
+    "site_desc": "Kaiser"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 34374,
+    "site_desc": "Hoover"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 267613.37,
+    "site_desc": "Glenview"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 60745.06,
+    "site_desc": "Chabot"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 50650.43,
+    "site_desc": "Acorn Woodland K-5"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 66127.85,
+    "site_desc": "Dewey High School"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 19805.95,
+    "site_desc": "Reach Academy"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 22998.2,
+    "site_desc": "Bella Vista"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 41853.29,
+    "site_desc": "Sequoia"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 58210.87,
+    "site_desc": "Howard"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 203590.11,
+    "site_desc": "Global Family School"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 119.16,
+    "site_desc": "Community Day School"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 41696.52,
+    "site_desc": "Urban Promise Academy"
+  },
+  {
+    "prog_desc": "Music",
+    "sum": 72253.31,
+    "site_desc": "Teaching & Learning"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 65022.22,
+    "site_desc": "Parker"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 51036.93,
+    "site_desc": "Sankofa Academy"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 9670.9,
+    "site_desc": "School Contingency Funds"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 128870.09,
+    "site_desc": "Redwood Heights"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 14052,
+    "site_desc": "Frick Middle"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 104752.35,
+    "site_desc": "Manzanita Community School"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 17248.51,
+    "site_desc": "Carl Munck"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 33518.84,
+    "site_desc": "Chabot"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 92746.4,
+    "site_desc": "Laurel"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 146287.75,
+    "site_desc": "Fred T Korematsu Discovery Ac"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 13020.01,
+    "site_desc": "Hoover"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 41630.61,
+    "site_desc": "Rise"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 71204.25,
+    "site_desc": "Mcclymonds High School"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 39752.25,
+    "site_desc": "Global Family School"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 185200.35,
+    "site_desc": "Sequoia"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 14292.66,
+    "site_desc": "Howard"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 120338.05,
+    "site_desc": "Urban Promise Academy"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 73247.17,
+    "site_desc": "Manzanita Seed"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 44271.24,
+    "site_desc": "Martin Luther King Jr. K-3"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 23659.78,
+    "site_desc": "Glenview"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 40579.23,
+    "site_desc": "Fred T Korematsu Discovery Ac"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 28765.46,
+    "site_desc": "Redwood Heights"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 38763.8,
+    "site_desc": "Manzanita Community School"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 37075.44,
+    "site_desc": "Prep Literary Acad/Cultural Ex"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 31745.71,
+    "site_desc": "Horace Mann"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 24310.33,
+    "site_desc": "Parker"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 96639.29,
+    "site_desc": "School Contingency Funds"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 115621.21,
+    "site_desc": "Encompass Small School"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 35769.75,
+    "site_desc": "Grass Valley"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 17966,
+    "site_desc": "Melrose Leadership Acad"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 55445.9,
+    "site_desc": "Peralta"
+  },
+  {
+    "prog_desc": "Oratorical Fest/Performances",
+    "sum": 61827.16,
+    "site_desc": "Teaching & Learning"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 19158.13,
+    "site_desc": "Thornhill"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 20132.76,
+    "site_desc": "Cleveland"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 25792.34,
+    "site_desc": "Madison Middle"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 21677,
+    "site_desc": "Community United Elementary"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 96824.13,
+    "site_desc": "Edna Brewer Middle"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 116421.07,
+    "site_desc": "Markham"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 27866.08,
+    "site_desc": "Bret Harte Middle"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 35305.53,
+    "site_desc": "Sobrante Park"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 129419.5,
+    "site_desc": "Lincoln"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 229211.7,
+    "site_desc": "Roosevelt Middle"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 35100.61,
+    "site_desc": "International Community School"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 11120.44,
+    "site_desc": "Claremont Middle"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 30262.09,
+    "site_desc": "Montclair"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 29037.7,
+    "site_desc": "Garfield"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 54836.76,
+    "site_desc": "Kaiser"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 23898.15,
+    "site_desc": "Westlake Middle"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 11192.25,
+    "site_desc": "West Oakland Middle"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 41738.68,
+    "site_desc": "Rudsdale Continuation"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 20508.74,
+    "site_desc": "Encompass Small School"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 16105.29,
+    "site_desc": "Think College Now"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 118398.25,
+    "site_desc": "Franklin"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 318644.38,
+    "site_desc": "Edna Brewer Middle"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 134618.04,
+    "site_desc": "International Community School"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 0,
+    "site_desc": "Independent Study 9-12"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 40304.25,
+    "site_desc": "Lafayette"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 43294.46,
+    "site_desc": "Markham"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 20000,
+    "site_desc": "Elmhurst Community Prep"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 54749.4,
+    "site_desc": "New Highland Academy"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 69450.64,
+    "site_desc": "Roosevelt Middle"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 27828.06,
+    "site_desc": "West Oakland Middle"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 66098.14,
+    "site_desc": "Garfield"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 14700,
+    "site_desc": "Rise"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 149843.53,
+    "site_desc": "Thornhill"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 48546,
+    "site_desc": "Montclair"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 53080.08,
+    "site_desc": "Carl Munck"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 10625.15,
+    "site_desc": "Encompass Small School"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 29581.81,
+    "site_desc": "Think College Now"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 19716,
+    "site_desc": "Sankofa Academy"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 162105.06,
+    "site_desc": "Claremont Middle"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 29243.9,
+    "site_desc": "Roosevelt Middle"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 17466.35,
+    "site_desc": "Markham"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 222860.33,
+    "site_desc": "Bret Harte Middle"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 11184.94,
+    "site_desc": "Bunche Academy"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 211192.73,
+    "site_desc": "Cleveland"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 52722.94,
+    "site_desc": "La Escuelita"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 172387.45,
+    "site_desc": "Madison Middle"
+  },
+  {
+    "prog_desc": "Oakland Fine Arts Summer Schl",
+    "sum": 52744.49,
+    "site_desc": "School Contingency Funds"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 57506.59,
+    "site_desc": "West Oakland Middle"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 104900.53,
+    "site_desc": "Think College Now"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 67990.93,
+    "site_desc": "Piedmont Avenue"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 12000,
+    "site_desc": "Prep Literary Acad/Cultural Ex"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 33716.38,
+    "site_desc": "Thornhill"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 217122.31,
+    "site_desc": "Montclair"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 305119.83,
+    "site_desc": "Garfield"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 18525.66,
+    "site_desc": "Manzanita Seed"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 33675.21,
+    "site_desc": "Cleveland"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 64426.16,
+    "site_desc": "Allendale"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 52477.11,
+    "site_desc": "Claremont Middle"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 58789.08,
+    "site_desc": "Madison Middle"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 39016.19,
+    "site_desc": "Brookfield"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 20240.97,
+    "site_desc": "International Community School"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 43828.99,
+    "site_desc": "Edna Brewer Middle"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 66296.64,
+    "site_desc": "Bret Harte Middle"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 49912.83,
+    "site_desc": "School Contingency Funds"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 47633.11,
+    "site_desc": "Think College Now"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 142588.05,
+    "site_desc": "Piedmont Avenue"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 117535.76,
+    "site_desc": "Montera Middle"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 38911.07,
+    "site_desc": "Carl Munck"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 37663.4,
+    "site_desc": "Frick Middle"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 90976.24,
+    "site_desc": "Montclair"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 13168.76,
+    "site_desc": "Kaiser"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 105632.89,
+    "site_desc": "Garfield"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 13684.15,
+    "site_desc": "Lafayette"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 167874.68,
+    "site_desc": "Coliseum College Prep Academy"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 16732.02,
+    "site_desc": "Urban Promise Academy"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 30532.03,
+    "site_desc": "La Escuelita"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 50656.29,
+    "site_desc": "Alliance Academy"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 189766.84,
+    "site_desc": "Allendale"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 16855.25,
+    "site_desc": "New Highland Academy"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 21422.52,
+    "site_desc": "Sequoia"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 0,
+    "site_desc": "Independent Study 9-12"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 170211.34,
+    "site_desc": "Brookfield"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 36215.58,
+    "site_desc": "Franklin"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 46301.42,
+    "site_desc": "Teaching & Learning"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 64493.62,
+    "site_desc": "Thornhill"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 381167.64,
+    "site_desc": "Montera Middle"
+  },
+  {
+    "prog_desc": "Oth Programs / Local Goals",
+    "sum": 346076.87,
+    "site_desc": "Districtwide Expenses"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 19108.21,
+    "site_desc": "Peralta"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 131929.39,
+    "site_desc": "Carl Munck"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 19320,
+    "site_desc": "Redwood Heights"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 94434.74,
+    "site_desc": "Frick Middle"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 40655.67,
+    "site_desc": "Piedmont Avenue"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 3993.76,
+    "site_desc": "Grass Valley"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 32297,
+    "site_desc": "Coliseum College Prep Academy"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 129715.38,
+    "site_desc": "Oakland International High Sch"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 134600.11,
+    "site_desc": "Alliance Academy"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 23076.04,
+    "site_desc": "Brookfield"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 45204.87,
+    "site_desc": "Allendale"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 18289.04,
+    "site_desc": "Sobrante Park"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 69026.73,
+    "site_desc": "Cleveland"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 178232.66,
+    "site_desc": "La Escuelita"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 18894.96,
+    "site_desc": "Lincoln"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 28817.31,
+    "site_desc": "Peralta"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 108541.84,
+    "site_desc": "Kaiser"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 29311.03,
+    "site_desc": "Grass Valley"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 19128.12,
+    "site_desc": "Piedmont Avenue"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 523410.34,
+    "site_desc": "Franklin"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 18828.17,
+    "site_desc": "Brookfield"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 61663.24,
+    "site_desc": "International Community School"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 92356.53,
+    "site_desc": "Independent Study 9-12"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 14845.2,
+    "site_desc": "Coliseum College Prep Academy"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 109548.35,
+    "site_desc": "Lafayette"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 68279.68,
+    "site_desc": "Lincoln"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 20220.27,
+    "site_desc": "Allendale"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 147685.39,
+    "site_desc": "New Highland Academy"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 21030.73,
+    "site_desc": "Sobrante Park"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 67518.98,
+    "site_desc": "Encompass Small School"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 11140.1,
+    "site_desc": "Frick Middle"
+  },
+  {
+    "prog_desc": "Art",
+    "sum": 32512.38,
+    "site_desc": "Oakland Tech High School"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 116250.6,
+    "site_desc": "Grass Valley"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 29280.53,
+    "site_desc": "Kaiser"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 153663.16,
+    "site_desc": "Castlemont High School"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 138109.18,
+    "site_desc": "Peralta"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 2713.58,
+    "site_desc": "Carl Munck"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 33436.63,
+    "site_desc": "Montera Middle"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 23943.05,
+    "site_desc": "La Escuelita"
+  },
+  {
+    "prog_desc": "Middle School Electives",
+    "sum": 0,
+    "site_desc": "Independent Study 9-12"
+  },
+  {
+    "prog_desc": "Class Size Reduction",
+    "sum": 59927.6,
+    "site_desc": "Markham"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 36822.04,
+    "site_desc": "New Highland Academy"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 87109.58,
+    "site_desc": "Sobrante Park"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 24681.83,
+    "site_desc": "Lafayette"
+  },
+  {
+    "prog_desc": "Basic School Support",
+    "sum": 309995.68,
+    "site_desc": "Lincoln"
+  },
+  {
+    "prog_desc": "Hr Recruitment",
+    "sum": 0,
+    "site_desc": "Districtwide Expenses"
+  },
+  {
+    "prog_desc": "School Libraries",
+    "sum": 21826.64,
+    "site_desc": "Alliance Academy"
+  },
+  {
+    "prog_desc": "Covered Elem Intervention Pds",
+    "sum": 72703.91,
+    "site_desc": "Franklin"
+  }
+]
