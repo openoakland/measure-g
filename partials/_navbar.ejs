@@ -8,15 +8,15 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html"><strong>Track G - Oakland's Measure G</strong></a>
+                        <a class="navbar-brand" href="index"><strong>Track G - Oakland's Measure G</strong></a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse-target">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="index">About</a></li>
-                            <li class=""><a href="map">By Location</a></li>
-                            <li class=""><a href="programs#art">By Program</a></li>
-                            <li class=""><a href="chart">By School</a></li>
-                            <li class=""><a href="treemap">In Summary</a></li>
+                            <li class="<%- current.source == 'index' ? 'active' : '' %>"><a href="index">About</a></li>
+                            <li class="<%- current.source == 'map' ? 'active' : '' %>"><a href="map">By Location</a></li>
+                            <li class="<%- current.source == 'programs' ? 'active' : '' %>"><a href="programs#art">By Program</a></li>
+                            <li class="<%- current.source == 'chart' ? 'active' : '' %>"><a href="chart">By School</a></li>
+                            <li class="<%- current.source == 'treemap' ? 'active' : '' %>"><a href="treemap">In Summary</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right social">
                             <li>
