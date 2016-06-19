@@ -1,0 +1,42 @@
+html, body, #map {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+
+    background-color:#fff;
+    text-rendering:optimizeLegibility;
+    -webkit-text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+    color:#333;
+    font-weight:300;
+    line-height:25px;
+    font-family:"Proxima Nova W01","Helvetica Neue",Helvetica,Arial,sans-serif
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: 100%;
+    > .center-container {
+        padding: 50px 0 0 0;
+        margin:0;
+    }
+}
+
+.center-container, .center-row {
+    height:100%;
+}
+
+.preview-image {
+    width: 100%;
+}
+
+/* Nav Social Links */
+ul.social {
+    a.twitter:hover {
+      color: #00aced;
+    }
+    a.facebook:hover {
+      color: #3b5998;
+    }
+}
