@@ -10,6 +10,9 @@ git rm -rf .
 # compile the source files in the parent folder (measure-g repo)
 harp compile ../ ./
 
+# create a CNAME record so the URL works correctly
+echo 'stage.trackg.org' > 'CNAME'
+
 # add and commit all the files on the gh-pages branch, push it up to GitHub for hosting
 git add -A
 git commit -m "$(date +%m-%d-%Y_%H:%M:%S) staging deploy"
