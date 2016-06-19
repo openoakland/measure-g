@@ -1,0 +1,30 @@
+@import 'main';
+
+/*Program Selector*/
+
+#program-select, h3 {
+    display: table;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.program {
+    font-weight: bold;
+    display: inline-block;
+    padding: 5px 8px;
+    margin: 1px 1px;
+    cursor: pointer;
+
+    :hover {
+        color: black;
+        background-color: #E7E7E7;
+        border-radius: 5px;
+    }
+    
+    &.active, &.active:hover {
+        color: white;
+        background-color: #4285F4;
+        border-radius: 5px;
+    }
+}
