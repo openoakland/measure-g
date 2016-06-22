@@ -1,0 +1,181 @@
+@import 'main';
+
+.cartodb-popup-content-wrapper,
+.cartodb-popup-content {
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+}
+
+/*Menu Headers*/
+
+span.menu-icon {
+    float: right;
+}
+
+#menu-heading {
+    cursor: pointer;
+    font-size:20px;
+    padding: 8px 15px;
+}
+.section-header {
+    text-transform: uppercase;
+    font-size: 13px;
+    padding-left: 30px;
+    color: rgba(51, 51, 51, 0.7);
+}
+
+/* Year Selection */
+
+#year-select {
+    height: 50px;
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+    text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+    background: rgba(255,255,255,0.9);
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #999;
+
+    .year {
+        display: inline-block;
+        vertical-align: middle;
+        *display: inline;
+        zoom: 1;
+        padding: 3px;
+        cursor: pointer;
+
+        &.selected {
+            background-color: rgba(0,0,0,.67);
+            color: white;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+    }
+
+    .stretch {
+        width: 100%;
+        display: inline-block;
+        font-size: 0;
+        line-height: 0
+    }
+}
+
+/* Loading Graphic */
+#loading {
+    height: 50px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    top: 46%;
+    left: 46%;
+    border: 1px solid #999;
+}
+
+/*Menu Filter Icons*/
+
+#spending-menu, #program-menu, #school-level-menu, #menu-heading.expanded {
+    border-bottom: 1px solid #999;
+}
+
+#spending-menu, #program-menu, #school-level-menu {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+#spending-menu .buttons {
+    display: inline-block;
+    padding-left: 15px;
+}
+
+.filter-label {
+    padding-left: 5px;
+    vertical-align: middle;
+}
+
+/* school levels */
+
+label {
+    margin: 0;
+    font-weight: inherit;
+    display: inherit;
+}
+
+#menu {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+}
+.layer_selector {
+    background: rgba(255,255,255,0.9);
+    border-radius: 5px;
+    padding: 0;
+    border: 1px solid #999;
+
+    ul {
+        padding: 0; margin: 0;
+        list-style-type: none;
+    }
+
+    li {
+        padding: 3px 30px;
+        font-family: Helvetica, Arial;
+        font-size: 15px;
+        color: #444;
+        cursor: pointer;
+        height: 100%;
+    }
+
+    li:hover {
+        background-color: #A6CEE3;
+        cursor: pointer;
+    }
+}
+
+/* Infowindows */
+.infowindow .school-name, .cartodb-tooltip .school-name {
+    font-weight: bold;
+}
+
+.info-row {
+    width: 80%;
+
+    .spending-label {
+        color: black;
+        float: left;
+        font-style: italic;
+    }
+
+    .spending {
+        font-weight: bold;
+        float: right;
+
+        &.highlight {
+            font-size: 12pt;
+            color: green;
+        }
+    }
+}
+
+.cartodb-tooltip {
+    max-width: 1000px !important;
+
+    div.cartodb-popup.v2 div.cartodb-popup-content {
+        max-width: 190px;
+    }
+
+    /* Reusing cartodb infowindow classes for tooltip. this hides the carrot/arrow thing */
+    div.cartodb-popup.v2:before {
+        display: none;
+    }
+
+}
+
+.more-info {
+    padding-left: 5px;
+    font-size: 10pt;
+}
