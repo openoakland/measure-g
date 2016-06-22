@@ -1,0 +1,31 @@
+@import 'main';
+
+/*Program Selector*/
+
+#year-select, h3 {
+    display: table;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.year {
+    font-weight: bold;
+    display: inline-block;
+    padding: 5px 8px;
+    margin: 1px 1px;
+    cursor: pointer;
+
+}
+
+.year.active, .year.active:hover {
+    color: white;
+    background-color: #4285F4;
+    border-radius: 5px;
+}
+
+.year:hover {
+    color: black;
+    background-color: #E7E7E7;
+    border-radius: 5px;
+}
