@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- partial("partials/_header", { title: "Measure G Spending by School"}) %>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+        <!--Load the AJAX API. Do this only once per web page! -->
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+
+
+       </script>
+
+        <!--Google analytics snippet -->
+           <script>
+          //   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          //   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          //   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          //   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          //   ga('create', 'UA-35908939-11', 'auto');
+          //   ga('send', 'pageview');
+
+          </script>
+
+    </head>
+    <body>
+
+        <!-- Wrap all page content here -->
+        <div id="wrap">
+
+            <%- partial("partials/_navbar") %>
+
+          <!-- Begin page content -->
+          <div class="center-container">
+
+            <div class="center-row">
+                <div class="container">
+                	<br>
+                	<br>
+                	<br>
+                	<h2 id="schoolTitle" style="font-size:100px;color:red;position:relative;"></h2>
+
+                    <div id="table_div"></div>
+
+                </div>
+
+            </div>
+
+
+          </div>
+
+        </div> <!-- end wrap -->
+
+        <!-- Place your code in the script tags below -->
+        <script type="text/javascript">
+        function getParameterByName(name, url) {
+		    if (!url) url = window.location.href;
+		    name = name.replace(/[\[\]]/g, "\\$&");
+		    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		        results = regex.exec(url);
+		    if (!results) return null;
+		    if (!results[2]) return '';
+		    return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+		var schoolID = getParameterByName("schoolID");
+		// alert(schoolID); 
+
+        var sql = "SELECT * FROM measure_g_schools_lat_long WHERE ousd_site =" + schoolID;
+
+	    var schoolName = "";
+	    // Call cartodb
+        $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
+
+            $.each(data.rows, function(key, row) {
+	        	
+	        	schoolName = row.schnam;
+                  $('#schoolTitle').text(schoolName);
+                  // alert(schoolName);
+            });
+        });
+        
+      
+
+
+
+        </script>
+        
+        <%- partial("partials/_uservoice.ejs") %>
+        
+    </body>
+</html>
