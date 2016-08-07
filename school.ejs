@@ -52,36 +52,28 @@
 
         <!-- Place your code in the script tags below -->
         <script type="text/javascript">
-        function getParameterByName(name, url) {
-		    if (!url) url = window.location.href;
-		    name = name.replace(/[\[\]]/g, "\\$&");
-		    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-		        results = regex.exec(url);
-		    if (!results) return null;
-		    if (!results[2]) return '';
-		    return decodeURIComponent(results[2].replace(/\+/g, " "));
-		}
-		var schoolID = getParameterByName("schoolID");
-		// alert(schoolID); 
+            function getParameterByName(name, url) {
+                if (!url) url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+            var schoolID = getParameterByName("schoolID");
 
-        var sql = "SELECT * FROM measure_g_schools_lat_long WHERE ousd_site =" + schoolID;
+            var sql = "SELECT * FROM measure_g_schools_lat_long WHERE ousd_site =" + schoolID;
 
-	    var schoolName = "";
-	    // Call cartodb
-        $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
+            var schoolName = "";
+            // Call cartodb
+            $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
 
-            $.each(data.rows, function(key, row) {
-	        	
-	        	schoolName = row.schnam;
-                  $('#schoolTitle').text(schoolName);
-                  // alert(schoolName);
+                $.each(data.rows, function(key, row) {
+                    schoolName = row.schnam;
+                    $('#schoolTitle').text(schoolName);
+                });
             });
-        });
-        
-      
-
-
-
         </script>
         
         <%- partial("partials/_uservoice.ejs") %>
