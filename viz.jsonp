@@ -158,6 +158,11 @@
                     "name": "per_student_money",
                     "title": false,
                     "position": 1.7976931348623e+308
+                  },
+                  {
+                    "name": "ousd_site",
+                    "title": false,
+                    "position": 1.7976931348623e+308
                   }
                 ],
                 "template_name": "infowindow_light",
