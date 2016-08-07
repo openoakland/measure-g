@@ -5,11 +5,6 @@
 
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-        <!--Load the AJAX API. Do this only once per web page! -->
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-        <script type="text/javascript">
-
-
        </script>
 
         <!--Google analytics snippet -->
@@ -39,10 +34,14 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-8">
                                 <h2 id="school_name"></h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-8">
                                 <div id="school_address"></div>
                             </div>
                             <div class="col-sm-12 col-md-4">
-                                <div id="school_map"></div>>
+                                <div id="school_map"></div>
                             </div>
                         </div>
 
@@ -56,36 +55,61 @@
 
         <!-- Place your code in the script tags below -->
         <script type="text/javascript">
-            function formatSchoolAddress(street,city,state,zip) {
-                return street + " " + city + ", " + state + " " + zip;
-            }
+            window.onload = function() {
 
-            function getParameterByName(name, url) {
-                if (!url) url = window.location.href;
-                name = name.replace(/[\[\]]/g, "\\$&");
-                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                    results = regex.exec(url);
-                if (!results) return null;
-                if (!results[2]) return '';
-                return decodeURIComponent(results[2].replace(/\+/g, " "));
-            }
-            var schoolID = getParameterByName("schoolID");
+                var map;
 
-            var sql = "SELECT ousd_site,latcod as latitude,loncod as longitude,schnam as school_name,ncessch as nces,lstree as street,lcity as city,lstate as state,lzip as zip,gslo as grade_low,gshi as grade_high,site_type FROM measure_g_schools_lat_long WHERE ousd_site =" + schoolID;
+                function initMap(center, name) {
+                    map = new google.maps.Map(document.getElementById('school_map'), {
+                        center: center,
+                        zoom: 15,
+                        disableDefaultUI: true,
+                        zoomControl: true
+                    });
 
-            var schoolName = "";
-            // Call cartodb
-            $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
+                    var marker = new google.maps.Marker({
+                        position: center,
+                        map: map,
+                        title: name,
+                        icon: "https://maps.google.com/mapfiles/kml/shapes/schools_maps.png"
+                      });
+                };
 
-                $.each(data.rows, function(key, row) {
-                    schoolName = row.school_name;
-                    $('#school_name').text(schoolName);
-                    $('#school_address').text(formatSchoolAddress(row.street,row.city,row.state,row.zip));
+                function formatSchoolAddress(street,city,state,zip) {
+                    return street + " " + city + ", " + state + " " + zip;
+                }
+
+                function getParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                        results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                }
+                var schoolID = getParameterByName("schoolID");
+
+                var sql = "SELECT ousd_site,latcod as latitude,loncod as longitude,schnam as school_name,ncessch as nces,lstree as street,lcity as city,lstate as state,lzip as zip,gslo as grade_low,gshi as grade_high,site_type FROM measure_g_schools_lat_long WHERE ousd_site =" + schoolID;
+
+                var schoolName = "";
+                // Call cartodb
+                $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
+
+                    $.each(data.rows, function(key, row) {
+                        schoolName = row.school_name;
+                        $('#school_name').text(schoolName);
+                        $('#school_address').text(formatSchoolAddress(row.street,row.city,row.state,row.zip));
+                        var center = {lat: row.latitude, lng: row.longitude};
+                        initMap(center,row.school_name);
+                    });
                 });
-            });
+            }
         </script>
 
         <%- partial("partials/_uservoice.ejs") %>
 
     </body>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqC5S-8nx5nXnD16I_FzA5KNhyjyFLRgw" async defer></script>
+
 </html>
