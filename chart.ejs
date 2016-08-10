@@ -18,8 +18,8 @@
          $.getJSON('per_pupil_total.json', function(data) {
 
                 $.each(data, function(key, row) {
-
-                    item = [row.school, row.enrollment, row.g2014, row.perpupilv, row.Budget, row.CostperStd, row.measuregOverTotal]
+                    var schoolname = "<a href='school.html?schoolID="+107+"' target='_blank'>"+row.school+"</a>"
+                    item = [schoolname, row.enrollment, row.g2014, row.perpupilv, row.Budget, row.CostperStd, row.measuregOverTotal]
                     dataBySchool.push(item);
                 });
 
@@ -32,7 +32,7 @@
                 dataBySchool = google.visualization.arrayToDataTable(dataBySchool);
                 var table = new google.visualization.Table(document.getElementById('table_div'));
 
-                table.draw(dataBySchool, {showRowNumber: true, width: '100%', height: '100%'});
+                table.draw(dataBySchool, {showRowNumber: true, width: '100%', height: '100%', allowHtml: true});
             }
 
             google.charts.setOnLoadCallback(drawTable);
