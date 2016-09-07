@@ -18,8 +18,10 @@
          $.getJSON('per_pupil_total.json', function(data) {
 
                 $.each(data, function(key, row) {
-                    var schoolname = "<a href='school.html?schoolID="+107+"' target='_blank'>"+row.school+"</a>"
-                    item = [schoolname, row.enrollment, row.g2014, row.perpupilv, row.Budget, row.CostperStd, row.measuregOverTotal]
+                    var schoolname = "<a href='school.html?schoolID="+row.site+"' target='_blank'>"+row.field_7+"</a>"
+                    var perPupilMeasureG = row.g2014/row._20th_enroll
+                    var measuregOverTotal = row.g2014/row.budget
+                    item = [schoolname, row._20th_enroll, row.g2014, perPupilMeasureG, row.budget, row.per_pupil_expenditures_formula, measuregOverTotal]
                     dataBySchool.push(item);
                 });
 
@@ -27,12 +29,14 @@
                 dataBySchool.unshift(['School', 'Enrollment', 'Measure G Total $',  'Measure G $ Per Pupil', 'School Total $', 'Total $ Per Pupil', '% from Measure G']);
 
             });
+            var windowheight = window.innerHeight - 100;
+            
 
             function drawTable() {
                 dataBySchool = google.visualization.arrayToDataTable(dataBySchool);
                 var table = new google.visualization.Table(document.getElementById('table_div'));
 
-                table.draw(dataBySchool, {showRowNumber: true, width: '100%', height: '100%', allowHtml: true});
+                table.draw(dataBySchool, {showRowNumber: true, width: '100%', height: windowheight, allowHtml: true});
             }
 
             google.charts.setOnLoadCallback(drawTable);
