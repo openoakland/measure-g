@@ -120,60 +120,55 @@
                     });
                 });
 
-                var sql2 = "SELECT
-                split_part(prog_desc, ' - ',2) as prog_desc,
-                COALESCE(SUM(case when year = '2012' then ytd_actual end), 0) as g2012,
-                COALESCE(SUM(case when year = '2013' then ytd_actual end), 0) as g2013,
-                COALESCE(SUM(case when year = '2014' then ytd_actual end), 0) as g2014
+                var sql2 = "SELECT"+
+                    "split_part(prog_desc, ' - ',2) as prog_desc,"+
+                    "COALESCE(SUM(case when year = '2012' then ytd_actual end), 0) as g2012,"+
+                    "COALESCE(SUM(case when year = '2013' then ytd_actual end), 0) as g2013,"+
+                    "COALESCE(SUM(case when year = '2014' then ytd_actual end), 0) as g2014"+
 
+                    "FROM ("+
+                    "SELECT g2012.site, g2012.ytd_actual, g2012.prog_desc, '2012' as year FROM "+
+                    "measure_g_2012_13 g2012"+
+                        "WHERE g2012.site = 172"+
 
+                    "UNION"+
+                    "SELECT g2013.site, g2013.ytd_actual, g2013.prog_desc, '2013' as year FROM measure_g_2013_14 g2013"+
+                      ""+
+                        "WHERE g2013.site = 172"+
 
-                FROM (
-                SELECT g2012.site, g2012.ytd_actual, g2012.prog_desc, '2012' as year FROM 
-                measure_g_2012_13 g2012
-                 
-                   WHERE g2012.site = 172
+                    "UNION"+
 
-                UNION
-                SELECT g2013.site, g2013.ytd_actual, g2013.prog_desc, '2013' as year FROM measure_g_2013_14 g2013
-                 
-                   WHERE g2013.site = 172
+                    "SELECT g2014.site, g2014.ytd_actual, g2014.prog_desc, '2014' as year FROM measure_g_2014_15_actuals g2014"+
 
-                UNION
+                    "WHERE g2014.site = 172"+
 
-                SELECT g2014.site, g2014.ytd_actual, g2014.prog_desc, '2014' as year FROM measure_g_2014_15_actuals g2014
+                    ") u"+
 
-                 WHERE g2014.site = 172
+                    "GROUP BY prog_desc"+
 
-                ) u
+                    "HAVING SUM(case when year = '2012' then ytd_actual end) > 10000"+
+                    "OR SUM(case when year = '2013' then ytd_actual end) > 10000"+
+                    "OR SUM(case when year = '2014' then ytd_actual end) > 10000";
 
-                GROUP BY prog_desc
-
-
-                HAVING SUM(case when year = '2012' then ytd_actual end) > 10000
-                OR SUM(case when year = '2013' then ytd_actual end) > 10000
-                OR SUM(case when year = '2014' then ytd_actual end) > 10000"
-                
             google.charts.load('current', {'packages':['line']});
             google.charts.setOnLoadCallback(drawChart);
 
-            $.getJSON('programs.json', function(data) {
+            var dataByProgram;
 
-                $.each(data, function(key, row) {
+            $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql2, function(data) {
+
+                $.each(data.rows, function(key, row) {
 
                     var program = row.program;
                     delete row.program;
-                    item = [row.object, row.g2014, row.g2013, row.g2012]
+                    item = [row.program, row.g2014, row.g2013, row.g2012]
 
-                    if(dataByProgram[program]) {
-                        dataByProgram[program].push(item);
-                    } else {
-                        dataByProgram[program] = [item];
-                    }
                 });
 
-                //Add a header to each program data set (only happens once)
-                for(var key in dataByProgram) dataByProgram[key].unshift(['Expense Type', '2012-13', '2013-14', '2014-15']);
+                dataByProgram.push(item);
+
+                //Add a header
+                dataByProgram.unshift(['Expense Type', '2012-13', '2013-14', '2014-15']);
 
             });
             function drawChart() {
