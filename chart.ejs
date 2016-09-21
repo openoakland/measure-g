@@ -18,7 +18,7 @@
          $.getJSON('per_pupil_total.json', function(data) {
 
                 $.each(data, function(key, row) {
-                    var schoolname = "<a href='school.html?schoolID="+row.site+"' target='_blank'>"+row.field_7+"</a>"
+                    var schoolname = "<a href='school.html?schoolID="+row.school+"' target='_blank'>"+row.school+"</a>"
                     var perPupilMeasureG = row.g2014/row.enrollment
                     var measuregOverTotal = row.g2014/row.Budget
                     item = [schoolname, row.enrollment, row.g2014, row.perpupil, row.Budget, row.CostperStd, measuregOverTotal]
