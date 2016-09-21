@@ -19,9 +19,10 @@
 
                 $.each(data, function(key, row) {
                     var schoolname = "<a href='school.html?schoolID="+row.site+"' target='_blank'>"+row.field_7+"</a>"
-                    var perPupilMeasureG = row.g2014/row._20th_enroll
-                    var measuregOverTotal = row.g2014/row.budget
-                    item = [schoolname, row._20th_enroll, row.g2014, perPupilMeasureG, row.budget, row.per_pupil_expenditures_formula, measuregOverTotal]
+                    var perPupilMeasureG = row.g2014/row.enrollment
+                    var measuregOverTotal = row.g2014/row.Budget
+                    item = [schoolname, row.enrollment, row.g2014, row.perpupil, row.Budget, row.CostperStd, measuregOverTotal]
+
                     dataBySchool.push(item);
                 });
 
