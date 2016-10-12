@@ -151,7 +151,7 @@
                     "OR SUM(case when year = '2013' then ytd_actual end) > 10000 "+
                     "OR SUM(case when year = '2014' then ytd_actual end) > 10000 ";
 
-            google.charts.load('current', {'packages':['bar']});
+            google.charts.load('current', {'packages':['line']});
             google.charts.setOnLoadCallback(drawChart);
 
             var dataByProgram = [];
@@ -162,8 +162,6 @@
                     item = [row.prog_desc, row.g2014, row.g2013, row.g2012]
                     dataByProgram.push(item);
                 });
-
-
 
                 //Add a header
                 dataByProgram.unshift(['Program', '2012-13', '2013-14', '2014-15']);
@@ -182,7 +180,7 @@
                 height: 500
                 };
 
-              var chart = new google.charts.Bar(document.getElementById('chart_div'));
+              var chart = new google.charts.Line(document.getElementById('chart_div'));
 
               chart.draw(data, options);
             }
