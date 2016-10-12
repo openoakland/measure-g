@@ -152,21 +152,9 @@
                     "OR SUM(case when year = '2014' then ytd_actual end) > 10000 ";
 
             google.charts.load('current', {'packages':['bar']});
-            google.charts.setOnLoadCallback(drawChart);
 
             var dataByProgram = [];
 
-            $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql2, function(data) {
-
-                $.each(data.rows, function(key, row) {
-                    item = [row.prog_desc, row.g2014, row.g2013, row.g2012]
-                    dataByProgram.push(item);
-                });
-
-                //Add a header
-                dataByProgram.unshift(['Program', '2012-13', '2013-14', '2014-15']);
-
-            });
             function drawChart() {
 
                 var data = google.visualization.arrayToDataTable(dataByProgram);
@@ -184,6 +172,20 @@
 
               chart.draw(data, options);
             }
+
+            $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql2, function(data) {
+
+                $.each(data.rows, function(key, row) {
+                    item = [row.prog_desc, row.g2014, row.g2013, row.g2012]
+                    dataByProgram.push(item);
+                });
+
+                //Add a header
+                dataByProgram.unshift(['Program', '2012-13', '2013-14', '2014-15']);
+
+            }).then(function(){
+                google.charts.setOnLoadCallback(drawChart);
+            });
 
 
             }
