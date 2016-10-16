@@ -130,18 +130,18 @@
                     "FROM ( "+
                     "SELECT g2012.site, g2012.ytd_actual, g2012.prog_desc, '2012' as year FROM  "+
                     "measure_g_2012_13 g2012 "+
-                        "WHERE g2012.site = 172  "+
+                        "WHERE g2012.site = "+ schoolID +
 
                     "UNION "+
                     "SELECT g2013.site, g2013.ytd_actual, g2013.prog_desc, '2013' as year FROM measure_g_2013_14 g2013  "+
 
-                        "WHERE g2013.site = 172  "+
+                        "WHERE g2013.site = "+schoolID +
 
                     "UNION "+
 
                     "SELECT g2014.site, g2014.ytd_actual, g2014.prog_desc, '2014' as year FROM measure_g_2014_15_actuals g2014 "+
 
-                    "WHERE g2014.site = 172 "+
+                    "WHERE g2014.site = "+schoolID +
 
                     ") u "+
 
