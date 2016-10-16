@@ -52,6 +52,7 @@
 
                         <div id="table_div"></div>
                         <div id="chart_div"></div>
+                        <div id="object_chart"></div>
 
                     </div>
                 </div>
@@ -60,6 +61,8 @@
 
         <!-- Place your code in the script tags below -->
         <script type="text/javascript">
+            google.charts.load('current', {'packages':['bar']});
+
             window.onload = function() {
 
                 var map;
@@ -94,6 +97,29 @@
                     return decodeURIComponent(results[2].replace(/\+/g, " "));
                 }
                 var schoolID = getParameterByName("schoolID");
+
+                //Load Object Data by Program
+                var dataByProgram = {};
+
+                $.getJSON('programs.json', function(data) {
+
+                    $.each(data, function(key, row) {
+
+                        var program = row.program;
+                        delete row.program;
+                        item = [row.object, row.g2014, row.g2013, row.g2012]
+
+                        if(dataByProgram[program]) {
+                            dataByProgram[program].push(item);
+                        } else {
+                            dataByProgram[program] = [item];
+                        }
+                    });
+
+                    //Add a header to each program data set (only happens once)
+                    for(var key in dataByProgram) dataByProgram[key].unshift(['Expense Type', '2012-13', '2013-14', '2014-15']);
+
+                });
 
                 var sql = "SELECT ousd_site,latcod as latitude,loncod as longitude,schnam as school_name,ncessch as nces,lstree as street,lcity as city,lstate as state,lzip as zip,gslo as grade_low,gshi as grade_high,site_type FROM measure_g_schools_lat_long WHERE ousd_site =" + schoolID;
 
@@ -151,14 +177,13 @@
                     "OR SUM(case when year = '2013' then ytd_actual end) > 10000 "+
                     "OR SUM(case when year = '2014' then ytd_actual end) > 10000 ";
 
-            google.charts.load('current', {'packages':['bar']});
-
-            var dataByProgram = [];
+            var programTotalsJson = [];
             var programs_chart;
+            var programTotalData;
 
             function drawChart() {
 
-                var data = google.visualization.arrayToDataTable(dataByProgram);
+                programTotalData = google.visualization.arrayToDataTable(programTotalsJson);
 
                 var options = {
                 chart: {
@@ -169,137 +194,53 @@
                 height: 500
                 };
 
-              programs_chart = new google.charts.Bar(document.getElementById('chart_div'));
+                programs_chart = new google.charts.Bar(document.getElementById('chart_div'));
 
-              programs_chart.draw(data, options);
-            google.visualization.events.addListener(programs_chart, 'select', selectHandler);
-            function selectHandler(e) {
-              var selection = programs_chart.getSelection();
-              var program_alert = data.getFormattedValue(selection[0].row, 0);
-              // alert(selection);
-              alert(program_alert);
-            }
+                programs_chart.draw(programTotalData, options);
+                google.visualization.events.addListener(programs_chart, 'select', selectHandler);
+
+                function selectHandler(e) {
+
+                    var selection = programs_chart.getSelection();
+                    var programName = programTotalData.getFormattedValue(selection[0].row, 0);
+                    var dataWithHeaders = dataByProgram[programName];
+                    var data = google.visualization.arrayToDataTable(dataWithHeaders);
+                    data.sort([{column: 1, desc:true}]);
+                    var objectChart = new google.charts.Bar(document.getElementById('object_chart'));
+
+                    var numBars = dataWithHeaders.length - 1;
+                    var chartHeight = numBars * 70;
+
+                    var options = {
+                        chart: {
+                        },
+                        bars: 'horizontal', // Required for Material Bar Charts.
+                        height: chartHeight,
+                        axes: {
+                            x: {
+                              0: { side: 'top', label: 'Amount spent'} // Top x-axis.
+                            }
+                          }
+                    };
+
+                    objectChart.draw(data, google.charts.Bar.convertOptions(options));
+
+                }
             }
 
             $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql2, function(data) {
 
                 $.each(data.rows, function(key, row) {
                     item = [row.prog_desc, row.g2014, row.g2013, row.g2012]
-                    dataByProgram.push(item);
+                    programTotalsJson.push(item);
                 });
 
                 //Add a header
-                dataByProgram.unshift(['Program', '2012-13', '2013-14', '2014-15']);
+                programTotalsJson.unshift(['Program', '2012-13', '2013-14', '2014-15']);
 
             }).then(function(){
                 google.charts.setOnLoadCallback(drawChart);
             });
-
-
-
-
-//secondary chart
-
-            // $.getJSON('programs.json', function(data) {
-
-            //     $.each(data, function(key, row) {
-
-            //         var program = row.program;
-            //         delete row.program;
-            //         item = [row.object, row.g2014, row.g2013, row.g2012]
-
-            //         if(dataByProgram[program]) {
-            //             dataByProgram[program].push(item);
-            //         } else {
-            //             dataByProgram[program] = [item];
-            //         }
-            //     });
-
-            //     //Add a header to each program data set (only happens once)
-            //     for(var key in dataByProgram) dataByProgram[key].unshift(['Expense Type', '2012-13', '2013-14', '2014-15']);
-
-            // });
-
-            // Set a callback to run when the Google Visualization API is loaded.
-            // google.setOnLoadCallback(drawChart);
-
-            // var supportedPrograms = {
-            //     'art': 'ART',
-            //     'basic-school-support': 'BASIC SCHOOL SUPPORT',
-            //     'class-size-reduction': "CLASS SIZE REDUCTION", 
-            //     'elementary-intervention': "COVERED ELEM INTERVENTION PDS",
-            //     'hr-recruitment': "HR Recruitment",
-            //     'middle-school-electives': "MIDDLE SCHOOL ELECTIVES",
-            //     'music': "MUSIC",
-            //     'nclb-hqt-compliance': "NCLB HQT COMPLIANCE",
-            //     'arts-summer-school': "Oakland Fine Arts Summer Schl",
-            //     'oratorical-fest': "ORATORICAL FEST/PERFORMANCES",
-            //     'oth-programs': "OTH PROGRAMS / LOCAL GOALS",
-            //     'libraries':"SCHOOL LIBRARIES"
-            // }
-
-            // //get selected program from URL
-            // var selectedProgram = window.location.hash.slice(1);
-
-            // if(selectedProgram in supportedPrograms) {
-            //     var programDataKey = supportedPrograms[selectedProgram];
-            // } else {
-            //     selectedProgram = "art";
-            //     window.location.hash = "art";
-            // }
-
-
-            // // Callback that creates and populates a data table, 
-            // // instantiates the pie chart, passes in the data and
-            // // draws it.
-
-            // function drawChart() {
-
-            //     function updateChartData(programId) {
-            //         window.location.hash = programId;
-            //         var programDataKey = supportedPrograms[programId];
-            //         var dataWithHeaders = dataByProgram[programDataKey];
-
-            //         var numBars = dataWithHeaders.length - 1;
-            //         var chartHeight = numBars * 70;
-
-            //         var data = google.visualization.arrayToDataTable(dataWithHeaders);
-
-            //         data.sort([{column: 1, desc:true}]);
-
-            //         var chart = new google.charts.Bar(document.getElementById('chart_div'));
-
-            //         google.visualization.events.addListener(chart, 'ready', function() {
-            //             document.body.scrollTop = document.documentElement.scrollTop = 0;
-            //         });
-
-            //         var options = {
-            //             chart: {
-            //             },
-            //             bars: 'horizontal', // Required for Material Bar Charts.
-            //             height: chartHeight,
-            //             axes: {
-            //                 x: {
-            //                   0: { side: 'top', label: 'Amount spent'} // Top x-axis.
-            //                 }
-            //               }
-            //         };
-
-            //         chart.draw(data, google.charts.Bar.convertOptions(options));
-            //         $('#program-select div').removeClass('active');
-            //         $('#program-select #'+programId).addClass('active');
-            //         document.body.scrollTop = document.documentElement.scrollTop = 0;
-            //     }
-
-            //     updateChartData(selectedProgram);
-            //     $('#program-select #'+selectedProgram).addClass('active');
-
-            //     $('#program-select').click(function(event) {
-            //         updateChartData(event.target.id);
-            //     });
-
-            // }
-
 
             }
         </script>
