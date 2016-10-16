@@ -154,6 +154,7 @@
             google.charts.load('current', {'packages':['bar']});
 
             var dataByProgram = [];
+            var programs_chart;
 
             function drawChart() {
 
@@ -168,9 +169,16 @@
                 height: 500
                 };
 
-              var chart = new google.charts.Bar(document.getElementById('chart_div'));
+              programs_chart = new google.charts.Bar(document.getElementById('chart_div'));
 
-              chart.draw(data, options);
+              programs_chart.draw(data, options);
+            google.visualization.events.addListener(programs_chart, 'select', selectHandler);
+            function selectHandler(e) {
+              var selection = programs_chart.getSelection();
+              var program_alert = data.getFormattedValue(selection[0].row, 0);
+              // alert(selection);
+              alert(program_alert);
+            }
             }
 
             $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql2, function(data) {
@@ -186,6 +194,111 @@
             }).then(function(){
                 google.charts.setOnLoadCallback(drawChart);
             });
+
+
+
+
+//secondary chart
+
+            // $.getJSON('programs.json', function(data) {
+
+            //     $.each(data, function(key, row) {
+
+            //         var program = row.program;
+            //         delete row.program;
+            //         item = [row.object, row.g2014, row.g2013, row.g2012]
+
+            //         if(dataByProgram[program]) {
+            //             dataByProgram[program].push(item);
+            //         } else {
+            //             dataByProgram[program] = [item];
+            //         }
+            //     });
+
+            //     //Add a header to each program data set (only happens once)
+            //     for(var key in dataByProgram) dataByProgram[key].unshift(['Expense Type', '2012-13', '2013-14', '2014-15']);
+
+            // });
+
+            // Set a callback to run when the Google Visualization API is loaded.
+            // google.setOnLoadCallback(drawChart);
+
+            // var supportedPrograms = {
+            //     'art': 'ART',
+            //     'basic-school-support': 'BASIC SCHOOL SUPPORT',
+            //     'class-size-reduction': "CLASS SIZE REDUCTION", 
+            //     'elementary-intervention': "COVERED ELEM INTERVENTION PDS",
+            //     'hr-recruitment': "HR Recruitment",
+            //     'middle-school-electives': "MIDDLE SCHOOL ELECTIVES",
+            //     'music': "MUSIC",
+            //     'nclb-hqt-compliance': "NCLB HQT COMPLIANCE",
+            //     'arts-summer-school': "Oakland Fine Arts Summer Schl",
+            //     'oratorical-fest': "ORATORICAL FEST/PERFORMANCES",
+            //     'oth-programs': "OTH PROGRAMS / LOCAL GOALS",
+            //     'libraries':"SCHOOL LIBRARIES"
+            // }
+
+            // //get selected program from URL
+            // var selectedProgram = window.location.hash.slice(1);
+
+            // if(selectedProgram in supportedPrograms) {
+            //     var programDataKey = supportedPrograms[selectedProgram];
+            // } else {
+            //     selectedProgram = "art";
+            //     window.location.hash = "art";
+            // }
+
+
+            // // Callback that creates and populates a data table, 
+            // // instantiates the pie chart, passes in the data and
+            // // draws it.
+
+            // function drawChart() {
+
+            //     function updateChartData(programId) {
+            //         window.location.hash = programId;
+            //         var programDataKey = supportedPrograms[programId];
+            //         var dataWithHeaders = dataByProgram[programDataKey];
+
+            //         var numBars = dataWithHeaders.length - 1;
+            //         var chartHeight = numBars * 70;
+
+            //         var data = google.visualization.arrayToDataTable(dataWithHeaders);
+
+            //         data.sort([{column: 1, desc:true}]);
+
+            //         var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+            //         google.visualization.events.addListener(chart, 'ready', function() {
+            //             document.body.scrollTop = document.documentElement.scrollTop = 0;
+            //         });
+
+            //         var options = {
+            //             chart: {
+            //             },
+            //             bars: 'horizontal', // Required for Material Bar Charts.
+            //             height: chartHeight,
+            //             axes: {
+            //                 x: {
+            //                   0: { side: 'top', label: 'Amount spent'} // Top x-axis.
+            //                 }
+            //               }
+            //         };
+
+            //         chart.draw(data, google.charts.Bar.convertOptions(options));
+            //         $('#program-select div').removeClass('active');
+            //         $('#program-select #'+programId).addClass('active');
+            //         document.body.scrollTop = document.documentElement.scrollTop = 0;
+            //     }
+
+            //     updateChartData(selectedProgram);
+            //     $('#program-select #'+selectedProgram).addClass('active');
+
+            //     $('#program-select').click(function(event) {
+            //         updateChartData(event.target.id);
+            //     });
+
+            // }
 
 
             }
