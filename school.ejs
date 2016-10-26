@@ -202,29 +202,32 @@
                 function selectHandler(e) {
 
                     var selection = programs_chart.getSelection();
-                    var programName = programTotalData.getFormattedValue(selection[0].row, 0);
-                    var dataWithHeaders = dataByProgram[programName];
-                    var data = google.visualization.arrayToDataTable(dataWithHeaders);
-                    data.sort([{column: 1, desc:true}]);
-                    var objectChart = new google.charts.Bar(document.getElementById('object_chart'));
 
-                    var numBars = dataWithHeaders.length - 1;
-                    var chartHeight = numBars * 70;
+                    if (selection.length > 0){
+                        var programName = programTotalData.getFormattedValue(selection[0].row, 0);
+                        var dataWithHeaders = dataByProgram[programName];
+                        var data = google.visualization.arrayToDataTable(dataWithHeaders);
+                        data.sort([{column: 1, desc:true}]);
+                        var objectChart = new google.charts.Bar(document.getElementById('object_chart'));
 
-                    var options = {
-                        chart: {
-                        },
-                        bars: 'horizontal', // Required for Material Bar Charts.
-                        height: chartHeight,
-                        width: 600,
-                        axes: {
-                            x: {
-                              0: { side: 'top', label: 'Amount spent'} // Top x-axis.
-                            }
-                          }
-                    };
+                        var numBars = dataWithHeaders.length - 1;
+                        var chartHeight = numBars * 70;
 
-                    objectChart.draw(data, google.charts.Bar.convertOptions(options));
+                        var options = {
+                            chart: {
+                            },
+                            bars: 'horizontal', // Required for Material Bar Charts.
+                            height: chartHeight,
+                            width: 600,
+                            axes: {
+                                x: {
+                                  0: { side: 'top', label: 'Amount spent'} // Top x-axis.
+                                }
+                              }
+                        };
+
+                        objectChart.draw(data, google.charts.Bar.convertOptions(options));
+                    }
 
                 }
             }
