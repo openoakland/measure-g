@@ -32,23 +32,33 @@
                 <div class="center-row">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-12 col-md-8">
+                            <div class="col-sm-12">
                                 <h2 id="school_name"></h2>
+                                <div id="school_address"></div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-8">
-                                <div id="school_address"></div>
-                                <span id="school_enrollment"></span>
-                                <div id="perPupilMeasureG" style="color:blue;font-size:30px;"></div>
-                                <span id="measuregOverTotal"></span>
-
+                        <div class="row" id="school_summary" style="display:none">
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="stat_label">Measure G Spending</div>
+                                        <div class="spending" id="total_spending"></div>
+                                        <div style="display:none" id="spending_year"></div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="stat_label">Per Student</div>
+                                        <div class= "spending" id="per_student_spending"></div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="stat_label">Number of Students</div>
+                                        <div class= "stat" id="total_enrollment"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md-4">
+                            <div class="col-xs-12 col-sm-4">
                                 <div id="school_map"></div>
                             </div>
                         </div>
-
 
                         <div id="table_div"></div>
                         <div id="chart_div"></div>
@@ -97,6 +107,14 @@
                     return decodeURIComponent(results[2].replace(/\+/g, " "));
                 }
                 var schoolID = getParameterByName("schoolID");
+                var currentYear = 2013;
+
+                var yearMapping = {
+                    2013: "2013-2014",
+                    2014: "2014-2015",
+                    2015: "2015-2016",
+                    2016: "2016-2017"
+                };
 
                 //Load Object Data by Program
                 var dataByProgram = {};
@@ -121,6 +139,7 @@
 
                 });
 
+                // See pretty print here: https://github.com/openoakland/measure-g/issues/50
                 var sql = "SELECT ll.ousd_site,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, mg.per_student, mg.per_student_money, mg.ytd_actual, mg.ytd_money FROM measure_g_schools_lat_long ll, ousd_enrollment_cde e, (SELECT site, SUM(m.ytd_actual) as ytd_actual, SUM(m.ytd_money) as ytd_money, SUM(m.per_student) as per_student, SUM(m.per_student_money) as per_student_money FROM measure_g_2014_15_per_student m GROUP BY site) mg WHERE ll.ousd_site = %S AND e.ousd_site = %S AND e.year = %Y AND mg.site = %S";
 
                 sql = sql.replace(/%S/gi, schoolID).replace(/%Y/gi, 2013);
@@ -135,17 +154,13 @@
                         $('#school_address').text(formatSchoolAddress(row.street,row.city,row.state,row.zip));
                         var center = {lat: row.latitude, lng: row.longitude};
                         initMap(center,row.school_name);
-                    });
-                });
-                $.getJSON('per_pupil_total.json', function(data) {
 
-                    $.each(data, function(key, row) {
-                        var schoolEnrollment = row.site
-                        var perPupilMeasureG = row.g2014/row._20th_enroll
-                        var measuregOverTotal = row.g2014/row.budget
-                        $('#school_enrollment').text("Enrollment " + schoolEnrollment);
-                        $('#perPupilMeasureG').text("Per pupil Measure G " + perPupilMeasureG);
-                        $('#measuregOverTotal').text("Measure G percent of total " + measuregOverTotal);
+                        $('#total_spending').text(row.ytd_money);
+                        $('#per_student_spending').text(row.per_student_money);
+                        $('#total_enrollment').text(row.total_enrollment);
+                        $('#spending_year').text(yearMapping[currentYear]);
+
+                        $('#school_summary').show();
                     });
                 });
 
