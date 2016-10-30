@@ -63,7 +63,7 @@
 
                         <div id="table_div"></div>
                         <div class="row">
-                            <div class="col-sm-12 col-md-6" id="program_chart"></div>
+                            <div class="col-sm-12" id="program_chart"></div>
                             <div id="object_chart"></div>
                         </div>
 
@@ -210,12 +210,15 @@
                       title: 'Spending by Program',
                       subtitle: ''
                     },
-                    height: 400
+                    height: 400,
+                    vAxis:{
+                        format: '$#,###'
+                    }
                 };
 
                 programs_chart = new google.charts.Bar(document.getElementById('program_chart'));
 
-                programs_chart.draw(programTotalData, options);
+                programs_chart.draw(programTotalData, google.charts.Bar.convertOptions(options));
                 // google.visualization.events.addListener(programs_chart, 'select', selectHandler);
 
                 function selectHandler(e) {
