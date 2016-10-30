@@ -18,7 +18,7 @@
          $.getJSON('per_pupil_total.json', function(data) {
 
                 $.each(data, function(key, row) {
-                    var schoolname = "<a href='school.html?schoolID="+row.site+"' target='_blank'>"+row.field_7+"</a>"
+                    var schoolname = "<a href='school.html?schoolID="+row.site+"' target='_blank'>"+row.school_name+"</a>"
                     var perPupilMeasureG = row.g2014/row._20th_enroll
                     var measuregOverTotal = row.g2014/row.budget
                     item = [schoolname, row._20th_enroll, row.g2014, perPupilMeasureG, row.budget, row.per_pupil_expenditures_formula, measuregOverTotal * 100]
@@ -103,13 +103,13 @@
 
         <!--Google analytics snippet -->
            <script>
-          //   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          //   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          //   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          //   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-          //   ga('create', 'UA-35908939-11', 'auto');
-          //   ga('send', 'pageview');
+            ga('create', 'UA-35908939-11', 'auto');
+            ga('send', 'pageview');
 
           </script>
     </head>
