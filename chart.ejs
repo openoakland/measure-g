@@ -18,8 +18,10 @@
          $.getJSON('per_pupil_total.json', function(data) {
 
                 $.each(data, function(key, row) {
-
-                    item = [row.school, row.enrollment, row.g2014, row.perpupilv, row.Budget, row.CostperStd, row.measuregOverTotal]
+                    var schoolname = "<a href='school.html?schoolID="+row.site+"' target='_blank'>"+row.school_name+"</a>"
+                    var perPupilMeasureG = row.g2014/row._20th_enroll
+                    var measuregOverTotal = row.g2014/row.budget
+                    item = [schoolname, row._20th_enroll, row.g2014, perPupilMeasureG, row.budget, row.per_pupil_expenditures_formula, measuregOverTotal * 100]
                     dataBySchool.push(item);
                 });
 
@@ -27,12 +29,25 @@
                 dataBySchool.unshift(['School', 'Enrollment', 'Measure G Total $',  'Measure G $ Per Pupil', 'School Total $', 'Total $ Per Pupil', '% from Measure G']);
 
             });
+            var windowheight = window.innerHeight - 100;
+
 
             function drawTable() {
                 dataBySchool = google.visualization.arrayToDataTable(dataBySchool);
                 var table = new google.visualization.Table(document.getElementById('table_div'));
 
-                table.draw(dataBySchool, {showRowNumber: true, width: '100%', height: '100%'});
+                var formatter = new google.visualization.NumberFormat(
+                    {prefix: '$', fractionDigits: 0});
+                formatter.format(dataBySchool, 2); // Apply formatter to $ columns
+                formatter.format(dataBySchool, 3);
+                formatter.format(dataBySchool, 4);
+                formatter.format(dataBySchool, 5);
+
+                var formatter = new google.visualization.NumberFormat(
+                    {suffix: '%', fractionDigits: 1});
+                formatter.format(dataBySchool, 6);
+
+                table.draw(dataBySchool, {showRowNumber: true, width: '100%', height: windowheight, allowHtml: true});
             }
 
             google.charts.setOnLoadCallback(drawTable);
@@ -88,13 +103,13 @@
 
         <!--Google analytics snippet -->
            <script>
-          //   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          //   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          //   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          //   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-          //   ga('create', 'UA-35908939-11', 'auto');
-          //   ga('send', 'pageview');
+            ga('create', 'UA-35908939-11', 'auto');
+            ga('send', 'pageview');
 
           </script>
     </head>

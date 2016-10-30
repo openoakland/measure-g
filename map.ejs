@@ -16,7 +16,7 @@
             <a href="#close" class="cartodb-popup-close-button close">x</a>
              <div class="cartodb-popup-content-wrapper">
                <div class="cartodb-popup-content">
-                <div class="school-name">{{content.data.schnam}}</div>
+                <div class="school-name"><a href="school.html?schoolID={{content.data.ousd_site}}">{{content.data.schnam}}</a></div>
                 <div class="info-row">
                     <span class="spending-label">total spending</span>
                     <span class="spending highlight">{{content.data.ytd_money}}</span>
@@ -36,7 +36,7 @@
             <a href="#close" class="cartodb-popup-close-button close">x</a>
              <div class="cartodb-popup-content-wrapper">
                <div class="cartodb-popup-content">
-                <div class="school-name">{{content.data.schnam}}</div>
+                <div class="school-name"><a href="school.html?schoolID={{content.data.ousd_site}}">{{content.data.schnam}}</a></div>
                 <div class="info-row">
                     <span class="spending-label">total spending</span>
                     <span class="spending">{{content.data.ytd_money}}</span>
@@ -329,7 +329,7 @@
 
             generateSpendingSQLQuery = function () {
 
-                var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money)::text as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, s.site_type, SUM(mg.per_student) per_student, SUM(per_student::numeric::money)::text as per_student_money, "
+                var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money)::text as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, s.site_type, s.ousd_site, SUM(mg.per_student) per_student, SUM(per_student::numeric::money)::text as per_student_money, "
                     + "ntile(10) OVER (ORDER BY mg.ytd_actual) as bubble_school, "
                     + "ntile(10) OVER (ORDER BY per_student) as bubble_student "
                     + "FROM " + getTableForSelectedYear() + " mg, measure_g_schools_lat_long s "
@@ -341,7 +341,7 @@
                     + getSelectedSchoolLevels()
                     + ") "
                     + "AND mg.site = s.ousd_site "
-                    + "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type, mg.ytd_actual, mg.per_student";
+                    + "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type, s.ousd_site, mg.ytd_actual, mg.per_student";
 
                 return query;
             };

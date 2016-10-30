@@ -1,0 +1,26 @@
+@import 'main';
+
+#school_summary {
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    .stat_label {
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    .spending, .stat {
+        font-size: 30pt;
+        font-weight: 400;
+        margin-bottom: 20px;
+    }
+
+    .spending {
+        color: green;
+    }
+
+    #school_map {
+        height: 200px;
+    }
+}

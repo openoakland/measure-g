@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- partial("partials/_header", { title: "Measure G Spending by School"}) %>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+       </script>
+
+        <!--Google analytics snippet -->
+           <script>
+          //   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          //   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          //   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          //   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          //   ga('create', 'UA-35908939-11', 'auto');
+          //   ga('send', 'pageview');
+
+          </script>
+
+    </head>
+    <body>
+
+        <!-- Wrap all page content here -->
+        <div id="wrap">
+
+            <%- partial("partials/_navbar") %>
+
+          <!-- Begin page content -->
+            <div class="center-container">
+                <div class="center-row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2 id="school_name"></h2>
+                                <div id="school_address"></div>
+                            </div>
+                        </div>
+                        <div class="row" id="school_summary" style="display:none">
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="stat_label">Measure G Spending</div>
+                                        <div class="spending" id="total_spending"></div>
+                                        <div style="display:none" id="spending_year"></div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="stat_label">Per Student</div>
+                                        <div class= "spending" id="per_student_spending"></div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="stat_label">Number of Students</div>
+                                        <div class= "stat" id="total_enrollment"></div>
+                                        <div>Note: enrollment from 2013-14</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div id="school_map"></div>
+                            </div>
+                        </div>
+
+                        <div id="table_div"></div>
+                        <div class="row">
+                            <div class="col-sm-12" id="program_chart"></div>
+                            <div id="object_chart"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end wrap -->
+
+        <!-- Place your code in the script tags below -->
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['bar']});
+
+            window.onload = function() {
+
+                var map;
+
+                function initMap(center, name) {
+                    map = new google.maps.Map(document.getElementById('school_map'), {
+                        center: center,
+                        zoom: 15,
+                        disableDefaultUI: true,
+                        zoomControl: true
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: center,
+                        map: map,
+                        title: name,
+                        icon: "https://maps.google.com/mapfiles/kml/shapes/schools_maps.png"
+                      });
+                };
+
+                function formatSchoolAddress(street,city,state,zip) {
+                    return street + " " + city + ", " + state + " " + zip;
+                }
+
+                function getParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                        results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                }
+                var schoolID = getParameterByName("schoolID");
+                var currentYear = 2013;
+
+                var yearMapping = {
+                    2013: "2013-2014",
+                    2014: "2014-2015",
+                    2015: "2015-2016",
+                    2016: "2016-2017"
+                };
+
+                //Load Object Data by Program
+                var dataByProgram = {};
+
+                $.getJSON('programs.json', function(data) {
+
+                    $.each(data, function(key, row) {
+
+                        var program = row.program;
+                        delete row.program;
+                        item = [row.object, row.g2014, row.g2013, row.g2012]
+
+                        if(dataByProgram[program]) {
+                            dataByProgram[program].push(item);
+                        } else {
+                            dataByProgram[program] = [item];
+                        }
+                    });
+
+                    //Add a header to each program data set (only happens once)
+                    for(var key in dataByProgram) dataByProgram[key].unshift(['Expense Type', '2012-13', '2013-14', '2014-15']);
+
+                });
+
+                // See pretty print here: https://github.com/openoakland/measure-g/issues/50
+                var sql = "SELECT ll.ousd_site,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, mg.per_student, mg.per_student_money, mg.ytd_actual, mg.ytd_money FROM measure_g_schools_lat_long ll, ousd_enrollment_cde e, (SELECT site, SUM(m.ytd_actual) as ytd_actual, SUM(m.ytd_money) as ytd_money, SUM(m.per_student) as per_student, SUM(m.per_student_money) as per_student_money FROM measure_g_2014_15_per_student m GROUP BY site) mg WHERE ll.ousd_site = %S AND e.ousd_site = %S AND e.year = %Y AND mg.site = %S";
+
+                sql = sql.replace(/%S/gi, schoolID).replace(/%Y/gi, 2013);
+
+                var schoolName = "";
+                // Call cartodb
+                $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
+
+                    $.each(data.rows, function(key, row) {
+                        schoolName = row.school_name;
+                        $('#school_name').text(schoolName);
+                        $('#school_address').text(formatSchoolAddress(row.street,row.city,row.state,row.zip));
+                        var center = {lat: row.latitude, lng: row.longitude};
+                        initMap(center,row.school_name);
+
+                        $('#total_spending').text(row.ytd_money);
+                        $('#per_student_spending').text(row.per_student_money);
+                        $('#total_enrollment').text(row.total_enrollment);
+                        $('#spending_year').text(yearMapping[currentYear]);
+
+                        $('#school_summary').show();
+                    });
+                });
+
+                var sql2 = "SELECT  "+
+                    "split_part(prog_desc, ' - ',2) as prog_desc, "+
+                    "COALESCE(SUM(case when year = '2012' then ytd_actual end), 0) as g2012, "+
+                    "COALESCE(SUM(case when year = '2013' then ytd_actual end), 0) as g2013, "+
+                    "COALESCE(SUM(case when year = '2014' then ytd_actual end), 0) as g2014 "+
+
+                    "FROM ( "+
+                    "SELECT g2012.site, g2012.ytd_actual, g2012.prog_desc, '2012' as year FROM  "+
+                    "measure_g_2012_13 g2012 "+
+                        "WHERE g2012.site = "+ schoolID +
+
+                    "UNION "+
+                    "SELECT g2013.site, g2013.ytd_actual, g2013.prog_desc, '2013' as year FROM measure_g_2013_14 g2013  "+
+
+                        "WHERE g2013.site = "+schoolID +
+
+                    "UNION "+
+
+                    "SELECT g2014.site, g2014.ytd_actual, g2014.prog_desc, '2014' as year FROM measure_g_2014_15_actuals g2014 "+
+
+                    "WHERE g2014.site = "+schoolID +
+
+                    ") u "+
+
+                    "GROUP BY prog_desc  "+
+
+                    "HAVING SUM(case when year = '2012' then ytd_actual end) > 10000 "+
+                    "OR SUM(case when year = '2013' then ytd_actual end) > 10000 "+
+                    "OR SUM(case when year = '2014' then ytd_actual end) > 10000 ";
+
+            var programTotalsJson = [];
+            var programs_chart;
+            var programTotalData;
+
+            function drawChart() {
+
+                programTotalData = google.visualization.arrayToDataTable(programTotalsJson);
+
+                var options = {
+                    chart: {
+                      title: 'Spending by Program',
+                      subtitle: ''
+                    },
+                    height: 400,
+                    vAxis:{
+                        format: '$#,###'
+                    }
+                };
+
+                programs_chart = new google.charts.Bar(document.getElementById('program_chart'));
+
+                programs_chart.draw(programTotalData, google.charts.Bar.convertOptions(options));
+                // google.visualization.events.addListener(programs_chart, 'select', selectHandler);
+
+                function selectHandler(e) {
+
+                    var selection = programs_chart.getSelection();
+
+                    if (selection.length > 0){
+                        var programName = programTotalData.getFormattedValue(selection[0].row, 0);
+                        var dataWithHeaders = dataByProgram[programName];
+                        var data = google.visualization.arrayToDataTable(dataWithHeaders);
+                        data.sort([{column: 1, desc:true}]);
+                        var objectChart = new google.charts.Bar(document.getElementById('object_chart'));
+
+                        var numBars = dataWithHeaders.length - 1;
+                        var chartHeight = numBars * 70;
+
+                        var options = {
+                            chart: {
+                            },
+                            bars: 'horizontal', // Required for Material Bar Charts.
+                            height: chartHeight,
+                            width: 600,
+                            axes: {
+                                x: {
+                                  0: { side: 'top', label: 'Amount spent'} // Top x-axis.
+                                }
+                              }
+                        };
+
+                        objectChart.draw(data, google.charts.Bar.convertOptions(options));
+                    }
+
+                }
+            }
+
+            $(window).resize(function() {
+                drawChart();
+            });
+
+            $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql2, function(data) {
+
+                $.each(data.rows, function(key, row) {
+                    item = [row.prog_desc, row.g2014, row.g2013, row.g2012]
+                    programTotalsJson.push(item);
+                });
+
+                //Add a header
+                programTotalsJson.unshift(['Program', '2012-13', '2013-14', '2014-15']);
+
+            }).then(function(){
+                google.charts.setOnLoadCallback(drawChart);
+            });
+
+            }
+        </script>
+
+        <%- partial("partials/_uservoice.ejs") %>
+
+    </body>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqC5S-8nx5nXnD16I_FzA5KNhyjyFLRgw" async defer></script>
+
+</html>
