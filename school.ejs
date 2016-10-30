@@ -121,7 +121,9 @@
 
                 });
 
-                var sql = "SELECT ousd_site,latcod as latitude,loncod as longitude,schnam as school_name,ncessch as nces,lstree as street,lcity as city,lstate as state,lzip as zip,gslo as grade_low,gshi as grade_high,site_type FROM measure_g_schools_lat_long WHERE ousd_site =" + schoolID;
+                var sql = "SELECT ll.ousd_site,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, mg.per_student, mg.per_student_money, mg.ytd_actual, mg.ytd_money FROM measure_g_schools_lat_long ll, ousd_enrollment_cde e, (SELECT site, SUM(m.ytd_actual) as ytd_actual, SUM(m.ytd_money) as ytd_money, SUM(m.per_student) as per_student, SUM(m.per_student_money) as per_student_money FROM measure_g_2014_15_per_student m GROUP BY site) mg WHERE ll.ousd_site = %S AND e.ousd_site = %S AND e.year = %Y AND mg.site = %S";
+
+                sql = sql.replace(/%S/gi, schoolID).replace(/%Y/gi, 2013);
 
                 var schoolName = "";
                 // Call cartodb
