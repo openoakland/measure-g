@@ -309,21 +309,11 @@
                 return schoolLevelList.join();
             };
 
-            var getTableForSelectedYear = function () {
-
-                var yearToTable = {
-                    "2012" : "measure_g_2012_13_per_student",
-                    "2013" : "measure_g_2013_14_per_student",
-                    "2014" : "measure_g_2014_15_per_student"
-                };
+            var getSelectedYear = function () {
 
                 var year = $( "#year-select .year.selected" ).data("year");
 
-                if (year in yearToTable) {
-                    return yearToTable[year];
-                };
-
-                return yearToTable["2014"];
+                return parseInt(year);
 
             };
 
@@ -332,7 +322,7 @@
                 var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money)::text as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, s.site_type, s.ousd_site, SUM(mg.per_student) per_student, SUM(per_student::numeric::money)::text as per_student_money, "
                     + "ntile(10) OVER (ORDER BY mg.ytd_actual) as bubble_school, "
                     + "ntile(10) OVER (ORDER BY per_student) as bubble_student "
-                    + "FROM " + getTableForSelectedYear() + " mg, measure_g_schools_lat_long s "
+                    + "FROM measure_g_unified mg, measure_g_schools_lat_long s "
                     + "WHERE prog_desc IN ("
                     + getSelectedPrograms()
                     + ") "
@@ -341,6 +331,7 @@
                     + getSelectedSchoolLevels()
                     + ") "
                     + "AND mg.site = s.ousd_site "
+                    + "AND mg.year = "+ getSelectedYear()
                     + "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type, s.ousd_site, mg.ytd_actual, mg.per_student";
 
                 return query;
