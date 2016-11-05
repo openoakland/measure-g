@@ -167,35 +167,17 @@
                     });
                 });
 
-                var sql2 = "SELECT  "+
-                    "split_part(prog_desc, ' - ',2) as prog_desc, "+
-                    "COALESCE(SUM(case when year = '2012' then ytd_actual end), 0) as g2012, "+
-                    "COALESCE(SUM(case when year = '2013' then ytd_actual end), 0) as g2013, "+
-                    "COALESCE(SUM(case when year = '2014' then ytd_actual end), 0) as g2014 "+
-
-                    "FROM ( "+
-                    "SELECT g2012.site, g2012.ytd_actual, g2012.prog_desc, '2012' as year FROM  "+
-                    "measure_g_2012_13 g2012 "+
-                        "WHERE g2012.site = "+ schoolID +
-
-                    "UNION "+
-                    "SELECT g2013.site, g2013.ytd_actual, g2013.prog_desc, '2013' as year FROM measure_g_2013_14 g2013  "+
-
-                        "WHERE g2013.site = "+schoolID +
-
-                    "UNION "+
-
-                    "SELECT g2014.site, g2014.ytd_actual, g2014.prog_desc, '2014' as year FROM measure_g_2014_15_actuals g2014 "+
-
-                    "WHERE g2014.site = "+schoolID +
-
-                    ") u "+
-
-                    "GROUP BY prog_desc  "+
-
-                    "HAVING SUM(case when year = '2012' then ytd_actual end) > 10000 "+
-                    "OR SUM(case when year = '2013' then ytd_actual end) > 10000 "+
-                    "OR SUM(case when year = '2014' then ytd_actual end) > 10000 ";
+                var sql2 = "SELECT  prog.short as prog_desc," +
+                    "COALESCE(SUM(case when a.year = '2012' then ytd_actual end), 0) as g2012, " +
+                    "COALESCE(SUM(case when a.year = '2013' then ytd_actual end), 0) as g2013, " +
+                    "COALESCE(SUM(case when a.year = '2014' then ytd_actual end), 0) as g2014 " +
+                    "FROM programs prog, measure_g_actuals a " +
+                    "WHERE prog.id = a.program_id " +
+                    "AND a.site = " + schoolID + " " +
+                    "GROUP BY prog.short "  +
+                    "HAVING SUM(case when a.year = '2012' then ytd_actual end) > 10000 " +
+                    "OR SUM(case when a.year = '2013' then ytd_actual end) > 10000 " +
+                    "OR SUM(case when a.year = '2014' then ytd_actual end) > 10000 ";
 
             var programTotalsJson = [];
             var programs_chart;
@@ -261,7 +243,7 @@
             $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql2, function(data) {
 
                 $.each(data.rows, function(key, row) {
-                    item = [row.prog_desc, row.g2014, row.g2013, row.g2012]
+                    item = [row.prog_desc, row.g2012, row.g2013, row.g2014]
                     programTotalsJson.push(item);
                 });
 
