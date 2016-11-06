@@ -4,6 +4,7 @@
         <%- partial("partials/_header", { title: "Measure G Spending by School"}) %>
 
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
        </script>
 
@@ -119,29 +120,6 @@
                     2016: "2016-2017"
                 };
 
-                //Load Object Data by Program
-                var dataByProgram = {};
-
-                $.getJSON('programs.json', function(data) {
-
-                    $.each(data, function(key, row) {
-
-                        var program = row.program;
-                        delete row.program;
-                        item = [row.object, row.g2014, row.g2013, row.g2012]
-
-                        if(dataByProgram[program]) {
-                            dataByProgram[program].push(item);
-                        } else {
-                            dataByProgram[program] = [item];
-                        }
-                    });
-
-                    //Add a header to each program data set (only happens once)
-                    for(var key in dataByProgram) dataByProgram[key].unshift(['Expense Type', '2012-13', '2013-14', '2014-15']);
-
-                });
-
                 // See pretty print here: https://github.com/openoakland/measure-g/issues/50
                 var sql = "SELECT ll.ousd_site,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, mg.per_student, mg.per_student_money, mg.ytd_actual, mg.ytd_money FROM measure_g_schools_lat_long ll, ousd_enrollment_cde e, (SELECT site, SUM(m.ytd_actual) as ytd_actual, SUM(m.ytd_money) as ytd_money, SUM(m.per_student) as per_student, SUM(m.per_student_money) as per_student_money, m.year FROM measure_g_unified m GROUP BY m.site, m.year) mg WHERE ll.ousd_site = %S AND e.ousd_site = %S AND e.year = %ENROLLMENTYEAR AND mg.site = %S AND mg.year = %MEASUREGYEAR";
 
@@ -167,17 +145,7 @@
                     });
                 });
 
-                var sql2 = "SELECT  prog.short as prog_desc," +
-                    "COALESCE(SUM(case when a.year = '2012' then ytd_actual end), 0) as g2012, " +
-                    "COALESCE(SUM(case when a.year = '2013' then ytd_actual end), 0) as g2013, " +
-                    "COALESCE(SUM(case when a.year = '2014' then ytd_actual end), 0) as g2014 " +
-                    "FROM programs prog, measure_g_actuals a " +
-                    "WHERE prog.id = a.program_id " +
-                    "AND a.site = " + schoolID + " " +
-                    "GROUP BY prog.short "  +
-                    "HAVING SUM(case when a.year = '2012' then ytd_actual end) > 10000 " +
-                    "OR SUM(case when a.year = '2013' then ytd_actual end) > 10000 " +
-                    "OR SUM(case when a.year = '2014' then ytd_actual end) > 10000 ";
+                var sql2 = "SELECT  prog.short as program,a.year, COALESCE(SUM(ytd_actual), 0) as ytd_actual FROM programs prog, measure_g_actuals a WHERE prog.id = a.program_id AND a.site = %S GROUP BY program, a.year ORDER BY program, a.year".replace(/%S/gi, schoolID);
 
             var programTotalsJson = [];
             var programs_chart;
@@ -185,7 +153,7 @@
 
             function drawChart() {
 
-                programTotalData = google.visualization.arrayToDataTable(programTotalsJson);
+                programTotalData = google.visualization.arrayToDataTable(dataByProgram);
 
                 var options = {
                     chart: {
@@ -240,15 +208,25 @@
                 drawChart();
             });
 
+            var dataByProgram = [];
+
+            numYears = 3;
+
             $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql2, function(data) {
 
-                $.each(data.rows, function(key, row) {
-                    item = [row.prog_desc, row.g2012, row.g2013, row.g2014]
-                    programTotalsJson.push(item);
+                _.each(_.groupBy(data.rows, 'program'), function(yearsOfSpending, program){
+
+                    var programSpendingByYear = [program];
+
+                    _.each(yearsOfSpending, function(year){
+                        programSpendingByYear.push(year.ytd_actual);
+                    });
+
+                    dataByProgram.push(programSpendingByYear);
                 });
 
                 //Add a header
-                programTotalsJson.unshift(['Program', '2012-13', '2013-14', '2014-15']);
+                dataByProgram.unshift(['Program', '2012-13', '2013-14', '2014-15']);
 
             }).then(function(){
                 google.charts.setOnLoadCallback(drawChart);
