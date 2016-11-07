@@ -113,11 +113,10 @@
                 var schoolID = getParameterByName("schoolID");
                 var currentYear = 2013;
 
-                var yearMapping = {
-                    2013: "2013-2014",
-                    2014: "2014-2015",
-                    2015: "2015-2016",
-                    2016: "2016-2017"
+                var yearToDisplay = {
+                    2012: "2012-13",
+                    2013: "2013-14",
+                    2014: "2014-15",
                 };
 
                 // See pretty print here: https://github.com/openoakland/measure-g/issues/50
@@ -139,7 +138,7 @@
                         $('#total_spending').text(row.ytd_money);
                         $('#per_student_spending').text(row.per_student_money);
                         $('#total_enrollment').text(row.total_enrollment);
-                        $('#spending_year').text(yearMapping[currentYear]);
+                        $('#spending_year').text(yearToDisplay[currentYear]);
 
                         $('#school_summary').show();
                     });
@@ -210,7 +209,23 @@
 
             var dataByProgram = [];
 
-            numYears = 3;
+            // TODO: get dynamically from Years table (or set in config)
+            var supportedYears = [
+                2012,
+                2013,
+                2014
+            ];
+
+            var yearToColumnMapping = {};
+            var tableHeader = ['Progrms'];
+
+            // Dynamically create Google Visualization DataTable columns based on # of years
+            for(var i = 0; i < supportedYears.length; i++){
+                var year = supportedYears[i];
+                var yearKey= year.toString();
+                yearToColumnMapping[yearKey] = _.indexOf(supportedYears,year,true);
+                tableHeader.push(yearToDisplay[yearKey]);
+            }
 
             $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql2, function(data) {
 
@@ -218,15 +233,22 @@
 
                     var programSpendingByYear = [program];
 
+                    // Instead of complex SQL joining,
+                    // start with 0 value for each year and replace with spending if it exists
+                    for (var i = 0; i < supportedYears.length; i++) {
+                        programSpendingByYear.push(0);
+                    }
+
                     _.each(yearsOfSpending, function(year){
-                        programSpendingByYear.push(year.ytd_actual);
+                        var column = yearToColumnMapping[year.year] + 1;
+                        programSpendingByYear[column] = year.ytd_actual;
                     });
 
                     dataByProgram.push(programSpendingByYear);
                 });
 
                 //Add a header
-                dataByProgram.unshift(['Program', '2012-13', '2013-14', '2014-15']);
+                dataByProgram.unshift(tableHeader);
 
             }).then(function(){
                 google.charts.setOnLoadCallback(drawChart);
