@@ -64,8 +64,8 @@
 
                         <div id="table_div"></div>
                         <div class="row">
-                            <div class="col-sm-12" id="program_chart"></div>
-                            <div id="object_chart"></div>
+                            <div class="col-md-6" id="program_chart"></div>
+                            <div class="col-md-6" id="object_chart"></div>
                         </div>
 
                     </div>
@@ -151,7 +151,6 @@
             var programTotalsJson = [];
             var programs_chart;
             var programTotalData;
-            var dataByObjects = [];
 
             function drawChart() {
 
@@ -174,11 +173,12 @@
                 google.visualization.events.addListener(programs_chart, 'select', selectHandler);
 
                 function selectHandler(e) {
+                    var dataByObjects = [];
 
                     var selection = programs_chart.getSelection();
                     if (selection.length > 0){
                         var programName = programTotalData.getFormattedValue(selection[0].row, 0);
-                        var object_query = "SELECT  prog.short as program,a.year,SUM(ytd_actual) as ytd_actual, b.short as obj_desc FROM programs prog, measure_g_actuals a, objects b  WHERE prog.id = a.program_id AND prog.short = '%P' AND a.site = %S GROUP BY program, a.year, b.short ORDER BY program, a.year".replace(/%S/gi, schoolID).replace(/%P/gi, programName);
+                        var object_query = "SELECT  prog.short as program,a.year,SUM(ytd_actual) as ytd_actual, b.short as obj_desc FROM programs prog, measure_g_actuals a, objects b  WHERE prog.id = a.program_id AND  a.object_id = b.id AND prog.short = '%P' AND a.site = %S GROUP BY program, a.year, b.short ORDER BY program, a.year".replace(/%S/gi, schoolID).replace(/%P/gi, programName);
                         // var dataWithHeaders = dataByProgram[programName];
                         
 
@@ -241,7 +241,10 @@
                                     x: {
                                       0: { side: 'top', label: 'Amount spent'} // Top x-axis.
                                     }
-                                  }
+                                  },
+                                hAxis:{
+                                    format: '$#,###'
+                                    }   
                                 }
                                 objectChart.draw(obj_data, google.charts.Bar.convertOptions(options));
                             });
