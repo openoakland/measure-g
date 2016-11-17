@@ -146,7 +146,7 @@
 
                 var sql2 = "SELECT  prog.short as program,a.year, COALESCE(SUM(ytd_actual), 0) as ytd_actual FROM programs prog, measure_g_actuals a WHERE prog.id = a.program_id AND a.site = %S GROUP BY program, a.year ORDER BY program, a.year".replace(/%S/gi, schoolID);
 
-                
+
 
             var programTotalsJson = [];
             var programs_chart;
@@ -178,9 +178,7 @@
                     var selection = programs_chart.getSelection();
                     if (selection.length > 0){
                         var programName = programTotalData.getFormattedValue(selection[0].row, 0);
-                        var object_query = "SELECT  prog.short as program,a.year,SUM(ytd_actual) as ytd_actual, b.short as obj_desc FROM programs prog, measure_g_actuals a, objects b  WHERE prog.id = a.program_id AND  a.object_id = b.id AND prog.short = '%P' AND a.site = %S GROUP BY program, a.year, b.short ORDER BY program, a.year".replace(/%S/gi, schoolID).replace(/%P/gi, programName);
-                        // var dataWithHeaders = dataByProgram[programName];
-                        
+                        var object_query = "SELECT a.year, a.ytd_actual, o.short as obj_desc FROM measure_g_actuals a JOIN programs p ON a.program_id = p.id AND p.short = '%P' LEFT JOIN object_up o ON a.object_id = o.id WHERE a.site = %S AND ytd_actual > 0 ORDER BY obj_desc".replace(/%S/gi, schoolID).replace(/%P/gi, programName);
 
                         // TODO: get dynamically from Years table (or set in config)
                         var supportedYears = [
@@ -199,7 +197,7 @@
                             yearToColumnMapping[yearKey] = _.indexOf(supportedYears,year,true);
                             tableHeader.push(yearToDisplay[yearKey]);
                         }
-                        
+
                         $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+object_query, function(data) {
 
                             _.each(_.groupBy(data.rows, 'obj_desc'), function(yearsOfSpending, object){
@@ -244,12 +242,12 @@
                                   },
                                 hAxis:{
                                     format: '$#,###'
-                                    }   
+                                    }
                                 }
                                 objectChart.draw(obj_data, google.charts.Bar.convertOptions(options));
                             });
 
-                        
+
                     }
 
                 }
@@ -269,7 +267,7 @@
             ];
 
             var yearToColumnMapping = {};
-            var tableHeader = ['Progrms'];
+            var tableHeader = ['Programs'];
 
             // Dynamically create Google Visualization DataTable columns based on # of years
             for(var i = 0; i < supportedYears.length; i++){
