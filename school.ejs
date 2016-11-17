@@ -64,8 +64,8 @@
 
                         <div id="table_div"></div>
                         <div class="row">
-                            <div class="col-sm-12" id="program_chart"></div>
-                            <div id="object_chart"></div>
+                            <div class="col-md-6" id="program_chart"></div>
+                            <div class="col-md-6" id="object_chart"></div>
                         </div>
 
                     </div>
@@ -146,6 +146,8 @@
 
                 var sql2 = "SELECT  prog.short as program,a.year, COALESCE(SUM(ytd_actual), 0) as ytd_actual FROM programs prog, measure_g_actuals a WHERE prog.id = a.program_id AND a.site = %S GROUP BY program, a.year ORDER BY program, a.year".replace(/%S/gi, schoolID);
 
+
+
             var programTotalsJson = [];
             var programs_chart;
             var programTotalData;
@@ -168,36 +170,84 @@
                 programs_chart = new google.charts.Bar(document.getElementById('program_chart'));
 
                 programs_chart.draw(programTotalData, google.charts.Bar.convertOptions(options));
-                // google.visualization.events.addListener(programs_chart, 'select', selectHandler);
+                google.visualization.events.addListener(programs_chart, 'select', selectHandler);
 
                 function selectHandler(e) {
+                    var dataByObjects = [];
 
                     var selection = programs_chart.getSelection();
-
                     if (selection.length > 0){
                         var programName = programTotalData.getFormattedValue(selection[0].row, 0);
-                        var dataWithHeaders = dataByProgram[programName];
-                        var data = google.visualization.arrayToDataTable(dataWithHeaders);
-                        data.sort([{column: 1, desc:true}]);
-                        var objectChart = new google.charts.Bar(document.getElementById('object_chart'));
+                        var object_query = "SELECT a.year, a.ytd_actual, o.short as obj_desc FROM measure_g_actuals a JOIN programs p ON a.program_id = p.id AND p.short = '%P' LEFT JOIN object_up o ON a.object_id = o.id WHERE a.site = %S AND ytd_actual > 0 ORDER BY obj_desc".replace(/%S/gi, schoolID).replace(/%P/gi, programName);
 
-                        var numBars = dataWithHeaders.length - 1;
-                        var chartHeight = numBars * 70;
+                        // TODO: get dynamically from Years table (or set in config)
+                        var supportedYears = [
+                            2012,
+                            2013,
+                            2014
+                        ];
 
-                        var options = {
-                            chart: {
-                            },
-                            bars: 'horizontal', // Required for Material Bar Charts.
-                            height: chartHeight,
-                            width: 600,
-                            axes: {
-                                x: {
-                                  0: { side: 'top', label: 'Amount spent'} // Top x-axis.
+                        var yearToColumnMapping = {};
+                        var tableHeader = ['Expense Type'];
+
+                        // Dynamically create Google Visualization DataTable columns based on # of years
+                        for(var i = 0; i < supportedYears.length; i++){
+                            var year = supportedYears[i];
+                            var yearKey= year.toString();
+                            yearToColumnMapping[yearKey] = _.indexOf(supportedYears,year,true);
+                            tableHeader.push(yearToDisplay[yearKey]);
+                        }
+
+                        $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+object_query, function(data) {
+
+                            _.each(_.groupBy(data.rows, 'obj_desc'), function(yearsOfSpending, object){
+
+                                var objectSpendingByYear = [object];
+
+                                // Instead of complex SQL joining,
+                                // start with 0 value for each year and replace with spending if it exists
+                                for (var i = 0; i < supportedYears.length; i++) {
+                                    objectSpendingByYear.push(0);
                                 }
-                              }
-                        };
 
-                        objectChart.draw(data, google.charts.Bar.convertOptions(options));
+                                _.each(yearsOfSpending, function(year){
+                                    var column = yearToColumnMapping[year.year] + 1;
+                                    objectSpendingByYear[column] = year.ytd_actual;
+                                });
+
+                                dataByObjects.push(objectSpendingByYear);
+                            });
+
+                            //Add a header
+                            dataByObjects.unshift(tableHeader);
+
+                        }).then(function(){
+                            var obj_data = google.visualization.arrayToDataTable(dataByObjects);
+                            obj_data.sort([{column: 1, desc:true}]);
+                            var objectChart = new google.charts.Bar(document.getElementById('object_chart'));
+
+                            var numBars = dataByObjects.length - 1;
+                            var chartHeight = numBars * 70;
+
+                            var options = {
+                                chart: {
+                                },
+                                bars: 'horizontal', // Required for Material Bar Charts.
+                                height: chartHeight,
+                                width: 600,
+                                axes: {
+                                    x: {
+                                      0: { side: 'top', label: 'Amount spent'} // Top x-axis.
+                                    }
+                                  },
+                                hAxis:{
+                                    format: '$#,###'
+                                    }
+                                }
+                                objectChart.draw(obj_data, google.charts.Bar.convertOptions(options));
+                            });
+
+
                     }
 
                 }
@@ -217,7 +267,7 @@
             ];
 
             var yearToColumnMapping = {};
-            var tableHeader = ['Progrms'];
+            var tableHeader = ['Programs'];
 
             // Dynamically create Google Visualization DataTable columns based on # of years
             for(var i = 0; i < supportedYears.length; i++){
