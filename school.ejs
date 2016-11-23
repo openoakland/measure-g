@@ -121,9 +121,9 @@
                 };
 
                 // See pretty print here: https://github.com/openoakland/measure-g/issues/50
-                var sql = "SELECT ll.ousd_site,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, mg.per_student, mg.per_student_money, mg.ytd_actual, mg.ytd_money FROM measure_g_schools_lat_long ll, ousd_enrollment_cde e, (SELECT site, SUM(m.ytd_actual) as ytd_actual, SUM(m.ytd_money) as ytd_money, SUM(m.per_student) as per_student, SUM(m.per_student_money) as per_student_money, m.year FROM measure_g_unified m GROUP BY m.site, m.year) mg WHERE ll.ousd_site = %S AND e.ousd_site = %S AND e.year = %ENROLLMENTYEAR AND mg.site = %S AND mg.year = %MEASUREGYEAR";
+                var sql = "SELECT ll.ousd_site,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, to_char(mg.ytd_actual, '$999,999') as ytd_actual_money, to_char(round((mg.ytd_actual / e.total_enrollment)::numeric, 2),'$999,999.99') per_student_money FROM measure_g_schools_lat_long ll, ousd_enrollment_cde e,(SELECT site, SUM(m.ytd_actual) as ytd_actual, m.year FROM measure_g_actuals m GROUP BY m.site, m.year) mg WHERE ll.ousd_site = %S AND e.ousd_site = %S AND e.year = %ENROLLMENTYEAR AND mg.site = %S AND mg.year = %MEASUREGYEAR";
 
-                sql = sql.replace(/%S/gi, schoolID).replace(/%ENROLLMENTYEAR/gi, 2013).replace(/%MEASUREGYEAR/gi, 2014);
+                sql = sql.replace(/%S/gi, schoolID).replace(/%ENROLLMENTYEAR/gi, 2013).replace(/%MEASUREGYEAR/gi, 2015);
 
                 var schoolName = "";
                 // Call cartodb
@@ -136,7 +136,7 @@
                         var center = {lat: row.latitude, lng: row.longitude};
                         initMap(center,row.school_name);
 
-                        $('#total_spending').text(row.ytd_money);
+                        $('#total_spending').text(row.ytd_actual_money);
                         $('#per_student_spending').text(row.per_student_money);
                         $('#total_enrollment').text(row.total_enrollment);
                         $('#spending_year').text(yearToDisplay[currentYear]);
@@ -145,7 +145,7 @@
                     });
                 });
 
-                var sql2 = "SELECT  prog.short as program,a.year, COALESCE(SUM(ytd_actual), 0) as ytd_actual FROM programs prog, measure_g_actuals_test a WHERE prog.id = a.program_id AND a.site = %S GROUP BY program, a.year ORDER BY program, a.year".replace(/%S/gi, schoolID);
+                var sql2 = "SELECT  prog.short as program,a.year, COALESCE(SUM(ytd_actual), 0) as ytd_actual FROM programs prog, measure_g_actuals a WHERE prog.id = a.program_id AND a.site = %S GROUP BY program, a.year ORDER BY program, a.year".replace(/%S/gi, schoolID);
 
 
 
@@ -179,7 +179,7 @@
                     var selection = programs_chart.getSelection();
                     if (selection.length > 0){
                         var programName = programTotalData.getFormattedValue(selection[0].row, 0);
-                        var object_query = "SELECT a.year, a.ytd_actual, o.short as obj_desc FROM measure_g_actuals_test a JOIN programs p ON a.program_id = p.id AND p.short = '%P' LEFT JOIN objects o ON a.object_id = o.id WHERE a.site = %S AND ytd_actual > 0 ORDER BY obj_desc".replace(/%S/gi, schoolID).replace(/%P/gi, programName);
+                        var object_query = "SELECT a.year, a.ytd_actual, o.short as obj_desc FROM measure_g_actuals a JOIN programs p ON a.program_id = p.id AND p.short = '%P' LEFT JOIN objects o ON a.object_id = o.id WHERE a.site = %S AND ytd_actual > 0 ORDER BY obj_desc".replace(/%S/gi, schoolID).replace(/%P/gi, programName);
 
                         // TODO: get dynamically from Years table (or set in config)
                         var supportedYears = [
