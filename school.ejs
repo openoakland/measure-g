@@ -117,6 +117,7 @@
                     2012: "2012-13",
                     2013: "2013-14",
                     2014: "2014-15",
+                    2015: "2015-16",
                 };
 
                 // See pretty print here: https://github.com/openoakland/measure-g/issues/50
@@ -144,7 +145,7 @@
                     });
                 });
 
-                var sql2 = "SELECT  prog.short as program,a.year, COALESCE(SUM(ytd_actual), 0) as ytd_actual FROM programs prog, measure_g_actuals a WHERE prog.id = a.program_id AND a.site = %S GROUP BY program, a.year ORDER BY program, a.year".replace(/%S/gi, schoolID);
+                var sql2 = "SELECT  prog.short as program,a.year, COALESCE(SUM(ytd_actual), 0) as ytd_actual FROM programs prog, measure_g_actuals_test a WHERE prog.id = a.program_id AND a.site = %S GROUP BY program, a.year ORDER BY program, a.year".replace(/%S/gi, schoolID);
 
 
 
@@ -178,13 +179,14 @@
                     var selection = programs_chart.getSelection();
                     if (selection.length > 0){
                         var programName = programTotalData.getFormattedValue(selection[0].row, 0);
-                        var object_query = "SELECT a.year, a.ytd_actual, o.short as obj_desc FROM measure_g_actuals a JOIN programs p ON a.program_id = p.id AND p.short = '%P' LEFT JOIN objects o ON a.object_id = o.id WHERE a.site = %S AND ytd_actual > 0 ORDER BY obj_desc".replace(/%S/gi, schoolID).replace(/%P/gi, programName);
+                        var object_query = "SELECT a.year, a.ytd_actual, o.short as obj_desc FROM measure_g_actuals_test a JOIN programs p ON a.program_id = p.id AND p.short = '%P' LEFT JOIN objects o ON a.object_id = o.id WHERE a.site = %S AND ytd_actual > 0 ORDER BY obj_desc".replace(/%S/gi, schoolID).replace(/%P/gi, programName);
 
                         // TODO: get dynamically from Years table (or set in config)
                         var supportedYears = [
                             2012,
                             2013,
-                            2014
+                            2014,
+                            2015
                         ];
 
                         var yearToColumnMapping = {};
@@ -263,7 +265,8 @@
             var supportedYears = [
                 2012,
                 2013,
-                2014
+                2014,
+                2015
             ];
 
             var yearToColumnMapping = {};
