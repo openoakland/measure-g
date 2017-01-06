@@ -1,0 +1,6 @@
+Header set Access-Control-Allow-Origin "*"
+
+RewriteEngine On
+RewriteCond "%{HTTP_HOST}"   "!^trackg\.org" [NC]
+RewriteCond "%{HTTP_HOST}"   "!^$"
+RewriteRule "^/?(.*)"        "http://trackg.org/$1" [L,R=301,NE]
