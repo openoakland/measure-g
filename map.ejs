@@ -320,22 +320,7 @@
 
             generateSpendingSQLQuery = function () {
 
-                var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money)::text as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, s.site_type, s.ousd_site, SUM(mg.per_student) per_student, SUM(per_student::numeric::money)::text as per_student_money, "
-                    + "ntile(10) OVER (ORDER BY mg.ytd_actual) as bubble_school, "
-                    + "ntile(10) OVER (ORDER BY per_student) as bubble_student "
-                    + "FROM measure_g_unified mg, measure_g_schools_lat_long s "
-                    + "WHERE prog_desc IN ("
-                    + getSelectedPrograms()
-                    + ") "
-                    + "AND prog_desc IS NOT NULL "
-                    + "AND mg.site_type IN ("
-                    + getSelectedSchoolLevels()
-                    + ") "
-                    + "AND mg.site = s.ousd_site "
-                    + "AND mg.year = "+ getSelectedYear()
-                    + "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type, s.ousd_site, mg.ytd_actual, mg.per_student";
-
-                query = "SELECT spend.*, " +
+                var query = "SELECT spend.*, " +
                     "round((spend.ytd_actual / e.total_enrollment)::numeric, 2) as per_student, " +
                     "to_char(round((spend.ytd_actual / e.total_enrollment)::numeric, 2),'$999,999.99') per_student_money, " +
                     "ntile(10) OVER (ORDER BY spend.ytd_actual) as bubble_school, " +
