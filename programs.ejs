@@ -6,62 +6,84 @@
 
         <!--Load the AJAX API. Do this only once per web page! -->
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
         <script type="text/javascript">
 
             // Load the Visualization API and the piechart package.
             google.load('visualization', '1.1', {'packages':['bar']});
 
             //Get Data from CartoDb
-            sql = "SELECT split_part(prog_desc,' - ',2) as program, " +
-                "split_part(obj_desc,' - ',2) as category, " +
-                "SUM(ytd_actual) total " +
-                "FROM measure_g_2013_14 " +
-                "GROUP BY obj_desc, prog_desc " +
+            sql = "SELECT p.short as program, o.short as object, SUM(ytd_actual) total, a.year " +
+                "FROM measure_g_actuals a, programs p, objects o " +
+                "WHERE a.object_id = o.id " +
+                "AND a.program_id = p.id " +
+                "GROUP BY o.short, p.short, a.year " +
                 "HAVING SUM(ytd_actual) > 1000 " +
-                "ORDER BY program, total ";
+                "ORDER BY program, total";
 
+            // TODO: get dynamically from Years table (or set in config)
+            var supportedYears = [
+                2012,
+                2013,
+                2014,
+                2015
+            ];
+
+            var yearToDisplay = {
+                2012: "2012-13",
+                2013: "2013-14",
+                2014: "2014-15",
+                2015: "2015-16",
+            };
+
+            var yearToColumnMapping = {};
+            var tableHeader = ['Expense Type'];
+
+            // Dynamically create Google Visualization DataTable columns based on # of years
+            for(var i = 0; i < supportedYears.length; i++){
+                var year = supportedYears[i];
+                var yearKey= year.toString();
+                yearToColumnMapping[yearKey] = _.indexOf(supportedYears,year,true);
+                tableHeader.push(yearToDisplay[yearKey]);
+            }
             // Group objects by program
 
             var dataByProgram = {};
 
-            // Call cartodb
-            // $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
+            $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
 
-            //     $.each(data.rows, function(key, row) {
+                _.each(_.groupBy(data.rows, 'program'), function(byProgram, program){
 
-            //         var program = row.program;
-            //         delete row.program;
-            //         item = [row.category, row.total]
+                    var dataByObjects = [];
 
-            //         if(dataByProgram[program]) {
-            //             dataByProgram[program].push(item);
-            //         } else {
-            //             dataByProgram[program] = [item];
-            //         }
-            //     });
+                    _.each(_.groupBy(byProgram, 'object'),function (yearsOfSpending,object) {
 
-            //     //Add a header to each program data set (only happens once)
-            //     for(var key in dataByProgram) dataByProgram[key].unshift(['Expense Type', 'Amount Spent']);
+                        var objectSpendingByYear = [object];
 
-            // });
+                        // Instead of complex SQL joining,
+                        // start with 0 value for each year and replace with spending if it exists
+                        for (var i = 0; i < supportedYears.length; i++) {
+                            objectSpendingByYear.push(0);
+                        }
 
-            $.getJSON('programs.json', function(data) {
+                        _.each(yearsOfSpending, function(year){
+                            var column = yearToColumnMapping[year.year] + 1;
+                            objectSpendingByYear[column] = year.total;
+                        });
 
-                $.each(data, function(key, row) {
+                        dataByObjects.push(objectSpendingByYear);
 
-                    var program = row.program;
-                    delete row.program;
-                    item = [row.object, row.g2014, row.g2013, row.g2012]
+                    });
 
-                    if(dataByProgram[program]) {
-                        dataByProgram[program].push(item);
-                    } else {
-                        dataByProgram[program] = [item];
-                    }
+                    //Add a header
+                    dataByObjects.unshift(tableHeader);
+
+                    // All object spednign for this program is processed
+                    // add entry for program
+                    dataByProgram[program] = dataByObjects;
+
                 });
 
-                //Add a header to each program data set (only happens once)
-                for(var key in dataByProgram) dataByProgram[key].unshift(['Expense Type', '2012-13', '2013-14', '2014-15']);
 
             });
 
@@ -71,7 +93,7 @@
             var supportedPrograms = {
                 'art': 'ART',
                 'basic-school-support': 'BASIC SCHOOL SUPPORT',
-                'class-size-reduction': "CLASS SIZE REDUCTION", 
+                'class-size-reduction': "CLASS SIZE REDUCTION",
                 'elementary-intervention': "COVERED ELEM INTERVENTION PDS",
                 'hr-recruitment': "HR Recruitment",
                 'middle-school-electives': "MIDDLE SCHOOL ELECTIVES",
@@ -94,7 +116,7 @@
             }
 
 
-            // Callback that creates and populates a data table, 
+            // Callback that creates and populates a data table,
             // instantiates the pie chart, passes in the data and
             // draws it.
 
@@ -110,7 +132,7 @@
 
                     var data = google.visualization.arrayToDataTable(dataWithHeaders);
 
-                    data.sort([{column: 1, desc:true}]);
+                    data.sort([{column: 4, desc:true}]);
 
                     var chart = new google.charts.Bar(document.getElementById('chart_div'));
 
@@ -127,7 +149,8 @@
                             x: {
                               0: { side: 'top', label: 'Amount spent'} // Top x-axis.
                             }
-                          }
+                        },
+                        hAxis:{ format: '$#,###'}
                     };
 
                     chart.draw(data, google.charts.Bar.convertOptions(options));
