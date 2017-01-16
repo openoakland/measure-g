@@ -195,38 +195,38 @@
                                     </span>
                                 </li>
                                 <li>
-                                    <input type="radio" data="1118 - ART">
+                                    <input type="radio" data="1118">
                                     <span class="filter-label">
                                         Art<a href="programs.html#art" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
                                     </span>
 
                                 </li>
                                 <li>
-                                    <input type="radio" data="1191 - BASIC SCHOOL SUPPORT">
+                                    <input type="radio" data="1191">
                                     <span class="filter-label">
                                         Basic School Support<a href="programs.html#basic-school-support" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
                                     </span>
                                 </li>
                                 <li>
-                                    <input type="radio" data="1112 - CLASS SIZE REDUCTION">
+                                    <input type="radio" data="1112">
                                     <span class="filter-label">
                                         Class Size Reduction<a href="programs.html#class-size-reduction" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"><span></a>
                                     </span>
                                 </li>
                                 <li>
-                                    <input type="radio" data="1159 - COVERED ELEM INTERVENTION PDS">
+                                    <input type="radio" data="1159">
                                     <span class="filter-label">
                                         Elementary Intervention<a href="programs.html#elementary-intervention" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></a>
                                     </span>
                                 </li>
                                 <li>
-                                    <input type="radio" data="1552 - SCHOOL LIBRARIES">
+                                    <input type="radio" data="1552">
                                     <span class="filter-label">
                                         Libraries<a href="programs.html#libraries" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></a>
                                     </span>
                                 </li>
                                 <li>
-                                    <input type="radio" data="1598 - MIDDLE SCHOOL ELECTIVES">
+                                    <input type="radio" data="1598">
                                     <span class="filter-label">
                                         Middle School Electives<a href="programs.html#middle-school-electives" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></a>
                                     </span>
@@ -262,7 +262,8 @@
                         <div id="year-select">
                             <div class="year" data-year="2012">2012-13</div>
                             <div class="year" data-year="2013">2013-14</div>
-                            <div class="year selected" data-year="2014">2014-15</div>
+                            <div class="year" data-year="2014">2014-15</div>
+                            <div class="year selected" data-year="2015">2015-16</div>
                             <span class="stretch"></span>
                         </div>
                     </div>
@@ -348,7 +349,7 @@
                     "s.site_type, " +
                     "s.ousd_site " +
                     "FROM measure_g_actuals mg, measure_g_schools_lat_long s " +
-                    "WHERE mg.program_id IN (1191) " +
+                    "WHERE mg.program_id IN (" + getSelectedPrograms() + ") " +
                     "AND s.site_type IN ("+ getSelectedSchoolLevels() +") " +
                     "AND mg.site = s.ousd_site " +
                     "AND mg.year = " + getSelectedYear() + " " +
