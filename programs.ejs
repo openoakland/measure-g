@@ -85,10 +85,10 @@
                 });
 
 
+            }).then(function(){
+                // Set a callback to run when the Google Visualization API is loaded.
+                google.setOnLoadCallback(drawChart);
             });
-
-            // Set a callback to run when the Google Visualization API is loaded.
-            google.setOnLoadCallback(drawChart);
 
             var supportedPrograms = {
                 'art': 'ART',
