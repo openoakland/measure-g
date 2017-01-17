@@ -43,27 +43,7 @@
                 "AND e.year = 2013 ";
 
             var dataBySchool = [];
-            // $.getJSON('per_pupil_total.json', function(data) {
-            $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
-
-                $.each(data.rows, function(key, row) {
-                    var schoolname = "<a href='school.html?schoolID="+row.ousd_site+"' target='_blank'>"+formatSchoolName(row.schnam)+"</a>";
-                    var perPupilMeasureG = row.per_student;
-                    //var measuregOverTotal = row.g2014/row.budget;
-                    //item = [schoolname, row.total_enrollment, row.ytd_actual, perPupilMeasureG, row.budget, row.per_pupil_expenditures_formula, measuregOverTotal * 100]
-                    item = [{v: row.schnam, f: schoolname}, row.total_enrollment, row.ytd_actual, perPupilMeasureG];
-                    dataBySchool.push(item);
-                });
-
-                //Add a header to each program data set (only happens once)
-                //dataBySchool.unshift(['School', 'Enrollment', 'Measure G Total $',  'Measure G $ Per Pupil', 'School Total $', 'Total $ Per Pupil', '% from Measure G']);
-
-                dataBySchool.unshift(['School', 'Enrollment', 'Measure G Total $',  'Measure G $ Per Pupil']);
-
-
-            });
             var windowheight = window.innerHeight - 100;
-
 
             function drawTable() {
                 dataBySchool = google.visualization.arrayToDataTable(dataBySchool);
@@ -90,7 +70,27 @@
                     });
             }
 
-            google.charts.setOnLoadCallback(drawTable);
+            // $.getJSON('per_pupil_total.json', function(data) {
+            $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
+
+                $.each(data.rows, function(key, row) {
+                    var schoolname = "<a href='school.html?schoolID="+row.ousd_site+"' target='_blank'>"+formatSchoolName(row.schnam)+"</a>";
+                    var perPupilMeasureG = row.per_student;
+                    //var measuregOverTotal = row.g2014/row.budget;
+                    //item = [schoolname, row.total_enrollment, row.ytd_actual, perPupilMeasureG, row.budget, row.per_pupil_expenditures_formula, measuregOverTotal * 100]
+                    item = [{v: row.schnam, f: schoolname}, row.total_enrollment, row.ytd_actual, perPupilMeasureG];
+                    dataBySchool.push(item);
+                });
+
+                //Add a header to each program data set (only happens once)
+                //dataBySchool.unshift(['School', 'Enrollment', 'Measure G Total $',  'Measure G $ Per Pupil', 'School Total $', 'Total $ Per Pupil', '% from Measure G']);
+
+                dataBySchool.unshift(['School', 'Enrollment', 'Measure G Total $',  'Measure G $ Per Pupil']);
+
+
+            }).then(function() {
+                google.charts.setOnLoadCallback(drawTable);
+            });
 
         </script>
 
