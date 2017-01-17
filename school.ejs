@@ -10,13 +10,13 @@
 
         <!--Google analytics snippet -->
            <script>
-          //   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          //   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          //   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          //   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-          //   ga('create', 'UA-35908939-11', 'auto');
-          //   ga('send', 'pageview');
+            ga('create', 'UA-35908939-11', 'auto');
+            ga('send', 'pageview');
 
           </script>
 
@@ -117,12 +117,13 @@
                     2012: "2012-13",
                     2013: "2013-14",
                     2014: "2014-15",
+                    2015: "2015-16",
                 };
 
                 // See pretty print here: https://github.com/openoakland/measure-g/issues/50
-                var sql = "SELECT ll.ousd_site,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, mg.per_student, mg.per_student_money, mg.ytd_actual, mg.ytd_money FROM measure_g_schools_lat_long ll, ousd_enrollment_cde e, (SELECT site, SUM(m.ytd_actual) as ytd_actual, SUM(m.ytd_money) as ytd_money, SUM(m.per_student) as per_student, SUM(m.per_student_money) as per_student_money, m.year FROM measure_g_unified m GROUP BY m.site, m.year) mg WHERE ll.ousd_site = %S AND e.ousd_site = %S AND e.year = %ENROLLMENTYEAR AND mg.site = %S AND mg.year = %MEASUREGYEAR";
+                var sql = "SELECT ll.ousd_site,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, to_char(mg.ytd_actual, '$999,999') as ytd_actual_money, to_char(round((mg.ytd_actual / e.total_enrollment)::numeric, 2),'$999,999.99') per_student_money FROM measure_g_schools_lat_long ll, ousd_enrollment_cde e,(SELECT site, SUM(m.ytd_actual) as ytd_actual, m.year FROM measure_g_actuals m GROUP BY m.site, m.year) mg WHERE ll.ousd_site = %S AND e.ousd_site = %S AND e.year = %ENROLLMENTYEAR AND mg.site = %S AND mg.year = %MEASUREGYEAR";
 
-                sql = sql.replace(/%S/gi, schoolID).replace(/%ENROLLMENTYEAR/gi, 2013).replace(/%MEASUREGYEAR/gi, 2014);
+                sql = sql.replace(/%S/gi, schoolID).replace(/%ENROLLMENTYEAR/gi, 2013).replace(/%MEASUREGYEAR/gi, 2015);
 
                 var schoolName = "";
                 // Call cartodb
@@ -135,7 +136,7 @@
                         var center = {lat: row.latitude, lng: row.longitude};
                         initMap(center,row.school_name);
 
-                        $('#total_spending').text(row.ytd_money);
+                        $('#total_spending').text(row.ytd_actual_money);
                         $('#per_student_spending').text(row.per_student_money);
                         $('#total_enrollment').text(row.total_enrollment);
                         $('#spending_year').text(yearToDisplay[currentYear]);
@@ -184,7 +185,8 @@
                         var supportedYears = [
                             2012,
                             2013,
-                            2014
+                            2014,
+                            2015
                         ];
 
                         var yearToColumnMapping = {};
@@ -234,6 +236,7 @@
                                 },
                                 bars: 'horizontal', // Required for Material Bar Charts.
                                 height: chartHeight,
+                                'title':programName,
                                 width: 600,
                                 axes: {
                                     x: {
@@ -263,7 +266,8 @@
             var supportedYears = [
                 2012,
                 2013,
-                2014
+                2014,
+                2015
             ];
 
             var yearToColumnMapping = {};

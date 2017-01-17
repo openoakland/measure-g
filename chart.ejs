@@ -10,23 +10,56 @@
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript">
 
+            var getSelectedYear = function() {
+                return "2015";
+            };
 
+            // Capitalizes first letter
+            var formatSchoolName = function (school) {
+                // school = school.toLowerCase();
+                // var formatted = [];
+                // $.each(school.split(" "), function (k,word) {
+                //     formatted.push(word.charAt(0).toUpperCase() + word.slice(1));
+                // });
+                // return formatted.join(" ");
+                return school;
+            };
 
-    google.charts.load('current', {'packages':['table']});
+            google.charts.load('current', {'packages':['table']});
 
-    var dataBySchool = [];
-         $.getJSON('per_pupil_total.json', function(data) {
+            var sql = "SELECT spend.*, e.total_enrollment, " +
+                "round((spend.ytd_actual / e.total_enrollment)::numeric, 2) as per_student " +
+                "FROM (SELECT " +
+                "SUM(mg.ytd_actual) as ytd_actual, " +
+                "s.schnam, " +
+                "s.site_type, " +
+                "s.ousd_site " +
+                "FROM measure_g_actuals mg, measure_g_schools_lat_long s " +
+                "WHERE " +
+                "mg.site = s.ousd_site " +
+                "AND mg.year = " + getSelectedYear() + " " +
+                "GROUP BY s.schnam, s.site_type, s.ousd_site) spend, ousd_enrollment_cde e " +
+                "WHERE spend.ousd_site = e.ousd_site " +
+                "AND e.year = 2013 ";
 
-                $.each(data, function(key, row) {
-                    var schoolname = "<a href='school.html?schoolID="+row.site+"' target='_blank'>"+row.school_name+"</a>"
-                    var perPupilMeasureG = row.g2014/row._20th_enroll
-                    var measuregOverTotal = row.g2014/row.budget
-                    item = [schoolname, row._20th_enroll, row.g2014, perPupilMeasureG, row.budget, row.per_pupil_expenditures_formula, measuregOverTotal * 100]
+            var dataBySchool = [];
+            // $.getJSON('per_pupil_total.json', function(data) {
+            $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
+
+                $.each(data.rows, function(key, row) {
+                    var schoolname = "<a href='school.html?schoolID="+row.ousd_site+"' target='_blank'>"+formatSchoolName(row.schnam)+"</a>";
+                    var perPupilMeasureG = row.per_student;
+                    //var measuregOverTotal = row.g2014/row.budget;
+                    //item = [schoolname, row.total_enrollment, row.ytd_actual, perPupilMeasureG, row.budget, row.per_pupil_expenditures_formula, measuregOverTotal * 100]
+                    item = [{v: row.schnam, f: schoolname}, row.total_enrollment, row.ytd_actual, perPupilMeasureG];
                     dataBySchool.push(item);
                 });
 
-                // //Add a header to each program data set (only happens once)
-                dataBySchool.unshift(['School', 'Enrollment', 'Measure G Total $',  'Measure G $ Per Pupil', 'School Total $', 'Total $ Per Pupil', '% from Measure G']);
+                //Add a header to each program data set (only happens once)
+                //dataBySchool.unshift(['School', 'Enrollment', 'Measure G Total $',  'Measure G $ Per Pupil', 'School Total $', 'Total $ Per Pupil', '% from Measure G']);
+
+                dataBySchool.unshift(['School', 'Enrollment', 'Measure G Total $',  'Measure G $ Per Pupil']);
+
 
             });
             var windowheight = window.innerHeight - 100;
@@ -40,78 +73,38 @@
                     {prefix: '$', fractionDigits: 0});
                 formatter.format(dataBySchool, 2); // Apply formatter to $ columns
                 formatter.format(dataBySchool, 3);
-                formatter.format(dataBySchool, 4);
-                formatter.format(dataBySchool, 5);
+                //formatter.format(dataBySchool, 4);
+                // formatter.format(dataBySchool, 5);
 
-                var formatter = new google.visualization.NumberFormat(
-                    {suffix: '%', fractionDigits: 1});
-                formatter.format(dataBySchool, 6);
+                // var formatter = new google.visualization.NumberFormat(
+                //     {suffix: '%', fractionDigits: 1});
+                // formatter.format(dataBySchool, 6);
 
-                table.draw(dataBySchool, {showRowNumber: true, width: '100%', height: windowheight, allowHtml: true});
+                table.draw(dataBySchool,
+                    {
+                        showRowNumber: true,
+                        width: '100%',
+                        height: windowheight,
+                        allowHtml: true,
+                        sortColumn: 0
+                    });
             }
 
             google.charts.setOnLoadCallback(drawTable);
 
-
-            // function drawChart() {
-
-            //     function updateChartData(programId) {
-            //         window.location.hash = programId;
-            //         var programDataKey = supportedPrograms[programId];
-            //         var dataWithHeaders = dataByProgram[programDataKey];
-
-            //         var numBars = dataWithHeaders.length - 1;
-            //         var chartHeight = numBars * 70;
-
-            //         var data = google.visualization.arrayToDataTable(dataWithHeaders);
-
-            //         data.sort([{column: 1, desc:true}]);
-
-            //         var chart = new google.charts.Bar(document.getElementById('chart_div'));
-
-            //         google.visualization.events.addListener(chart, 'ready', function() {
-            //             document.body.scrollTop = document.documentElement.scrollTop = 0;
-            //         });
-
-            //         var options = {
-            //             chart: {
-            //             },
-            //             bars: 'horizontal', // Required for Material Bar Charts.
-            //             height: chartHeight,
-            //             axes: {
-            //                 x: {
-            //                   0: { side: 'top', label: 'Amount spent'} // Top x-axis.
-            //                 }
-            //               }
-            //         };
-
-            //         chart.draw(data, google.charts.Bar.convertOptions(options));
-            //         $('#program-select div').removeClass('active');
-            //         $('#program-select #'+programId).addClass('active');
-            //         document.body.scrollTop = document.documentElement.scrollTop = 0;
-            //     }
-
-            //     updateChartData(selectedProgram);
-            //     $('#program-select #'+selectedProgram).addClass('active');
-
-            //     $('#program-select').click(function(event) {
-            //         updateChartData(event.target.id);
-            //     });
-
-            // }
         </script>
 
         <!--Google analytics snippet -->
-           <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            ga('create', 'UA-35908939-11', 'auto');
-            ga('send', 'pageview');
+        ga('create', 'UA-35908939-11', 'auto');
+        ga('send', 'pageview');
 
-          </script>
+        </script>
     </head>
     <body>
 
@@ -137,13 +130,6 @@
 
         </div> <!-- end wrap -->
 
-        <!-- Place your code in the script tags below -->
-        <script type="text/javascript">
-            // window.onload = function() {
-
-
-            // }
-        </script>
         <%- partial("partials/_uservoice.ejs") %>
 
     </body>

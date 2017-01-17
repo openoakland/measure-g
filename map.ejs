@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" type="text/css" />
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
-        <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.uncompressed.js" type="text/javascript"></script>
+        <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" type="text/javascript"></script>
         <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js" type="text/javascript"></script>
 
@@ -195,38 +195,38 @@
                                     </span>
                                 </li>
                                 <li>
-                                    <input type="radio" data="1118 - ART">
+                                    <input type="radio" data="1118">
                                     <span class="filter-label">
                                         Art<a href="programs.html#art" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
                                     </span>
 
                                 </li>
                                 <li>
-                                    <input type="radio" data="1191 - BASIC SCHOOL SUPPORT">
+                                    <input type="radio" data="1191">
                                     <span class="filter-label">
                                         Basic School Support<a href="programs.html#basic-school-support" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
                                     </span>
                                 </li>
                                 <li>
-                                    <input type="radio" data="1112 - CLASS SIZE REDUCTION">
+                                    <input type="radio" data="1112">
                                     <span class="filter-label">
                                         Class Size Reduction<a href="programs.html#class-size-reduction" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"><span></a>
                                     </span>
                                 </li>
                                 <li>
-                                    <input type="radio" data="1159 - COVERED ELEM INTERVENTION PDS">
+                                    <input type="radio" data="1159">
                                     <span class="filter-label">
                                         Elementary Intervention<a href="programs.html#elementary-intervention" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></a>
                                     </span>
                                 </li>
                                 <li>
-                                    <input type="radio" data="1552 - SCHOOL LIBRARIES">
+                                    <input type="radio" data="1552">
                                     <span class="filter-label">
                                         Libraries<a href="programs.html#libraries" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></a>
                                     </span>
                                 </li>
                                 <li>
-                                    <input type="radio" data="1598 - MIDDLE SCHOOL ELECTIVES">
+                                    <input type="radio" data="1598">
                                     <span class="filter-label">
                                         Middle School Electives<a href="programs.html#middle-school-electives" target="_blank" class="more-info"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></a>
                                     </span>
@@ -262,7 +262,8 @@
                         <div id="year-select">
                             <div class="year" data-year="2012">2012-13</div>
                             <div class="year" data-year="2013">2013-14</div>
-                            <div class="year selected" data-year="2014">2014-15</div>
+                            <div class="year" data-year="2014">2014-15</div>
+                            <div class="year selected" data-year="2015">2015-16</div>
                             <span class="stretch"></span>
                         </div>
                     </div>
@@ -319,20 +320,27 @@
 
             generateSpendingSQLQuery = function () {
 
-                var query = "SELECT s.the_geom, s.the_geom_webmercator, SUM(mg.ytd_actual) as ytd_actual, SUM(ytd_actual::numeric::money)::text as ytd_money, Min(mg.cartodb_id) cartodb_id, s.schnam, s.site_type, s.ousd_site, SUM(mg.per_student) per_student, SUM(per_student::numeric::money)::text as per_student_money, "
-                    + "ntile(10) OVER (ORDER BY mg.ytd_actual) as bubble_school, "
-                    + "ntile(10) OVER (ORDER BY per_student) as bubble_student "
-                    + "FROM measure_g_unified mg, measure_g_schools_lat_long s "
-                    + "WHERE prog_desc IN ("
-                    + getSelectedPrograms()
-                    + ") "
-                    + "AND prog_desc IS NOT NULL "
-                    + "AND mg.site_type IN ("
-                    + getSelectedSchoolLevels()
-                    + ") "
-                    + "AND mg.site = s.ousd_site "
-                    + "AND mg.year = "+ getSelectedYear()
-                    + "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type, s.ousd_site, mg.ytd_actual, mg.per_student";
+                var query = "SELECT spend.*, " +
+                    "round((spend.ytd_actual / e.total_enrollment)::numeric, 2) as per_student, " +
+                    "to_char(round((spend.ytd_actual / e.total_enrollment)::numeric, 2),'$999,999.99') per_student_money, " +
+                    "ntile(10) OVER (ORDER BY spend.ytd_actual) as bubble_school, " +
+                    "ntile(10) OVER (ORDER BY (spend.ytd_actual / e.total_enrollment)) as bubble_student " +
+                    "FROM (SELECT s.the_geom, " +
+                    "s.the_geom_webmercator, " +
+                    "SUM(mg.ytd_actual) as ytd_actual, " +
+                    "SUM(mg.ytd_actual::numeric::money)::text as ytd_money, " +
+                    "MAX(mg.cartodb_id) cartodb_id, " +
+                    "s.schnam, " +
+                    "s.site_type, " +
+                    "s.ousd_site " +
+                    "FROM measure_g_actuals mg, measure_g_schools_lat_long s " +
+                    "WHERE mg.program_id IN (" + getSelectedPrograms() + ") " +
+                    "AND s.site_type IN ("+ getSelectedSchoolLevels() +") " +
+                    "AND mg.site = s.ousd_site " +
+                    "AND mg.year = " + getSelectedYear() + " " +
+                    "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type, s.ousd_site) spend, ousd_enrollment_cde e " +
+                    "WHERE spend.ousd_site = e.ousd_site " +
+                    "AND e.year = 2013 ";
 
                 return query;
             };
