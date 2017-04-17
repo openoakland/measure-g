@@ -43,11 +43,11 @@ $layout-tab-font-size: 14px;
 }
 
 .mdl-tabs__tab-bar {
-    display         : flex;
-    flex-direction  : row;
-    justify-content : center; // ⇾
-    align-content   : space-between; // ||
-    align-items     : flex-start; // ↓
+    // display         : flex;
+    // flex-direction  : row;
+    // justify-content : center; // ⇾
+    // align-content   : space-between; // ||
+    // align-items     : flex-start; // ↓
 
     height          : 48px;
     padding         : 0 0 0 0;
@@ -65,7 +65,7 @@ $layout-tab-font-size: 14px;
   position: relative;
   display: block;
 
-  text-decoration: none;
+  text-decoration: none !important;
   height: 48px;
   line-height: 48px;
 
