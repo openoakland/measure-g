@@ -178,7 +178,7 @@
 
                     var selection = programs_chart.getSelection();
                     if (selection.length > 0){
-                        var programName = programTotalData.getFormattedValue(selection[0].row, 0);
+                        var programName = programTotalData.getColumnLabel(selection[0].column);
                         var object_query = "SELECT a.year, a.ytd_actual, o.short as obj_desc FROM measure_g_actuals a JOIN programs p ON a.program_id = p.id AND p.short = '%P' LEFT JOIN objects o ON a.object_id = o.id WHERE a.site = %S AND ytd_actual > 0 ORDER BY obj_desc".replace(/%S/gi, schoolID).replace(/%P/gi, programName);
 
                         // TODO: get dynamically from Years table (or set in config)
