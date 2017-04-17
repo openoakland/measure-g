@@ -273,7 +273,7 @@
             var yearToRowMapping = {};
             var tableHeader = ['Years'];
 
-            // Dynamically create Google Visualization DataTable columns based on # of years
+            // Dynamically create Google Visualization DataTable rows based on # of years
             for(var i = 0; i < supportedYears.length; i++){
                 var year = supportedYears[i];
                 var yearKey = year.toString();
@@ -287,6 +287,7 @@
 
                 _.each(groupedByProgram, function(yearsOfSpending, program){
 
+                    // Dynamically create a row for every program
                     tableHeader.push(program);
 
                     // Instead of complex SQL joining,
@@ -303,7 +304,7 @@
 
                 });
 
-                //Add a header
+                //Add the table header
                 dataByProgram.unshift(tableHeader);
 
             }).then(function(){
