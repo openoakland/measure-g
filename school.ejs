@@ -75,7 +75,7 @@
 
         <!-- Place your code in the script tags below -->
         <script type="text/javascript">
-            google.charts.load('current', {'packages':['bar']});
+            google.charts.load('current', {'packages':['bar','line']});
 
             window.onload = function() {
 
@@ -168,7 +168,7 @@
                     }
                 };
 
-                programs_chart = new google.charts.Bar(document.getElementById('program_chart'));
+                programs_chart = new google.charts.Line(document.getElementById('program_chart'));
 
                 programs_chart.draw(programTotalData, google.charts.Bar.convertOptions(options));
                 google.visualization.events.addListener(programs_chart, 'select', selectHandler);
@@ -270,35 +270,37 @@
                 2015
             ];
 
-            var yearToColumnMapping = {};
-            var tableHeader = ['Programs'];
+            var yearToRowMapping = {};
+            var tableHeader = ['Years'];
 
             // Dynamically create Google Visualization DataTable columns based on # of years
             for(var i = 0; i < supportedYears.length; i++){
                 var year = supportedYears[i];
-                var yearKey= year.toString();
-                yearToColumnMapping[yearKey] = _.indexOf(supportedYears,year,true);
-                tableHeader.push(yearToDisplay[yearKey]);
+                var yearKey = year.toString();
+                yearToRowMapping[yearKey] = _.indexOf(supportedYears,year,true);
+                dataByProgram.push([yearToDisplay[year]]);
             }
 
             $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql2, function(data) {
 
-                _.each(_.groupBy(data.rows, 'program'), function(yearsOfSpending, program){
+                var groupedByProgram = _.groupBy(data.rows, 'program');
 
-                    var programSpendingByYear = [program];
+                _.each(groupedByProgram, function(yearsOfSpending, program){
+
+                    tableHeader.push(program);
 
                     // Instead of complex SQL joining,
-                    // start with 0 value for each year and replace with spending if it exists
-                    for (var i = 0; i < supportedYears.length; i++) {
-                        programSpendingByYear.push(0);
+                    // start with 0 value for each program and replace with spending if it exists
+                    for (var i = 0; i < dataByProgram.length; i++) {
+                        dataByProgram[i].push(0);
                     }
 
                     _.each(yearsOfSpending, function(year){
-                        var column = yearToColumnMapping[year.year] + 1;
-                        programSpendingByYear[column] = year.ytd_actual;
+                        var row = yearToRowMapping[year.year];
+                        var column = tableHeader.length - 1;
+                        dataByProgram[row][column] = year.ytd_actual;
                     });
 
-                    dataByProgram.push(programSpendingByYear);
                 });
 
                 //Add a header
