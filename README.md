@@ -57,7 +57,7 @@ Our enrollment source has been the US Dept of Ed National Center for Education S
 
 *Carto Postgres Hosting (jbaldo.carto.com)*
 
-2. Remove extraneous columns so you're under the 250 column Cartod limit (yeah...)
+2. Remove extraneous columns in Excel so you're under the 250 column Carto limit (yeah, it's got a lot of columns...)
 3. Save as csv (original sorce is text flat file)
 4. Upload to the carto account as a new dataset
 5. Extract columns and join with existing enrollment data. [Something like this](https://github.com/openoakland/measure-g/issues/58)
