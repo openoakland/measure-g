@@ -38,9 +38,9 @@
                 "WHERE " +
                 "mg.site = s.ousd_site " +
                 "AND mg.year = " + getSelectedYear() + " " +
-                "GROUP BY s.schnam, s.site_type, s.ousd_site) spend, ousd_enrollment_cde e " +
+                "GROUP BY s.schnam, s.site_type, s.ousd_site) spend, ousd_enrollment e " +
                 "WHERE spend.ousd_site = e.ousd_site " +
-                "AND e.year = 2013 ";
+                "AND e.year = 2014 ";
 
             var dataBySchool = [];
             var windowheight = window.innerHeight - 100;
