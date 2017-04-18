@@ -122,6 +122,10 @@
                 }
                 var schoolID = getParameterByName("schoolID");
 
+                // global variables in _harp.json
+                var latestEnrollmentYear = <%= latestEnrollmentYear %>;
+                var latestExpenditureDataYear = <%= latestExpenditureDataYear %>;
+
                 var yearToDisplay = {
                     2012: "2012-13",
                     2013: "2013-14",
@@ -132,7 +136,7 @@
                 // See pretty print here: https://github.com/openoakland/measure-g/issues/50
                 var sql = "SELECT ll.ousd_site,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, to_char(mg.ytd_actual, '$999,999') as ytd_actual_money, to_char(round((mg.ytd_actual / e.total_enrollment)::numeric, 2),'$999,999.99') per_student_money FROM measure_g_schools_lat_long ll, ousd_enrollment e,(SELECT site, SUM(m.ytd_actual) as ytd_actual, m.year FROM measure_g_actuals m GROUP BY m.site, m.year) mg WHERE ll.ousd_site = %S AND e.ousd_site = %S AND e.year = %ENROLLMENTYEAR AND mg.site = %S AND mg.year = %MEASUREGYEAR";
 
-                sql = sql.replace(/%S/gi, schoolID).replace(/%ENROLLMENTYEAR/gi, 2014).replace(/%MEASUREGYEAR/gi, 2015);
+                sql = sql.replace(/%S/gi, schoolID).replace(/%ENROLLMENTYEAR/gi, latestEnrollmentYear).replace(/%MEASUREGYEAR/gi, latestExpenditureDataYear);
 
                 var schoolName = "";
                 // Call cartodb

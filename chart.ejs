@@ -27,6 +27,9 @@
 
             google.charts.load('current', {'packages':['table']});
 
+            // this is a global variable in _harp.json
+            var latestEnrollmentYear = <%= latestEnrollmentYear %>;
+
             var sql = "SELECT spend.*, e.total_enrollment, " +
                 "round((spend.ytd_actual / e.total_enrollment)::numeric, 2) as per_student " +
                 "FROM (SELECT " +
@@ -40,7 +43,7 @@
                 "AND mg.year = " + getSelectedYear() + " " +
                 "GROUP BY s.schnam, s.site_type, s.ousd_site) spend, ousd_enrollment e " +
                 "WHERE spend.ousd_site = e.ousd_site " +
-                "AND e.year = 2014 ";
+                "AND e.year = " + latestEnrollmentYear;
 
             var dataBySchool = [];
             var windowheight = window.innerHeight - 100;
