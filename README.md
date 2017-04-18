@@ -55,11 +55,12 @@ Our enrollment source has been the US Dept of Ed National Center for Education S
 
 1. Download the latest and copy out the Oakland schools (LEA_NAME = Oakland Unified)
 
-Carto (jbaldo.carto.com)
+*Carto Postgres Hosting (jbaldo.carto.com)*
+
 2. Remove extraneous columns so you're under the 250 column Cartod limit (yeah...)
 3. Save as csv (original sorce is text flat file)
-4. Upload to carto as a new dataset
+4. Upload to the carto account as a new dataset
 5. Extract columns and join with existing enrollment data. [Something like this](https://github.com/openoakland/measure-g/issues/58)
 
 6. Update `_harp.json` with the latest enrollment year
-7. Update the enrollment table name in code (currently `ousd_enrollment`) if you're changing the name. This might be neccessary if you're going to wait a bit to release the change. Otherwise you'll break the live site in the process.
+7. Update the enrollment table name in sql calls (currently `ousd_enrollment`) if you're changing the name. This might be neccessary if you're going to wait a bit to release the change. Otherwise you'll break the live site in the process.
