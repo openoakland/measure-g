@@ -73,7 +73,6 @@
                     });
             }
 
-            // $.getJSON('per_pupil_total.json', function(data) {
             $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
 
                 $.each(data.rows, function(key, row) {
