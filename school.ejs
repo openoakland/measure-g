@@ -234,8 +234,7 @@
                                 }
 
                                 _.each(yearsOfSpending, function(year){
-                                    var column = yearTo
-                                    ColumnMapping[year.year] + 1;
+                                    var column = yearToColumnMapping[year.year] + 1;
                                     objectSpendingByYear[column] = year.ytd_actual;
                                 });
 
