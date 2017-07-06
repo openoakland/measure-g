@@ -45,4 +45,22 @@ Once you have that setup process complete, you can run:
 ```
 bash ./deploy_staging.sh
 ```
-to see your changes hosted at http://openoakland.github.io/measure-g-staging
+to see your changes hosted at http://staging.trackg.org
+
+## Data Maintenence
+
+### Adding Enrollment Data
+
+Our enrollment source has been the US Dept of Ed National Center for Education Statistics: [https://nces.ed.gov/ccd/pubschuniv.asp](https://nces.ed.gov/ccd/pubschuniv.asp) They are extremely slow to publish, but they have charter and traditional district school data.
+
+1. Download the latest and copy out the Oakland schools (LEA_NAME = Oakland Unified)
+
+*Carto Postgres Hosting (jbaldo.carto.com)*
+
+2. Remove extraneous columns in Excel so you're under the 250 column Carto limit (yeah, it's got a lot of columns...)
+3. Save as csv (original sorce is text flat file)
+4. Upload to the carto account as a new dataset
+5. Extract columns and join with existing enrollment data. [Something like this](https://github.com/openoakland/measure-g/issues/58)
+
+6. Update `_harp.json` with the latest enrollment year
+7. Update the enrollment table name in sql calls (currently `ousd_enrollment`) if you're changing the name. This might be neccessary if you're going to wait a bit to release the change. Otherwise you'll break the live site in the process.

@@ -27,6 +27,9 @@
 
             google.charts.load('current', {'packages':['table']});
 
+            // this is a global variable in _harp.json
+            var latestEnrollmentYear = <%= latestEnrollmentYear %>;
+
             var sql = "SELECT spend.*, e.total_enrollment, " +
                 "round((spend.ytd_actual / e.total_enrollment)::numeric, 2) as per_student " +
                 "FROM (SELECT " +
@@ -38,9 +41,9 @@
                 "WHERE " +
                 "mg.site = s.ousd_site " +
                 "AND mg.year = " + getSelectedYear() + " " +
-                "GROUP BY s.schnam, s.site_type, s.ousd_site) spend, ousd_enrollment_cde e " +
+                "GROUP BY s.schnam, s.site_type, s.ousd_site) spend, ousd_enrollment e " +
                 "WHERE spend.ousd_site = e.ousd_site " +
-                "AND e.year = 2013 ";
+                "AND e.year = " + latestEnrollmentYear;
 
             var dataBySchool = [];
             var windowheight = window.innerHeight - 100;
@@ -70,7 +73,6 @@
                     });
             }
 
-            // $.getJSON('per_pupil_total.json', function(data) {
             $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
 
                 $.each(data.rows, function(key, row) {

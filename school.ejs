@@ -5,6 +5,8 @@
 
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
 
        </script>
 
@@ -44,7 +46,6 @@
                                     <div class="col-xs-12 col-md-4">
                                         <div class="stat_label">Measure G Spending</div>
                                         <div class="spending" id="total_spending"></div>
-                                        <div style="display:none" id="spending_year"></div>
                                     </div>
                                     <div class="col-xs-12 col-md-4">
                                         <div class="stat_label">Per Student</div>
@@ -53,7 +54,7 @@
                                     <div class="col-xs-12 col-md-4">
                                         <div class="stat_label">Number of Students</div>
                                         <div class= "stat" id="total_enrollment"></div>
-                                        <div>Note: enrollment from 2013-14</div>
+                                        <div>Note: enrollment from 2014-15</div>
                                     </div>
                                 </div>
                             </div>
@@ -64,8 +65,17 @@
 
                         <div id="table_div"></div>
                         <div class="row">
-                            <div class="col-md-6" id="program_chart"></div>
-                            <div class="col-md-6" id="object_chart"></div>
+                        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect" id="tabs">
+                            <div class="mdl-tabs__tab-bar">
+                              <a href="#all-programs-panel" class="mdl-tabs__tab is-active all-programs-data" id="all-programs-tab">All Programs</a>
+                              <a href="#objects-panel" class="mdl-tabs__tab is-active object-level-data" id="objects-tab" style="display:none"></a>
+                            </div>
+                            <div class="mdl-tabs__panel is-active all-programs-data" id="all-programs-panel">
+                                <div id="program_chart"></div>
+                            </div>
+                            <div class="mdl-tabs__panel object-level-data" id="objects-panel">
+                                <div id="object_chart"></div>
+                            </div>
                         </div>
 
                     </div>
@@ -75,7 +85,7 @@
 
         <!-- Place your code in the script tags below -->
         <script type="text/javascript">
-            google.charts.load('current', {'packages':['bar']});
+            google.charts.load('current', {'packages':['bar','line']});
 
             window.onload = function() {
 
@@ -111,7 +121,10 @@
                     return decodeURIComponent(results[2].replace(/\+/g, " "));
                 }
                 var schoolID = getParameterByName("schoolID");
-                var currentYear = 2013;
+
+                // global variables in _harp.json
+                var latestEnrollmentYear = <%= latestEnrollmentYear %>;
+                var latestExpenditureDataYear = <%= latestExpenditureDataYear %>;
 
                 var yearToDisplay = {
                     2012: "2012-13",
@@ -121,9 +134,9 @@
                 };
 
                 // See pretty print here: https://github.com/openoakland/measure-g/issues/50
-                var sql = "SELECT ll.ousd_site,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, to_char(mg.ytd_actual, '$999,999') as ytd_actual_money, to_char(round((mg.ytd_actual / e.total_enrollment)::numeric, 2),'$999,999.99') per_student_money FROM measure_g_schools_lat_long ll, ousd_enrollment_cde e,(SELECT site, SUM(m.ytd_actual) as ytd_actual, m.year FROM measure_g_actuals m GROUP BY m.site, m.year) mg WHERE ll.ousd_site = %S AND e.ousd_site = %S AND e.year = %ENROLLMENTYEAR AND mg.site = %S AND mg.year = %MEASUREGYEAR";
+                var sql = "SELECT ll.ousd_site,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, to_char(mg.ytd_actual, '$999,999') as ytd_actual_money, to_char(round((mg.ytd_actual / e.total_enrollment)::numeric, 2),'$999,999.99') per_student_money FROM measure_g_schools_lat_long ll, ousd_enrollment e,(SELECT site, SUM(m.ytd_actual) as ytd_actual, m.year FROM measure_g_actuals m GROUP BY m.site, m.year) mg WHERE ll.ousd_site = %S AND e.ousd_site = %S AND e.year = %ENROLLMENTYEAR AND mg.site = %S AND mg.year = %MEASUREGYEAR";
 
-                sql = sql.replace(/%S/gi, schoolID).replace(/%ENROLLMENTYEAR/gi, 2013).replace(/%MEASUREGYEAR/gi, 2015);
+                sql = sql.replace(/%S/gi, schoolID).replace(/%ENROLLMENTYEAR/gi, latestEnrollmentYear).replace(/%MEASUREGYEAR/gi, latestExpenditureDataYear);
 
                 var schoolName = "";
                 // Call cartodb
@@ -139,8 +152,6 @@
                         $('#total_spending').text(row.ytd_actual_money);
                         $('#per_student_spending').text(row.per_student_money);
                         $('#total_enrollment').text(row.total_enrollment);
-                        $('#spending_year').text(yearToDisplay[currentYear]);
-
                         $('#school_summary').show();
                     });
                 });
@@ -153,22 +164,36 @@
             var programs_chart;
             var programTotalData;
 
+            $('#all-programs-tab').click(function(){
+                $('#object-level-data').removeClass('is-active');
+                // $('#all-programs-data').addClass('');
+            });
+
             function drawChart() {
 
                 programTotalData = google.visualization.arrayToDataTable(dataByProgram);
 
                 var options = {
                     chart: {
-                      title: 'Spending by Program',
+                      title: 'Click on a program for more detail',
                       subtitle: ''
                     },
                     height: 400,
+                    width: $(window).width() * .8,
                     vAxis:{
-                        format: '$#,###'
+                        format: '$#,###',
+                        textStyle: {
+                            fontSize: 14
+                        }
+                    },
+                    hAxis: {
+                        textStyle: {
+                            fontSize: 14
+                        }
                     }
                 };
 
-                programs_chart = new google.charts.Bar(document.getElementById('program_chart'));
+                programs_chart = new google.charts.Line(document.getElementById('program_chart'));
 
                 programs_chart.draw(programTotalData, google.charts.Bar.convertOptions(options));
                 google.visualization.events.addListener(programs_chart, 'select', selectHandler);
@@ -178,7 +203,7 @@
 
                     var selection = programs_chart.getSelection();
                     if (selection.length > 0){
-                        var programName = programTotalData.getFormattedValue(selection[0].row, 0);
+                        var programName = programTotalData.getColumnLabel(selection[0].column);
                         var object_query = "SELECT a.year, a.ytd_actual, o.short as obj_desc FROM measure_g_actuals a JOIN programs p ON a.program_id = p.id AND p.short = '%P' LEFT JOIN objects o ON a.object_id = o.id WHERE a.site = %S AND ytd_actual > 0 ORDER BY obj_desc".replace(/%S/gi, schoolID).replace(/%P/gi, programName);
 
                         // TODO: get dynamically from Years table (or set in config)
@@ -226,6 +251,7 @@
                         }).then(function(){
                             var obj_data = google.visualization.arrayToDataTable(dataByObjects);
                             obj_data.sort([{column: 1, desc:true}]);
+
                             var objectChart = new google.charts.Bar(document.getElementById('object_chart'));
 
                             var numBars = dataByObjects.length - 1;
@@ -236,8 +262,7 @@
                                 },
                                 bars: 'horizontal', // Required for Material Bar Charts.
                                 height: chartHeight,
-                                'title':programName,
-                                width: 600,
+                                width: $(window).width() * .8,
                                 axes: {
                                     x: {
                                       0: { side: 'top', label: 'Amount spent'} // Top x-axis.
@@ -248,6 +273,14 @@
                                     }
                                 }
                                 objectChart.draw(obj_data, google.charts.Bar.convertOptions(options));
+
+                                $('.all-programs-data').removeClass('is-active');
+                                $('#objects-tab').text(programName);
+
+                                $('.object-level-data').addClass('is-active');
+                                $('#objects-tab').show();
+
+                                $('#objects-tab').click();
                             });
 
 
@@ -270,38 +303,41 @@
                 2015
             ];
 
-            var yearToColumnMapping = {};
-            var tableHeader = ['Programs'];
+            var yearToRowMapping = {};
+            var tableHeader = ['School Years'];
 
-            // Dynamically create Google Visualization DataTable columns based on # of years
+            // Dynamically create Google Visualization DataTable rows based on # of years
             for(var i = 0; i < supportedYears.length; i++){
                 var year = supportedYears[i];
-                var yearKey= year.toString();
-                yearToColumnMapping[yearKey] = _.indexOf(supportedYears,year,true);
-                tableHeader.push(yearToDisplay[yearKey]);
+                var yearKey = year.toString();
+                yearToRowMapping[yearKey] = _.indexOf(supportedYears,year,true);
+                dataByProgram.push([yearToDisplay[year]]);
             }
 
             $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql2, function(data) {
 
-                _.each(_.groupBy(data.rows, 'program'), function(yearsOfSpending, program){
+                var groupedByProgram = _.groupBy(data.rows, 'program');
 
-                    var programSpendingByYear = [program];
+                _.each(groupedByProgram, function(yearsOfSpending, program){
+
+                    // Dynamically create a row for every program
+                    tableHeader.push(program);
 
                     // Instead of complex SQL joining,
-                    // start with 0 value for each year and replace with spending if it exists
-                    for (var i = 0; i < supportedYears.length; i++) {
-                        programSpendingByYear.push(0);
+                    // start with 0 value for each program and replace with spending if it exists
+                    for (var i = 0; i < dataByProgram.length; i++) {
+                        dataByProgram[i].push(0);
                     }
 
                     _.each(yearsOfSpending, function(year){
-                        var column = yearToColumnMapping[year.year] + 1;
-                        programSpendingByYear[column] = year.ytd_actual;
+                        var row = yearToRowMapping[year.year];
+                        var column = tableHeader.length - 1;
+                        dataByProgram[row][column] = year.ytd_actual;
                     });
 
-                    dataByProgram.push(programSpendingByYear);
                 });
 
-                //Add a header
+                //Add the table header
                 dataByProgram.unshift(tableHeader);
 
             }).then(function(){

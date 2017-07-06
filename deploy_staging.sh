@@ -15,5 +15,6 @@ echo 'staging.trackg.org' > 'CNAME'
 
 # add and commit all the files on the gh-pages branch, push it up to GitHub for hosting
 git add -A
+git reset .htaccess
 git commit -m "$(date +%m-%d-%Y_%H:%M:%S) staging deploy"
 git push origin gh-pages

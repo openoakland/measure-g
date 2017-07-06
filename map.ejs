@@ -320,6 +320,9 @@
 
             generateSpendingSQLQuery = function () {
 
+                // this is a global variable in _harp.json
+                var latestEnrollmentYear = <%= latestEnrollmentYear %>;
+
                 var query = "SELECT spend.*, " +
                     "round((spend.ytd_actual / e.total_enrollment)::numeric, 2) as per_student, " +
                     "to_char(round((spend.ytd_actual / e.total_enrollment)::numeric, 2),'$999,999.99') per_student_money, " +
@@ -338,9 +341,9 @@
                     "AND s.site_type IN ("+ getSelectedSchoolLevels() +") " +
                     "AND mg.site = s.ousd_site " +
                     "AND mg.year = " + getSelectedYear() + " " +
-                    "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type, s.ousd_site) spend, ousd_enrollment_cde e " +
+                    "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type, s.ousd_site) spend, ousd_enrollment e " +
                     "WHERE spend.ousd_site = e.ousd_site " +
-                    "AND e.year = 2013 ";
+                    "AND e.year = " + latestEnrollmentYear;
 
                 return query;
             };
