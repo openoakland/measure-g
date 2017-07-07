@@ -17,12 +17,46 @@
                 var programs_chart;
                 var programTotalData;
 
-                var yearToDisplay = {
-                    2012: "2012-13",
-                    2013: "2013-14",
-                    2014: "2014-15",
-                    2015: "2015-16",
-                };
+                function openProgramTab(programName) {
+                    var dataWithHeaders = programSpecificData[programName];
+
+                    var numBars = dataWithHeaders.length - 1;
+                    var chartHeight = numBars * 70;
+
+                    var data = google.visualization.arrayToDataTable(dataWithHeaders);
+
+                    data.sort([{column: 4, desc:true}]);
+
+                    var chart = new google.charts.Bar(document.getElementById('object_chart'));
+
+                    google.visualization.events.addListener(chart, 'ready', function() {
+                        document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    });
+
+                    var options = {
+                        chart: {
+                        },
+                        bars: 'horizontal', // Required for Material Bar Charts.
+                        height: chartHeight,
+                        width: $(window).width() * .8,
+                        axes: {
+                            x: {
+                              0: { side: 'top', label: 'Amount spent'} // Top x-axis.
+                            }
+                        },
+                        hAxis:{ format: '$#,###'}
+                    };
+
+                    chart.draw(data, google.charts.Bar.convertOptions(options));
+
+                    $('.all-programs-data').removeClass('is-active');
+                    $('#objects-tab').text(programName);
+
+                    $('.object-level-data').addClass('is-active');
+                    $('#objects-tab').show();
+
+                    $('#objects-tab').click();
+                }
 
                 function drawChart() {
 
@@ -52,50 +86,11 @@
                     function selectHandler(e) {
 
                         var selection = programs_chart.getSelection();
+                        var programName = programTotalData.getColumnLabel(selection[0].column);
+
                         if (selection.length > 0){
-                            var programName = programTotalData.getColumnLabel(selection[0].column);
-
-                            // window.location.hash = programId;
-                            // var programDataKey = supportedPrograms[programId];
-                            var dataWithHeaders = programSpecificData[programName];
-
-                            var numBars = dataWithHeaders.length - 1;
-                            var chartHeight = numBars * 70;
-
-                            var data = google.visualization.arrayToDataTable(dataWithHeaders);
-
-                            data.sort([{column: 4, desc:true}]);
-
-                            var chart = new google.charts.Bar(document.getElementById('object_chart'));
-
-                            google.visualization.events.addListener(chart, 'ready', function() {
-                                document.body.scrollTop = document.documentElement.scrollTop = 0;
-                            });
-
-                            var options = {
-                                chart: {
-                                },
-                                bars: 'horizontal', // Required for Material Bar Charts.
-                                height: chartHeight,
-                                width: $(window).width() * .8,
-                                axes: {
-                                    x: {
-                                      0: { side: 'top', label: 'Amount spent'} // Top x-axis.
-                                    }
-                                },
-                                hAxis:{ format: '$#,###'}
-                            };
-
-                            chart.draw(data, google.charts.Bar.convertOptions(options));
-
-                            $('.all-programs-data').removeClass('is-active');
-                            $('#objects-tab').text(programName);
-
-                            $('.object-level-data').addClass('is-active');
-                            $('#objects-tab').show();
-
-                            $('#objects-tab').click();
-
+                            openProgramTab(programName);
+                            window.location.hash = _.findKey(supportedPrograms, function(val){return val == programName});
                         }
 
                     } //end select handler
@@ -116,6 +111,13 @@
                     2014,
                     2015
                 ];
+
+                var yearToDisplay = {
+                    2012: "2012-13",
+                    2013: "2013-14",
+                    2014: "2014-15",
+                    2015: "2015-16",
+                };
 
                 var yearToRowMapping = {};
                 var tableHeader = ['School Years'];
@@ -213,6 +215,13 @@
 
                             });
 
+                        }).then(function (){
+                            //get selected program from URL and open it
+                            var selectedProgram = window.location.hash.slice(1);
+
+                            if(selectedProgram in supportedPrograms) {
+                                openProgramTab(supportedPrograms[selectedProgram]);
+                            }
                         });
                 });
 
@@ -231,20 +240,8 @@
                     'libraries':"SCHOOL LIBRARIES"
                 }
 
-                //get selected program from URL
-                var selectedProgram = window.location.hash.slice(1);
-
-                if(selectedProgram in supportedPrograms) {
-                    var programDataKey = supportedPrograms[selectedProgram];
-                } else {
-                    selectedProgram = "art";
-                    window.location.hash = "art";
-                }
-
-
-
                 /// programs part
-                (function() {
+                // (function() {
 
                 //Get Data from CartoDb
                 // var sql = "SELECT p.short as program, o.short as object, SUM(ytd_actual) total, a.year " +
@@ -290,9 +287,9 @@
                 // function drawChart() {
 
                 //     function updateChartData(programId) {
-                //         window.location.hash = programId;
-                //         var programDataKey = supportedPrograms[programId];
-                //         var dataWithHeaders = dataByProgram[programDataKey];
+                        // window.location.hash = programId;
+                        // var programDataKey = supportedPrograms[programId];
+                        // var dataWithHeaders = dataByProgram[programDataKey];
 
                 //         var numBars = dataWithHeaders.length - 1;
                 //         var chartHeight = numBars * 70;
@@ -375,7 +372,7 @@
                 //     google.load('visualization', '1.1', {'packages':['bar'], 'callback': drawChart});
                 // });
 
-                })();
+                // })();
 
             });
         </script>
