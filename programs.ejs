@@ -53,7 +53,7 @@
                     $('#objects-tab').text(programName);
 
                     $('.object-level-data').addClass('is-active');
-                    $('#objects-tab').show();
+                    $('#objects-tab, .object-level-data').show();
 
                     $('#objects-tab').click();
                 }
@@ -432,12 +432,12 @@
                         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect" id="tabs">
                             <div class="mdl-tabs__tab-bar">
                                 <a href="#all-programs-panel" class="mdl-tabs__tab is-active all-programs-data" id="all-programs-tab">All Programs</a>
-                                <a href="#objects-panel" class="mdl-tabs__tab is-active object-level-data" id="objects-tab" style="display:none"></a>
+                                <a href="#objects-panel" class="mdl-tabs__tab object-level-data" id="objects-tab" style="display:none"></a>
                             </div>
                             <div class="mdl-tabs__panel is-active all-programs-data" id="all-programs-panel">
                                 <div id="program-overview"></div>
                             </div>
-                            <div class="mdl-tabs__panel object-level-data" id="objects-panel">
+                            <div class="mdl-tabs__panel object-level-data" id="objects-panel" style="display: none">
                                 <h3>How is money spent on this program across the district?</h3>
                                 <div id="object_chart"></div>
                             </div>
