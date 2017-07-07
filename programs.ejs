@@ -90,7 +90,10 @@
 
                         if (selection.length > 0){
                             openProgramTab(programName);
-                            window.location.hash = _.findKey(supportedPrograms, function(val){return val == programName});
+                            var programKey = _.findKey(supportedPrograms, function(val){return val == programName});
+                            window.location.hash = programKey;
+                            $('#objects-tab').data('program-key',programKey);
+
                         }
 
                     } //end select handler
@@ -227,6 +230,10 @@
 
                 $('#all-programs-tab').click(function() {
                     window.location.hash = "";
+                });
+
+                $('#objects-tab').click(function(){
+                    window.location.hash = $(this).data('program-key');
                 });
 
                 var supportedPrograms = {
