@@ -1,4 +1,5 @@
 @import 'main';
+@import 'google-material-design';
 
 /*Program Selector*/
 
@@ -21,7 +22,7 @@
         background-color: #E7E7E7;
         border-radius: 5px;
     }
-    
+
     &.active, &.active:hover {
         color: white;
         background-color: #4285F4;
