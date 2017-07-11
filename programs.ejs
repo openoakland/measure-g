@@ -51,6 +51,9 @@
 
                     $('.all-programs-data').removeClass('is-active');
                     $('#objects-tab').text(programName);
+                    var programKey = _.findKey(supportedPrograms, function(val){return val == programName});
+                    window.location.hash = programKey;
+                    $('#objects-tab').data('program-key',programKey);
 
                     $('.object-level-data').addClass('is-active');
                     $('#objects-tab, .object-level-data').show();
@@ -90,10 +93,6 @@
 
                         if (selection.length > 0){
                             openProgramTab(programName);
-                            var programKey = _.findKey(supportedPrograms, function(val){return val == programName});
-                            window.location.hash = programKey;
-                            $('#objects-tab').data('program-key',programKey);
-
                         }
 
                     } //end select handler
@@ -218,13 +217,13 @@
 
                             });
 
-                        }).then(function (){
                             //get selected program from URL and open it
                             var selectedProgram = window.location.hash.slice(1);
 
                             if(selectedProgram in supportedPrograms) {
                                 openProgramTab(supportedPrograms[selectedProgram]);
                             }
+
                         });
                 });
 
