@@ -66,6 +66,9 @@
                     programTotalData = google.visualization.arrayToDataTable(dataByProgram);
 
                     var options = {
+                        legend: {
+                            position: 'left'
+                        },
                         height: 500,
                         width: $(window).width() * .8,
                         vAxis:{
@@ -297,6 +300,7 @@
                                     <div class="program" id="nclb-hqt-compliance">NCLB Compliance</div>
                                     <div class="program" id="music">Music</div>
                                 </div> -->
+                                <h4>Click a program name below or a bar in the chart to view more information</h4>
                                 <div id="program-overview"></div>
                             </div>
                             <div class="mdl-tabs__panel object-level-data" id="objects-panel" style="display: none">
