@@ -54,6 +54,8 @@
                     var programKey = _.findKey(supportedPrograms, function(val){return val == programName});
                     window.location.hash = programKey;
                     $('#objects-tab').data('program-key',programKey);
+                    $('#description div').hide();
+                    $('#'+programKey).show();
 
                     $('.object-level-data').addClass('is-active');
                     $('#objects-tab, .object-level-data').show();
@@ -304,8 +306,18 @@
                                 <div id="program-overview"></div>
                             </div>
                             <div class="mdl-tabs__panel object-level-data" id="objects-panel" style="display: none">
-                                <h3>How is money spent on this program across the district?</h3>
-                                <div id="object_chart"></div>
+                                <h4>Program Overview</h4>
+                                <div class="row">
+                                    <div class="col-md-8" id="description">
+                                        <%- partial("partials/_program-descriptions.ejs") %>
+                                    </div>
+                                </div>
+                                <h4>How is money spent on this program across the district?</h4>
+                                <div class="row">
+                                    <div>
+                                        <div id="object_chart"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
