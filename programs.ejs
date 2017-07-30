@@ -9,16 +9,46 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
         <script type="text/javascript">
-            google.charts.load('current', {'packages':['bar','corechart']});
+            google.charts.load('current', {'packages':['bar','corechart','line']});
 
             $(document).ready(function () {
 
                 var programTotalsJson = [];
                 var programs_chart;
                 var programTotalData;
+                var spendingOverTimeData;
+
+                function updateSpendingOverTimeChart(programName) {
+                    var dataTable = google.visualization.arrayToDataTable(spendingOverTimeData[programName]);
+                    dataTable.sort([{column: 1, desc:false}]);
+
+                    var options = {
+                        legend: {position: 'none'},
+                        height: 300,
+                        width: $(window).width() * .5,
+                        vAxis:{
+                            format: '$#,###',
+                            textStyle: {
+                                fontSize: 14
+                            }
+                        },
+                        hAxis: {
+                            textStyle: {
+                                fontSize: 14
+                            }
+                        }
+                    };
+
+                    var chart = new google.charts.Line(document.getElementById('spending_over_time'));
+                    chart.draw(dataTable,google.charts.Line.convertOptions(options));
+                };
 
                 function openProgramTab(programName) {
                     var dataWithHeaders = programSpecificData[programName];
+
+                    if (spendingOverTimeData) {
+                        updateSpendingOverTimeChart(programName);
+                    }
 
                     var numBars = dataWithHeaders.length - 1;
                     var chartHeight = numBars * 70;
@@ -231,6 +261,34 @@
                             }
 
                         });
+
+                        var spendingOverTimeQuery = "SELECT SUM(a.ytd_actual), p.short as program, a.year FROM measure_g_actuals a, programs p " + "WHERE a.program_id = p.id "
+                            + "GROUP BY(a.program_id, a.year, p.short)";
+
+                        $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+spendingOverTimeQuery, function(data) {
+
+                            spendingOverTimeData = _.groupBy(data.rows, 'program');
+
+                            _.each(spendingOverTimeData, function(yearsOfData, program){
+                                var formatted = [];
+
+                                _.each(yearsOfData, function(data){
+                                    formatted.push([yearToDisplay[data.year],data.sum]);
+                                });
+
+                                formatted.unshift(['School Years','Amount Spent']);
+                                spendingOverTimeData[program] = formatted;
+
+                            });
+
+                        }).then(function (){
+                            //get selected program from URL and open it
+                            var selectedProgram = window.location.hash.slice(1);
+
+                            if(selectedProgram in supportedPrograms) {
+                                updateSpendingOverTimeChart(supportedPrograms[selectedProgram]);
+                            }
+                        });
                 });
 
                 $('#all-programs-tab').click(function() {
@@ -255,6 +313,7 @@
                     'oth-programs': "OTH PROGRAMS / LOCAL GOALS",
                     'libraries':"SCHOOL LIBRARIES"
                 }
+
 
             });
         </script>
@@ -291,31 +350,25 @@
                                 <a href="#objects-panel" class="mdl-tabs__tab object-level-data" id="objects-tab" style="display:none"></a>
                             </div>
                             <div class="mdl-tabs__panel is-active all-programs-data" id="all-programs-panel">
-                                <!-- <div id="program-select">
-                                    <div class="program" id="art">Art</div>
-                                    <div class="program" id="basic-school-support">Basic School Support</div>
-                                    <div class="program" id="class-size-reduction">Class Size Reduction</div>
-                                    <div class="program" id="elementary-intervention">Elementary Intervention</div>
-                                    <div class="program" id="hr-recruitment">HR + Recruitment</div>
-                                    <div class="program" id="libraries">Libraries</div>
-                                    <div class="program" id="arts-summer-school">Oakland Fine Arts Summer School</div>
-                                    <div class="program" id="middle-school-electives">Middle School Electives</div>
-                                    <div class="program" id="nclb-hqt-compliance">NCLB Compliance</div>
-                                    <div class="program" id="music">Music</div>
-                                </div> -->
                                 <h4>Click a program name for more information</h4>
                                 <div id="program-overview"></div>
                             </div>
                             <div class="mdl-tabs__panel object-level-data" id="objects-panel" style="display: none">
-                                <h4>Program Overview</h4>
-                                <div class="row">
+                                <div class="row section">
                                     <div class="col-md-8" id="description">
+                                        <h4 class="section-header">Program Overview</h4>
                                         <%- partial("partials/_program-descriptions.ejs") %>
                                     </div>
                                 </div>
-                                <h4>How is money spent on this program across the district?</h4>
-                                <div class="row">
-                                    <div>
+                                <div class="row section">
+                                    <div class="col-md-8">
+                                        <h4 class="section-header">How has spending changed over the years?</h4>
+                                        <div id="spending_over_time"></div>
+                                    </div>
+                                </div>
+                                <div class="row section">
+                                    <div class="col-md-12">
+                                        <h4 class="section-header">How is money spent on this program across the district?</h4>
                                         <div id="object_chart"></div>
                                     </div>
                                 </div>
