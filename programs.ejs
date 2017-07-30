@@ -20,7 +20,7 @@
 
                 function updateSpendingOverTimeChart(programName) {
                     var dataTable = google.visualization.arrayToDataTable(spendingOverTimeData[programName]);
-                    dataTable.sort([{column: 1, desc:false}]);
+                    dataTable.sort([{column: 0, desc:false}]);
 
                     var options = {
                         legend: {position: 'none'},
@@ -271,10 +271,18 @@
 
                             _.each(spendingOverTimeData, function(yearsOfData, program){
                                 var formatted = [];
+                                yearsOfData = _.groupBy(yearsOfData, 'year');
 
-                                _.each(yearsOfData, function(data){
-                                    formatted.push([yearToDisplay[data.year],data.sum]);
-                                });
+                                // Set a sum of 0 for each year
+                                for (var i = supportedYears.length - 1; i >= 0; i--) {
+                                    var year = supportedYears[i];
+                                    var displayYear = yearToDisplay[year];
+                                    if(year in yearsOfData){
+                                        formatted.push([displayYear,yearsOfData[year][0].sum]);
+                                    } else {
+                                        formatted.push([displayYear,0]);
+                                    }
+                                }
 
                                 formatted.unshift(['School Years','Amount Spent']);
                                 spendingOverTimeData[program] = formatted;
@@ -362,7 +370,7 @@
                                 </div>
                                 <div class="row section">
                                     <div class="col-md-8">
-                                        <h4 class="section-header">How has spending changed over the years?</h4>
+                                        <h4 class="section-header">How has spending on this program changed over the years?</h4>
                                         <div id="spending_over_time"></div>
                                     </div>
                                 </div>
