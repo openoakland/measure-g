@@ -94,9 +94,10 @@
                     function selectHandler(e) {
 
                         var selection = programs_chart.getSelection();
-                        var programName = programTotalData.getColumnLabel(selection[0].column);
 
                         if (selection.length > 0){
+                            var programName = programTotalData.getColumnLabel(selection[0].column);
+                            programs_chart.setSelection([]);
                             openProgramTab(programName);
                         }
 
