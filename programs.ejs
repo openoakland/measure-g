@@ -43,12 +43,8 @@
                     chart.draw(dataTable,google.charts.Line.convertOptions(options));
                 };
 
-                function openProgramTab(programName) {
+                function updateObjectBarChart(programName) {
                     var dataWithHeaders = programSpecificData[programName];
-
-                    if (spendingOverTimeData) {
-                        updateSpendingOverTimeChart(programName);
-                    }
 
                     var numBars = dataWithHeaders.length - 1;
                     var chartHeight = numBars * 70;
@@ -78,6 +74,14 @@
                     };
 
                     chart.draw(data, google.charts.Bar.convertOptions(options));
+                };
+
+                function openProgramTab(programName) {
+                    if (spendingOverTimeData) {
+                        updateSpendingOverTimeChart(programName);
+                    }
+
+                    updateObjectBarChart(programName);
 
                     $('.all-programs-data').removeClass('is-active');
                     $('#objects-tab').text(programName);
