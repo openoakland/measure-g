@@ -1,4 +1,5 @@
 @import 'main';
+@import 'google-material-design';
 
 /*Program Selector*/
 
@@ -21,10 +22,28 @@
         background-color: #E7E7E7;
         border-radius: 5px;
     }
-    
+
     &.active, &.active:hover {
         color: white;
         background-color: #4285F4;
         border-radius: 5px;
     }
+}
+
+#program-overview {
+    padding-top: 15px;
+}
+
+.mdl-tabs__tab-bar {
+    margin-bottom: 0px;
+}
+
+// On the program specific tab
+
+.section {
+    padding-top: 20px;
+}
+
+.section-header {
+    padding-bottom: 10px;
 }
