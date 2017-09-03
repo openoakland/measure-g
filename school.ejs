@@ -16,10 +16,8 @@
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
             ga('create', 'UA-35908939-11', 'auto');
             ga('send', 'pageview');
-
           </script>
 
     </head>
@@ -69,12 +67,17 @@
                             <div class="mdl-tabs__tab-bar">
                               <a href="#all-programs-panel" class="mdl-tabs__tab is-active all-programs-data" id="all-programs-tab">All Programs</a>
                               <a href="#objects-panel" class="mdl-tabs__tab is-active object-level-data" id="objects-tab" style="display:none"></a>
+                              <a href="#glossary-panel" class="mdl-tabs__tab is-active glossary-level-data" id="glossary-tab" style="display:none"></a>
                             </div>
                             <div class="mdl-tabs__panel is-active all-programs-data" id="all-programs-panel">
                                 <div id="program_chart"></div>
                             </div>
                             <div class="mdl-tabs__panel object-level-data" id="objects-panel">
                                 <div id="object_chart"></div>
+                            </div>
+                            <div class="mdl-tabs__panel glossary-level-data" id="glossary-panel">
+                                <div id="glossary_info"></div>
+                                <div id="gloss_summary"></div>
                             </div>
                         </div>
 
@@ -86,11 +89,8 @@
         <!-- Place your code in the script tags below -->
         <script type="text/javascript">
             google.charts.load('current', {'packages':['bar','line']});
-
             window.onload = function() {
-
                 var map;
-
                 function initMap(center, name) {
                     map = new google.maps.Map(document.getElementById('school_map'), {
                         center: center,
@@ -98,7 +98,6 @@
                         disableDefaultUI: true,
                         zoomControl: true
                     });
-
                     var marker = new google.maps.Marker({
                         position: center,
                         map: map,
@@ -106,11 +105,9 @@
                         icon: "https://maps.google.com/mapfiles/kml/shapes/schools_maps.png"
                       });
                 };
-
                 function formatSchoolAddress(street,city,state,zip) {
                     return street + " " + city + ", " + state + " " + zip;
                 }
-
                 function getParameterByName(name, url) {
                     if (!url) url = window.location.href;
                     name = name.replace(/[\[\]]/g, "\\$&");
@@ -121,58 +118,43 @@
                     return decodeURIComponent(results[2].replace(/\+/g, " "));
                 }
                 var schoolID = getParameterByName("schoolID");
-
                 // global variables in _harp.json
                 var latestEnrollmentYear = <%= latestEnrollmentYear %>;
                 var latestExpenditureDataYear = <%= latestExpenditureDataYear %>;
-
                 var yearToDisplay = {
                     2012: "2012-13",
                     2013: "2013-14",
                     2014: "2014-15",
                     2015: "2015-16",
                 };
-
                 // See pretty print here: https://github.com/openoakland/measure-g/issues/50
                 var sql = "SELECT ll.ousd_site,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, to_char(mg.ytd_actual, '$999,999') as ytd_actual_money, to_char(round((mg.ytd_actual / e.total_enrollment)::numeric, 2),'$999,999.99') per_student_money FROM measure_g_schools_lat_long ll, ousd_enrollment e,(SELECT site, SUM(m.ytd_actual) as ytd_actual, m.year FROM measure_g_actuals m GROUP BY m.site, m.year) mg WHERE ll.ousd_site = %S AND e.ousd_site = %S AND e.year = %ENROLLMENTYEAR AND mg.site = %S AND mg.year = %MEASUREGYEAR";
-
                 sql = sql.replace(/%S/gi, schoolID).replace(/%ENROLLMENTYEAR/gi, latestEnrollmentYear).replace(/%MEASUREGYEAR/gi, latestExpenditureDataYear);
-
                 var schoolName = "";
                 // Call cartodb
                 $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql, function(data) {
-
                     $.each(data.rows, function(key, row) {
                         schoolName = row.school_name;
                         $('#school_name').text(schoolName);
                         $('#school_address').text(formatSchoolAddress(row.street,row.city,row.state,row.zip));
                         var center = {lat: row.latitude, lng: row.longitude};
                         initMap(center,row.school_name);
-
                         $('#total_spending').text(row.ytd_actual_money);
                         $('#per_student_spending').text(row.per_student_money);
                         $('#total_enrollment').text(row.total_enrollment);
                         $('#school_summary').show();
                     });
                 });
-
                 var sql2 = "SELECT  prog.short as program,a.year, COALESCE(SUM(ytd_actual), 0) as ytd_actual FROM programs prog, measure_g_actuals a WHERE prog.id = a.program_id AND a.site = %S GROUP BY program, a.year ORDER BY program, a.year".replace(/%S/gi, schoolID);
-
-
-
             var programTotalsJson = [];
             var programs_chart;
             var programTotalData;
-
             $('#all-programs-tab').click(function(){
                 $('#object-level-data').removeClass('is-active');
                 // $('#all-programs-data').addClass('');
             });
-
             function drawChart() {
-
                 programTotalData = google.visualization.arrayToDataTable(dataByProgram);
-
                 var options = {
                     chart: {
                       title: 'Click on a program for more detail',
@@ -192,20 +174,15 @@
                         }
                     }
                 };
-
                 programs_chart = new google.charts.Line(document.getElementById('program_chart'));
-
                 programs_chart.draw(programTotalData, google.charts.Bar.convertOptions(options));
                 google.visualization.events.addListener(programs_chart, 'select', selectHandler);
-
                 function selectHandler(e) {
                     var dataByObjects = [];
-
                     var selection = programs_chart.getSelection();
                     if (selection.length > 0){
                         var programName = programTotalData.getColumnLabel(selection[0].column);
-                        var object_query = "SELECT a.year, a.ytd_actual, o.short as obj_desc FROM measure_g_actuals a JOIN programs p ON a.program_id = p.id AND p.short = '%P' LEFT JOIN objects o ON a.object_id = o.id WHERE a.site = %S AND ytd_actual > 0 ORDER BY obj_desc".replace(/%S/gi, schoolID).replace(/%P/gi, programName);
-
+                        var object_query = "SELECT a.year, a.ytd_actual, o.short as obj_desc FROM measure_g_actuals a JOIN programs p ON a.program_id = p.id AND p.short = '%P' LEFT JOIN objects o ON a.object_id = o.id WHERE a.site = 102 AND ytd_actual > 0 ORDER BY obj_desc".replace(/%P/gi, programName);
                         // TODO: get dynamically from Years table (or set in config)
                         var supportedYears = [
                             2012,
@@ -213,10 +190,8 @@
                             2014,
                             2015
                         ];
-
                         var yearToColumnMapping = {};
                         var tableHeader = ['Expense Type'];
-
                         // Dynamically create Google Visualization DataTable columns based on # of years
                         for(var i = 0; i < supportedYears.length; i++){
                             var year = supportedYears[i];
@@ -224,39 +199,28 @@
                             yearToColumnMapping[yearKey] = _.indexOf(supportedYears,year,true);
                             tableHeader.push(yearToDisplay[yearKey]);
                         }
-
                         $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+object_query, function(data) {
-
                             _.each(_.groupBy(data.rows, 'obj_desc'), function(yearsOfSpending, object){
-
                                 var objectSpendingByYear = [object];
-
                                 // Instead of complex SQL joining,
                                 // start with 0 value for each year and replace with spending if it exists
                                 for (var i = 0; i < supportedYears.length; i++) {
                                     objectSpendingByYear.push(0);
                                 }
-
                                 _.each(yearsOfSpending, function(year){
                                     var column = yearToColumnMapping[year.year] + 1;
                                     objectSpendingByYear[column] = year.ytd_actual;
                                 });
-
                                 dataByObjects.push(objectSpendingByYear);
                             });
-
                             //Add a header
                             dataByObjects.unshift(tableHeader);
-
                         }).then(function(){
                             var obj_data = google.visualization.arrayToDataTable(dataByObjects);
                             obj_data.sort([{column: 1, desc:true}]);
-
                             var objectChart = new google.charts.Bar(document.getElementById('object_chart'));
-
                             var numBars = dataByObjects.length - 1;
                             var chartHeight = numBars * 70;
-
                             var options = {
                                 chart: {
                                 },
@@ -272,29 +236,52 @@
                                     format: '$#,###'
                                     }
                                 }
-                                objectChart.draw(obj_data, google.charts.Bar.convertOptions(options));
-
+                                objectChart.draw(obj_data, google.charts.Bar.convertOptions(options)); 
+                                google.visualization.events.addListener(objectChart, 'select', selectHandler2);
                                 $('.all-programs-data').removeClass('is-active');
                                 $('#objects-tab').text(programName);
-
                                 $('.object-level-data').addClass('is-active');
                                 $('#objects-tab').show();
-
                                 $('#objects-tab').click();
+
+                                function selectHandler2(f) { 
+                                    var selection2 = objectChart.getSelection();
+                                    if (selection2.length > 0){
+                                        var objectName = obj_data.getValue(selection2[0].row, 0);
+                                        document.getElementById("glossary_info").innerHTML = objectName;
+                                        var glossary_query = "SELECT a.short, a.term_def FROM objects a WHERE a.short LIKE '%OBJNAME'".replace(/%OBJNAME/gi, objectName, objectName).replace('&', '%26');
+                                        $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+glossary_query, function(data) {
+                                            if(data.rows.length > 0){
+                                                $.each(data.rows, function(key, row) {
+                                                var glossaryTerm = row.term_def;
+                                                if(glossaryTerm) {
+                                                    $('#gloss_summary').text(glossaryTerm);
+                                                    $('#gloss_summary').show();
+                                                    }
+                                                });
+                                            } else {
+                                                $('#gloss_summary').text("Not found");
+                                            }
+                                        }).then(function(){
+                                        $('.object-level-data').removeClass('is-active');
+                                        $('#glossary-tab').text(objectName);
+
+                                        $('.glossary-level-data').addClass('is-active');
+                                        $('#glossary-tab').show();
+
+                                        $('#glossary-tab').click();
+                                        });
+                                    }
+                                }
                             });
-
-
                     }
-
                 }
             }
-
+                 
             $(window).resize(function() {
                 drawChart();
             });
-
             var dataByProgram = [];
-
             // TODO: get dynamically from Years table (or set in config)
             var supportedYears = [
                 2012,
@@ -302,10 +289,8 @@
                 2014,
                 2015
             ];
-
             var yearToRowMapping = {};
             var tableHeader = ['School Years'];
-
             // Dynamically create Google Visualization DataTable rows based on # of years
             for(var i = 0; i < supportedYears.length; i++){
                 var year = supportedYears[i];
@@ -313,38 +298,33 @@
                 yearToRowMapping[yearKey] = _.indexOf(supportedYears,year,true);
                 dataByProgram.push([yearToDisplay[year]]);
             }
-
             $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+sql2, function(data) {
-
                 var groupedByProgram = _.groupBy(data.rows, 'program');
-
                 _.each(groupedByProgram, function(yearsOfSpending, program){
-
                     // Dynamically create a row for every program
                     tableHeader.push(program);
-
                     // Instead of complex SQL joining,
                     // start with 0 value for each program and replace with spending if it exists
                     for (var i = 0; i < dataByProgram.length; i++) {
                         dataByProgram[i].push(0);
                     }
-
                     _.each(yearsOfSpending, function(year){
                         var row = yearToRowMapping[year.year];
                         var column = tableHeader.length - 1;
                         dataByProgram[row][column] = year.ytd_actual;
                     });
-
                 });
-
                 //Add the table header
                 dataByProgram.unshift(tableHeader);
-
             }).then(function(){
                 google.charts.setOnLoadCallback(drawChart);
             });
-
             }
+
+
+        var sqlCompare = "SELECT schnam, ousd_site FROM measure_g_schools_lat_long"
+
+
         </script>
 
         <%- partial("partials/_uservoice.ejs") %>
