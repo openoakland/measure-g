@@ -64,3 +64,16 @@ Our enrollment source has been the US Dept of Ed National Center for Education S
 
 6. Update `_harp.json` with the latest enrollment year
 7. Update the enrollment table name in sql calls (currently `ousd_enrollment`) if you're changing the name. This might be neccessary if you're going to wait a bit to release the change. Otherwise you'll break the live site in the process.
+
+### Adding Annual Measure G Data
+
+We request the data each year from OUSD's finance office (typically through the Measure G Oversight Committee)
+
+1. Change column names to match the `measure_g_actuals` table
+2. Format spending columns into `####.##`
+3. Add a `year` column and place the same year in every row. This should be the year that the school year started. For example, if it were to 2014-2015 school year, you would place 2014 in the column.
+4. Upload to carto. Be sure that columns containing numberic ids or spending are in number format, not text.
+5. Use a `UNION ALL` query in Carto to join the datasets. [Something like this.](https://github.com/openoakland/measure-g/issues/63)
+6. Create a new dataset from the query. Make it public and name it `measure_g_actuals` to replace the existing table with that name.
+7. Update the `supported_years` and `yearsToDisplay` arrays in `programs.ejs` and `school.ejs` to include the year you just added. (Unfortunately, it may break without this adjustment).
+8. Update `latestExpenditureDataYear` in `harp.json` to the year you have just added and add another element to to the `year-select` element in `map.ejs`.
