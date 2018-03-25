@@ -48,10 +48,11 @@
 
                     var numBars = dataWithHeaders.length - 1;
                     var chartHeight = numBars * 70;
+                    var sortColumn = dataWithHeaders[0].length - 1;
 
                     var data = google.visualization.arrayToDataTable(dataWithHeaders);
 
-                    data.sort([{column: 4, desc:true}]);
+                    data.sort([{column: sortColumn, desc:true}]);
 
                     var chart = new google.charts.Bar(document.getElementById('object_chart'));
 
