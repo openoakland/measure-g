@@ -77,3 +77,6 @@ We request the data each year from OUSD's finance office (typically through the 
 6. Create a new dataset from the query. Make it public and name it `measure_g_actuals` to replace the existing table with that name.
 7. Update the `supported_years` and `yearsToDisplay` arrays in `programs.ejs` and `school.ejs` to include the year you just added. (Unfortunately, it may break without this adjustment).
 8. Update `latestExpenditureDataYear` in `harp.json` to the year you have just added and add another element to to the `year-select` element in `map.ejs`.
+
+[Example Commit](https://github.com/openoakland/measure-g/commit/7de5b408a0b319c3f9b9814e93c637a66b00de5a)
+
