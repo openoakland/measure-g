@@ -60,7 +60,7 @@ Our enrollment source has been the [US Dept of Ed National Center for Education 
 2. To conserve file size, delete all rows where district != 'Oakland Unified' (Excel can do this pretty easily)
 3. Save as csv (original sorce is text flat file)
 4. Upload to the carto account as a new dataset
-5. This data is broken out by ethnicity and grade level. [Use this query in Carto](https://github.com/openoakland/measure-g/issues/58) to sum up the enrollment for each school site and union with existing data.
+5. This data is broken out by ethnicity and grade level. [Use this query in Carto](https://github.com/openoakland/measure-g/issues/65) to sum up the enrollment for each school site and union with existing data.
 6. In Carto, save the query result as a new dataset. Name something like `ousd_enrollment_YYYY` with the year you are adding.
 7. In `_harp.json`, update `latestEnrollmentYear` with the year you just added (2017-18 school year would be `2017`) and `enrollmentDataTable` with the name of the table you created in step 6.
 
