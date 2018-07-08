@@ -11,7 +11,7 @@
         <script type="text/javascript">
 
             var getSelectedYear = function() {
-                return "2015";
+                return <%= latestExpenditureDataYear %>;
             };
 
             // Capitalizes first letter
@@ -36,13 +36,14 @@
                 "SUM(mg.ytd_actual) as ytd_actual, " +
                 "s.schnam, " +
                 "s.site_type, " +
-                "s.ousd_site " +
+                "s.ousd_site, " +
+                "MIN(s.ncessch) ncessch " +
                 "FROM measure_g_actuals mg, measure_g_schools_lat_long s " +
                 "WHERE " +
                 "mg.site = s.ousd_site " +
                 "AND mg.year = " + getSelectedYear() + " " +
-                "GROUP BY s.schnam, s.site_type, s.ousd_site) spend, ousd_enrollment e " +
-                "WHERE spend.ousd_site = e.ousd_site " +
+                "GROUP BY s.schnam, s.site_type, s.ousd_site) spend, <%= enrollmentDataTable %> e " +
+                "WHERE spend.ncessch = e.ncessch " +
                 "AND e.year = " + latestEnrollmentYear;
 
             var dataBySchool = [];
@@ -87,7 +88,7 @@
                 //Add a header to each program data set (only happens once)
                 //dataBySchool.unshift(['School', 'Enrollment', 'Measure G Total $',  'Measure G $ Per Pupil', 'School Total $', 'Total $ Per Pupil', '% from Measure G']);
 
-                dataBySchool.unshift(['School', 'Enrollment', 'Measure G Total $',  'Measure G $ Per Pupil']);
+                dataBySchool.unshift(['School', 'Enrollment (' + latestEnrollmentYear + ')', 'Measure G Total $ (' + getSelectedYear() + ')',  'Measure G $ Per Pupil']);
 
 
             }).then(function() {

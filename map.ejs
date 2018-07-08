@@ -289,6 +289,9 @@
         <script type="text/javascript">
         window.onload = function() {
 
+            // this is a global variable in _harp.json
+            var latestEnrollmentYear = <%= latestEnrollmentYear %>;
+
             getSelectedPrograms = function () {
                 var programList = [];
                 var selectedOption = $('#program-menu input:checked');
@@ -319,10 +322,18 @@
 
             };
 
-            generateSpendingSQLQuery = function () {
+            var getEnrollmentYear = function () {
 
-                // this is a global variable in _harp.json
-                var latestEnrollmentYear = <%= latestEnrollmentYear %>;
+                var year = getSelectedYear();
+
+                if(year > latestEnrollmentYear)
+                  year = latestEnrollmentYear;
+
+                return parseInt(year);
+
+            };
+
+            generateSpendingSQLQuery = function () {
 
                 var query = "SELECT spend.*, " +
                     "round((spend.ytd_actual / e.total_enrollment)::numeric, 2) as per_student, " +
@@ -336,15 +347,16 @@
                     "MAX(mg.cartodb_id) cartodb_id, " +
                     "s.schnam, " +
                     "s.site_type, " +
+                    "s.ncessch, " +
                     "s.ousd_site " +
                     "FROM measure_g_actuals mg, measure_g_schools_lat_long s " +
                     "WHERE mg.program_id IN (" + getSelectedPrograms() + ") " +
                     "AND s.site_type IN ("+ getSelectedSchoolLevels() +") " +
                     "AND mg.site = s.ousd_site " +
                     "AND mg.year = " + getSelectedYear() + " " +
-                    "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type, s.ousd_site) spend, ousd_enrollment e " +
-                    "WHERE spend.ousd_site = e.ousd_site " +
-                    "AND e.year = " + latestEnrollmentYear;
+                    "GROUP BY s.the_geom, s.the_geom_webmercator, s.schnam, s.site_type, s.ousd_site, s.ncessch) spend, <%= enrollmentDataTable %> e " +
+                    "WHERE spend.ncessch = e.ncessch " +
+                    "AND e.year = " + getEnrollmentYear();
 
                 return query;
             };

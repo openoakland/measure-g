@@ -1,6 +1,7 @@
 {
     "globals": {
-        "latestEnrollmentYear": 2014,
-        "latestExpenditureDataYear": 2016
+        "latestEnrollmentYear": 2016,
+        "latestExpenditureDataYear": 2016,
+        "enrollmentDataTable": "ousd_enrollment_2017"
     }
 }
