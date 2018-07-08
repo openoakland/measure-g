@@ -51,19 +51,18 @@ to see your changes hosted at http://staging.trackg.org
 
 ### Adding Enrollment Data
 
-Our enrollment source has been the US Dept of Ed National Center for Education Statistics: [https://nces.ed.gov/ccd/pubschuniv.asp](https://nces.ed.gov/ccd/pubschuniv.asp) They are extremely slow to publish, but they have charter and traditional district school data.
+Our enrollment source has been the [US Dept of Ed National Center for Education Statistics](https://nces.ed.gov/ccd/pubschuniv.asp) and the [CA Dept of Ed](https://www.cde.ca.gov/ds/sd/sd/filesenr.asp). These instructions are for the CA Dept of Ed.
 
-1. Download the latest and copy out the Oakland schools (LEA_NAME = Oakland Unified)
+1. [Download the enrollment data](https://www.cde.ca.gov/ds/sd/sd/filesenr.asp) for the year you would like to add
 
 *Carto Postgres Hosting (jbaldo.carto.com)*
 
-2. Remove extraneous columns in Excel so you're under the 250 column Carto limit (yeah, it's got a lot of columns...)
+2. To conserve file size, delete all rows where district != 'Oakland Unified' (Excel can do this pretty easily)
 3. Save as csv (original sorce is text flat file)
 4. Upload to the carto account as a new dataset
-5. Extract columns and join with existing enrollment data. [Something like this](https://github.com/openoakland/measure-g/issues/58)
-
-6. Update `_harp.json` with the latest enrollment year
-7. Update the enrollment table name in sql calls (currently `ousd_enrollment`) if you're changing the name. This might be neccessary if you're going to wait a bit to release the change. Otherwise you'll break the live site in the process.
+5. This data is broken out by ethnicity and grade level. [Use this query in Carto](https://github.com/openoakland/measure-g/issues/58) to sum up the enrollment for each school site and union with existing data.
+6. In Carto, save the query result as a new dataset. Name something like `ousd_enrollment_YYYY` with the year you are adding.
+7. In `_harp.json`, update `latestEnrollmentYear` with the year you just added (2017-18 school year would be `2017`) and `enrollmentDataTable` with the name of the table you created in step 6.
 
 ### Adding Annual Measure G Data
 
