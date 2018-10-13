@@ -126,7 +126,8 @@
                     2013: "2013-14",
                     2014: "2014-15",
                     2015: "2015-16",
-                    2016: "2016-17"
+                    2016: "2016-17",
+                    2017: "2017-18"
                 };
                 // See pretty print here: https://github.com/openoakland/measure-g/issues/50
                 var sql = "SELECT ll.ousd_site,ll.ncessch,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, to_char(mg.ytd_actual, '$999,999') as ytd_actual_money, to_char(round((mg.ytd_actual / e.total_enrollment)::numeric, 2),'$999,999.99') per_student_money FROM measure_g_schools_lat_long ll, <%= enrollmentDataTable %> e,(SELECT site, SUM(m.ytd_actual) as ytd_actual, m.year FROM measure_g_actuals m GROUP BY m.site, m.year) mg WHERE ll.ousd_site = %S AND e.ncessch = ll.ncessch AND e.year = %ENROLLMENTYEAR AND mg.site = %S AND mg.year = %MEASUREGYEAR";
@@ -190,7 +191,8 @@
                             2013,
                             2014,
                             2015,
-                            2016
+                            2016,
+                            2017
                         ];
                         var yearToColumnMapping = {};
                         var tableHeader = ['Expense Type'];
@@ -290,7 +292,8 @@
                 2013,
                 2014,
                 2015,
-                2016
+                2016,
+                2017
             ];
             var yearToRowMapping = {};
             var tableHeader = ['School Years'];
