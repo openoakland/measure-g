@@ -130,7 +130,7 @@
                     2017: "2017-18"
                 };
                 // See pretty print here: https://github.com/openoakland/measure-g/issues/50
-                var sql = "SELECT ll.ousd_site,ll.ncessch,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, to_char(mg.ytd_actual, '$999,999') as ytd_actual_money, to_char(round((mg.ytd_actual / e.total_enrollment)::numeric, 2),'$999,999.99') per_student_money FROM measure_g_schools_lat_long ll, <%= enrollmentDataTable %> e,(SELECT site, SUM(m.ytd_actual) as ytd_actual, m.year FROM measure_g_actuals m GROUP BY m.site, m.year) mg WHERE ll.ousd_site = %S AND e.ncessch = ll.ncessch AND e.year = %ENROLLMENTYEAR AND mg.site = %S AND mg.year = %MEASUREGYEAR";
+                var sql = "SELECT ll.ousd_site,ll.ncessch,ll.latcod as latitude,ll.loncod as longitude,ll.schnam as school_name,ll.ncessch as nces,ll.lstree as street,ll.lcity as city,ll.lstate as state,ll.lzip as zip,ll.gslo as grade_low,ll.gshi as grade_high,ll.site_type, e.total_enrollment, to_char(mg.ytd_actual, '$999,999') as ytd_actual_money, to_char(round((mg.ytd_actual / e.total_enrollment)::numeric, 2),'$999,999.99') per_student_money FROM measure_g_schools_lat_long ll, <%= enrollmentDataTable %> e,(SELECT site, SUM(m.ytd_actual) as ytd_actual, m.year FROM <%= expenditureDataTable %> m GROUP BY m.site, m.year) mg WHERE ll.ousd_site = %S AND e.ncessch = ll.ncessch AND e.year = %ENROLLMENTYEAR AND mg.site = %S AND mg.year = %MEASUREGYEAR";
                 sql = sql.replace(/%S/gi, schoolID).replace(/%ENROLLMENTYEAR/gi, latestEnrollmentYear).replace(/%MEASUREGYEAR/gi, latestExpenditureDataYear);
                 var schoolName = "";
                 // Call cartodb
@@ -147,7 +147,7 @@
                         $('#school_summary').show();
                     });
                 });
-                var sql2 = "SELECT  prog.short as program,a.year, COALESCE(SUM(ytd_actual), 0) as ytd_actual FROM programs prog, measure_g_actuals a WHERE prog.id = a.program_id AND a.site = %S GROUP BY program, a.year ORDER BY program, a.year".replace(/%S/gi, schoolID);
+                var sql2 = "SELECT  prog.short as program,a.year, COALESCE(SUM(ytd_actual), 0) as ytd_actual FROM programs prog, <%= expenditureDataTable %> a WHERE prog.id = a.program_id AND a.site = %S GROUP BY program, a.year ORDER BY program, a.year".replace(/%S/gi, schoolID);
             var programTotalsJson = [];
             var programs_chart;
             var programTotalData;
@@ -184,7 +184,7 @@
                     var selection = programs_chart.getSelection();
                     if (selection.length > 0){
                         var programName = programTotalData.getColumnLabel(selection[0].column);
-                        var object_query = "SELECT a.year, a.ytd_actual, o.short as obj_desc FROM measure_g_actuals a JOIN programs p ON a.program_id = p.id AND p.short = '%P' LEFT JOIN objects o ON a.object_id = o.id WHERE a.site = 102 AND ytd_actual > 0 ORDER BY obj_desc".replace(/%P/gi, programName);
+                        var object_query = "SELECT a.year, a.ytd_actual, o.short as obj_desc FROM <%= expenditureDataTable %> a JOIN programs p ON a.program_id = p.id AND p.short = '%P' LEFT JOIN objects o ON a.object_id = o.id WHERE a.site = 102 AND ytd_actual > 0 ORDER BY obj_desc".replace(/%P/gi, programName);
                         // TODO: get dynamically from Years table (or set in config)
                         var supportedYears = [
                             2012,

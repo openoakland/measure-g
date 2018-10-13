@@ -177,7 +177,7 @@
                     dataByProgram.push([yearToDisplay[year]]);
                 }
 
-                var overviewQuery = "SELECT  prog.short as program,a.year, COALESCE(SUM(ytd_actual), 0) as ytd_actual FROM programs prog, measure_g_actuals a WHERE prog.id = a.program_id GROUP BY program, a.year ORDER BY program, a.year";
+                var overviewQuery = "SELECT  prog.short as program,a.year, COALESCE(SUM(ytd_actual), 0) as ytd_actual FROM programs prog, <%= expenditureDataTable %> a WHERE prog.id = a.program_id GROUP BY program, a.year ORDER BY program, a.year";
 
                 $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+overviewQuery, function(data) {
 
@@ -210,7 +210,7 @@
                         var dataByObjects = [];
 
                         var allProgramsQuery = "SELECT p.short as program, o.short as object, SUM(ytd_actual) total, a.year " +
-                            "FROM measure_g_actuals a, programs p, objects o " +
+                            "FROM <%= expenditureDataTable %> a, programs p, objects o " +
                             "WHERE a.object_id = o.id " +
                             "AND a.program_id = p.id " +
                             "GROUP BY o.short, p.short, a.year " +
@@ -271,7 +271,7 @@
 
                         });
 
-                        var spendingOverTimeQuery = "SELECT SUM(a.ytd_actual), p.short as program, a.year FROM measure_g_actuals a, programs p " + "WHERE a.program_id = p.id "
+                        var spendingOverTimeQuery = "SELECT SUM(a.ytd_actual), p.short as program, a.year FROM <%= expenditureDataTable %> a, programs p " + "WHERE a.program_id = p.id "
                             + "GROUP BY(a.program_id, a.year, p.short)";
 
                         $.getJSON('https://jbaldo.cartodb.com/api/v2/sql/?q='+spendingOverTimeQuery, function(data) {

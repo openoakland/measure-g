@@ -38,7 +38,7 @@
                 "s.site_type, " +
                 "s.ousd_site, " +
                 "MIN(s.ncessch) ncessch " +
-                "FROM measure_g_actuals mg, measure_g_schools_lat_long s " +
+                "FROM <%= expenditureDataTable %> mg, measure_g_schools_lat_long s " +
                 "WHERE " +
                 "mg.site = s.ousd_site " +
                 "AND mg.year = " + getSelectedYear() + " " +

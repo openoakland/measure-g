@@ -349,7 +349,7 @@
                     "s.site_type, " +
                     "s.ncessch, " +
                     "s.ousd_site " +
-                    "FROM measure_g_actuals mg, measure_g_schools_lat_long s " +
+                    "FROM <%= expenditureDataTable %> mg, measure_g_schools_lat_long s " +
                     "WHERE mg.program_id IN (" + getSelectedPrograms() + ") " +
                     "AND s.site_type IN ("+ getSelectedSchoolLevels() +") " +
                     "AND mg.site = s.ousd_site " +
