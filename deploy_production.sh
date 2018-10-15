@@ -11,7 +11,7 @@ git rm -rf .
 harp compile ../ ./
 
 # create a CNAME record so the URL works correctly
-# echo 'trackg.org' > 'CNAME'
+echo 'trackg.org' > 'CNAME'
 
 # add and commit all the files on the gh-pages branch, push it up to GitHub for hosting
 git add -A
