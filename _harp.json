@@ -3,6 +3,6 @@
         "latestEnrollmentYear": 2017,
         "latestExpenditureDataYear": 2018,
         "enrollmentDataTable": "ousd_enrollment_2017",
-        "expenditureDataTable": "measure_g_actuals_new_1"
+        "expenditureDataTable": "measure_g_actuals"
     }
 }
