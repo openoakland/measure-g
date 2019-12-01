@@ -51,7 +51,7 @@ Staging is hosted on GitHub pages here: https://github.com/openoakland/measure-g
 
 ### Production
 ```
-bash ./deploy_staging.sh
+bash ./deploy_production.sh
 ```
 [trackg.org](https://trackg.org)
 
