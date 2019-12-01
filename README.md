@@ -45,7 +45,17 @@ Once you have that setup process complete, you can run:
 ```
 bash ./deploy_staging.sh
 ```
-to see your changes hosted at http://staging.trackg.org
+to see your changes at https://openoakland.github.io/measure-g-staging/
+
+Staging is hosted on GitHub pages here: https://github.com/openoakland/measure-g-staging
+
+### Production
+```
+bash ./deploy_staging.sh
+```
+[trackg.org](https://trackg.org)
+
+Hosted on GitHub pages here: https://github.com/openoakland/measure-g-production
 
 ## Data Maintenence
 
